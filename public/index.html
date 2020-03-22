@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!-- <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico"> -->
+    <title>Vai pa onde?</title>
+  </head>
+  <body>
+    <noscript>
+      <strong>We're sorry but this project doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+
+    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
+
+    <script>
+      const firebaseConfig = {
+        apiKey: "AIzaSyB3B8U6KmujmH5SmaEALrkwY1qve93g0A8",
+        authDomain: "vai-pa-onde.firebaseapp.com",
+        databaseURL: "https://vai-pa-onde.firebaseio.com",
+        projectId: "vai-pa-onde",
+        storageBucket: "vai-pa-onde.appspot.com",
+        messagingSenderId: "746640050996",
+        appId: "1:746640050996:web:9cb067e803e6b4ab707361",
+        measurementId: "G-28EKXZT71M"
+      }
+
+      firebase.initializeApp(firebaseConfig)
+      firebase.analytics()
+    </script>
+  </body>
+</html>

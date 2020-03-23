@@ -6,7 +6,7 @@
           <h1>{{ activity.title }}</h1>
           <h2>{{ activity.brand }}</h2>
         </div>
-        <type-badge :type="activity.type" />
+        <type-badge :class="`type-background type-background--${activity.type}`" :type="activity.type" />
       </div>
       <div :class="`activity-details__content__info`">
         <img :src="activity.image" alt />
@@ -103,6 +103,7 @@ export default {
 
       & > .type-badge {
         font-size: 22px;
+        color: white;
       }
     }
 

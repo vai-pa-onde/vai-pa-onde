@@ -23,6 +23,10 @@ export default {
 @import 'node_modules/reset-css/sass/reset';
 @import '~@/styles/main';
 
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
 #app {
   display: flex;
   flex-direction: column;

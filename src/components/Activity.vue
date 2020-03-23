@@ -33,22 +33,6 @@ export default {
   flex-direction: column;
   cursor: pointer;
 
-  &--course {
-    background-color: map-get($colors-util, 'yellow');
-  }
-
-  &--event {
-    background-color: map-get($colors-util, 'pink');
-  }
-
-  &--product {
-    background-color: map-get($colors-util, 'teal');
-  }
-
-  &--content {
-    background-color: map-get($colors-util, 'red');
-  }
-
   img {
     display: block;
     width: 100%;
@@ -76,6 +60,12 @@ export default {
       font-size: 20px;
       margin: 12px 0;
       flex-grow: 1;
+    }
+
+    &__info {
+      & > .type-badge {
+        background-color: white;
+      }
     }
   }
 }

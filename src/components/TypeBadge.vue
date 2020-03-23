@@ -1,5 +1,5 @@
 <template>
-  <span :class="`type-badge type-background type-background--${type}`">{{ badgeText }}</span>
+  <span :class="`type-badge type-badge--${type}`">{{ badgeText }}</span>
 </template>
 
 <script>
@@ -25,12 +25,27 @@ export default {
 .type-badge {
   display: block;
   padding: 6px;
-  color: white;
   text-transform: uppercase;
   width: min-content;
   font: {
     size: 16px;
     weight: bold;
+  }
+
+  &--course {
+    color: map-get($colors-util, 'yellow');
+  }
+
+  &--event {
+    color: map-get($colors-util, 'pink');
+  }
+
+  &--product {
+    color: map-get($colors-util, 'teal');
+  }
+
+  &--content {
+    color: map-get($colors-util, 'red');
   }
 }
 </style>

@@ -1,7 +1,8 @@
 <template>
   <div id="app">
-    Hello :D
+    <search-header />
     <router-view/>
+    <logo-footer />
   </div>
 </template>
 
@@ -12,13 +13,17 @@ export default {
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css?family=Play:400,700&display=swap');
 @import 'node_modules/reset-css/sass/reset';
+@import '~@/styles/main';
 
 #app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Play', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
+  color: white;
+  min-height: 100vh;
 }
 </style>

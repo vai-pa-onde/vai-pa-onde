@@ -4,6 +4,7 @@ import parse from 'csv-parse'
 const spreadsheetId = '2PACX-1vRqN0edpOYftetA6gUkMDPONc5o2NHKG9yJLrzDtbhxe-SUqCHMgNaUodI8o4Q4pOX66iDHPGMLC7D2'
 
 const state = {
+  loaded: false,
   allActivities: []
 }
 
@@ -19,6 +20,7 @@ const actions = {
         }
 
         commit('SET_ALL_ACTIVITIES', output)
+        commit('SET_LOADED')
       })
     } catch {}
   }
@@ -26,8 +28,10 @@ const actions = {
 
 const mutations = {
   SET_ALL_ACTIVITIES(state, activities) {
-    console.log(activities)
     state.allActivities = activities
+  },
+  SET_LOADED(state) {
+    state.loaded = true
   }
 }
 

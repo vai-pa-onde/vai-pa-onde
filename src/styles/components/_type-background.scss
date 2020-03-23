@@ -1,0 +1,17 @@
+.type-background {
+  &--course {
+    background-color: map-get($colors-util, 'yellow');
+  }
+
+  &--event {
+    background-color: map-get($colors-util, 'pink');
+  }
+
+  &--product {
+    background-color: map-get($colors-util, 'teal');
+  }
+
+  &--content {
+    background-color: map-get($colors-util, 'red');
+  }
+}

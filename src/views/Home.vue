@@ -17,15 +17,11 @@
 </template>
 
 <script>
-import { mapActions, mapState } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'home',
-  methods: mapActions({ fetchAcitivies: 'activities/fetch' }),
-  computed: mapState({ activities: state => state.activities.allActivities }),
-  created() {
-    this.fetchAcitivies()
-  }
+  computed: mapState({ activities: state => state.activities.allActivities })
 }
 </script>
 

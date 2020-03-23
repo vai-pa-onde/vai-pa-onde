@@ -1,11 +1,14 @@
 <template>
-  <div :class="`activity activity--${type}`" @click="() => $router.push({ name: 'activity-details', params: { id }})">
+  <div
+    :class="`activity type-background type-background--${type}`"
+    @click="() => $router.push({ name: 'activity-details', params: { id }})"
+  >
     <img src="@/assets/activity.png" />
     <div class="activity__content">
       <h1>{{ title }}</h1>
       <p>{{ brand }}</p>
       <div class="activity__content__info">
-        <span>{{ typeBadge }}</span>
+        <type-badge :type="type" />
         <div class="share"></div>
       </div>
     </div>
@@ -13,23 +16,13 @@
 </template>
 
 <script>
-import typeName from '@/js/typeName'
-
 export default {
   name: 'activity',
   props: {
     id: Number,
     title: String,
     brand: String,
-    type: {
-      type: String,
-      validator: s => ['course', 'event', 'product', 'content'].includes(s)
-    }
-  },
-  computed: {
-    typeBadge() {
-      return typeName[this.type]
-    }
+    type: String
   }
 }
 </script>
@@ -42,34 +35,18 @@ export default {
 
   &--course {
     background-color: map-get($colors-util, 'yellow');
-
-    .activity__content__info > span {
-      color: map-get($colors-util, 'yellow');
-    }
   }
 
   &--event {
     background-color: map-get($colors-util, 'pink');
-
-    .activity__content__info > span {
-      color: map-get($colors-util, 'pink');
-    }
   }
 
   &--product {
     background-color: map-get($colors-util, 'teal');
-
-    .activity__content__info > span {
-      color: map-get($colors-util, 'teal');
-    }
   }
 
   &--content {
     background-color: map-get($colors-util, 'red');
-
-    .activity__content__info > span {
-      color: map-get($colors-util, 'red');
-    }
   }
 
   img {
@@ -99,20 +76,6 @@ export default {
       font-size: 20px;
       margin: 12px 0;
       flex-grow: 1;
-    }
-
-    &__info {
-      & > span {
-        display: block;
-        padding: 6px;
-        background-color: white;
-        text-transform: uppercase;
-        font: {
-          size: 16px;
-          weight: bold;
-        }
-        width: min-content;
-      }
     }
   }
 }

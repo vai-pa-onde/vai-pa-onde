@@ -17,8 +17,8 @@
           <a class="label link" :href="activity.link" target="_blank">acessar</a>
 
           <p class="label">compartilhar</p>
-          <p class="share share--facebook" @click="copyToClipboard">compartilhar no facebook</p>
-          <p class="share share--instagram">compartilhar no instagram</p>
+          <p class="share share--facebook" @click="shareOnFacebook">compartilhar no facebook</p>
+          <!-- <p class="share share--instagram">compartilhar no instagram</p> -->
           <a class="share share--whatsapp" :href="whatsappLink" data-action="share/whatsapp/share" target="_blank">compartilhar no whatsapp</a>
           <p class="share share--clipboard" @click="copyToClipboard">copiar link</p>
         </div>
@@ -49,6 +49,9 @@ export default {
     }
   },
   methods: {
+    shareOnFacebook() {
+      window.open(`https://www.facebook.com/sharer/sharer.php?app_id=2952570301453352&sdk=joey&u=${encodeURIComponent('https://www.vaipaonde.com.br')}&display=popup&ref=plugin&src=share_button`, 'Facebook', 'width=640,height=580')
+    },
     copyToClipboard() {
       const el = document.createElement('textarea')
       el.value = this.activity.link

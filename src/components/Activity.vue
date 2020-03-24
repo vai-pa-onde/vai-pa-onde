@@ -9,7 +9,7 @@
       <p>{{ brand }}</p>
       <div class="activity__content__info">
         <type-badge :type="type" />
-        <div class="share"></div>
+        <div class="share" v-if="canShare" @click.stop="share" />
       </div>
     </div>
   </div>
@@ -23,6 +23,20 @@ export default {
     title: String,
     brand: String,
     type: String
+  },
+  computed: {
+    canShare() {
+      return !!window.navigator.share
+    }
+  },
+  methods: {
+    share(event) {
+      window.navigator.share({
+        title: 'Aooba',
+        text: 'Eaeee',
+        url: 'https://www.vaipaonde.com.br/'
+      })
+    }
   }
 }
 </script>
@@ -64,8 +78,22 @@ export default {
     }
 
     &__info {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
       & > .type-badge {
         background-color: white;
+      }
+
+      & > .share {
+        width: 20px;
+        height: 20px;
+        background: {
+          repeat: no-repeat;
+          image: url('~@/assets/share.svg');
+          size: contain;
+        }
       }
     }
   }

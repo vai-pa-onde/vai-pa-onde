@@ -14,7 +14,7 @@
           <p class="label">válido até:</p>
           <p>30 de março, 2020</p>
 
-          <a class="label" :href="activity.link" target="_blank">acessar</a>
+          <a class="label link" :href="activity.link" target="_blank">acessar</a>
 
           <p class="label">compartilhar</p>
           <p class="share share--facebook" @click="copyToClipboard">compartilhar no facebook</p>
@@ -126,26 +126,70 @@ export default {
         height: 300px;
         flex-grow: 1;
 
-        & > p {
-          font-size: 16px;
+        & > p, & > a {
+          display: inline-flex;
+          font-size: 14px;
+        }
 
-          &.share {
-            cursor: pointer;
+        & > .share {
+          align-items: center;
+          cursor: pointer;
+
+          &::before {
+            content: '';
+            width: 14px;
+            height: 14px;
+            margin-right: 10px;
+            margin-top: 1px;
+            background: {
+              repeat: no-repeat;
+              size: 100% 100%;
+            }
+          }
+
+          &--facebook::before {
+            background-image: url('~@/assets/facebook.svg');
+          }
+
+          &--instagram::before {
+            background-image: url('~@/assets/instagram.svg');
+          }
+
+          &--whatsapp::before {
+            background-image: url('~@/assets/whatsapp.svg');
+          }
+
+          &--clipboard::before {
+            background-image: url('~@/assets/link.svg');
           }
         }
 
         & > .label {
           font-size: 19px;
-          display: block;
+          display: inline-flex;
           margin-top: 16px;
           margin-bottom: 2px;
           font-weight: bold;
         }
 
         & > a {
-          width: min-content;
           color: inherit;
           text-decoration: none;
+
+          &.link {
+            &::after {
+              content: '';
+              width: 16px;
+              height: 16px;
+              margin-left: 5px;
+              margin-top: 4px;
+              background: {
+                repeat: no-repeat;
+                image: url('~@/assets/new-tab.svg');
+                size: 100% 100%;
+              }
+            }
+          }
         }
       }
     }

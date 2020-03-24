@@ -49,8 +49,10 @@ export default {
     & > h1 {
       word-wrap: break-word;
       text-transform: uppercase;
+      line-height: 26px;
+      flex-grow: 1;
       font: {
-        size: 36px;
+        size: 22px;
         weight: bold;
       }
     }
@@ -59,7 +61,6 @@ export default {
       line-height: 1.2;
       font-size: 20px;
       margin: 12px 0;
-      flex-grow: 1;
     }
 
     &__info {

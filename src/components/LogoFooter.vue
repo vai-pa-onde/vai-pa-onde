@@ -32,5 +32,20 @@ export default {
       font-size: 34px;
     }
   }
+
+  @media screen and (max-width: 992px) {
+    height: auto;
+
+    &__content {
+      padding: 20px 0 40px 0;
+      flex-direction: column;
+      justify-content: center;
+
+      & > .logo {
+        font-size: 30px;
+        margin-bottom: 32px;
+      }
+    }
+  }
 }
 </style>

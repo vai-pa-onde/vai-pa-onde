@@ -46,6 +46,7 @@ export default {
   display: flex;
   flex-direction: column;
   cursor: pointer;
+  font-size: 20px;
 
   img {
     display: block;
@@ -63,17 +64,17 @@ export default {
     & > h1 {
       word-wrap: break-word;
       text-transform: uppercase;
-      line-height: 26px;
+      line-height: 1.3em;
       flex-grow: 1;
       font: {
-        size: 22px;
+        size: 1.2em;
         weight: bold;
       }
     }
 
     & > p {
       line-height: 1.2;
-      font-size: 20px;
+      font-size: 1em;
       margin: 12px 0;
     }
 
@@ -95,6 +96,30 @@ export default {
           size: contain;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    font-size: 14px;
+
+    img {
+      height: 90px;
+    }
+
+    &__content {
+      padding: 8px 12px 14px 12px;
+
+      & > h1 {
+        font-size: 1em;
+      }
+    }
+  }
+
+  @media screen and (max-width: 374px) {
+    font-size: 16px;
+
+    img {
+      height: 110px;
     }
   }
 }

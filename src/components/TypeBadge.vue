@@ -47,5 +47,9 @@ export default {
   &--content {
     color: map-get($colors-util, 'red');
   }
+
+  @media screen and (max-width: 576px) {
+    font-size: 12px;
+  }
 }
 </style>

@@ -1,14 +1,19 @@
 <template>
   <div class="activity-details">
-    <div class="activity-details__content">
-      <div class="activity-details__content__header">
-        <div>
-          <h1>{{ activity.title }}</h1>
-          <h2>{{ activity.brand }}</h2>
-        </div>
+    <div class="activity-details__header">
+      <h1>{{ activity.title }}</h1>
+      <h2>{{ activity.brand }}</h2>
+    </div>
+    <div class="activity-details__subheader">
+      <div>
         <type-badge :class="`type-background type-background--${activity.type}`" :type="activity.type" />
+        <subtype-badge :class="`type-background type-background--${activity.type}`" :type="activity.subtype" />
+        <p>Publicado em 22 de março de 2020</p>
       </div>
-      <div :class="`activity-details__content__info`">
+      <vpo-button dark :href="activity.link" text="acessar link" />
+    </div>
+    <div class="activity-details__content">
+      <div class="activity-details__content__info">
         <img :src="activity.image" alt />
         <div :class="`type-background type-background--${activity.type}`">
           <p class="label">válido até:</p>
@@ -18,12 +23,15 @@
 
           <p class="label">compartilhar</p>
           <p class="share share--facebook" @click="shareOnFacebook">compartilhar no facebook</p>
-          <!-- <p class="share share--instagram">compartilhar no instagram</p> -->
           <a class="share share--whatsapp" :href="whatsappLink" data-action="share/whatsapp/share" target="_blank">compartilhar no whatsapp</a>
           <p class="share share--clipboard" @click="copyToClipboard">copiar link</p>
         </div>
       </div>
       <p>{{ activity.description }}</p>
+      <div class="activity-details__content__tags" v-if="tags.length != 0">
+        <p>tags:</p>
+        <span :key="i" v-for="(tag, i) in tags">{{ tag }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -46,6 +54,9 @@ export default {
       }
 
       return `https://web.whatsapp.com/send?text=${text}`
+    },
+    tags() {
+      return this.activity.tags.split(',').map(it => it.trim())
     }
   },
   methods: {
@@ -80,35 +91,44 @@ export default {
   margin-top: 42px;
   margin-bottom: 64px;
 
-  &__content {
-    width: 900px;
-    max-width: 900px;
-
-    &__header {
-      display: flex;
-      align-items: flex-start;
-
-      & > div:first-child {
-        flex-grow: 1;
-
-        & > h1 {
-          text-transform: uppercase;
-          font: {
-            size: 36px;
-            weight: bold;
-          }
-        }
-
-        & > h2 {
-          font-size: 36px;
-        }
+  &__header {
+    & > h1 {
+      text-transform: uppercase;
+      font: {
+        size: 36px;
+        weight: bold;
       }
+    }
+
+    & > h2 {
+      font-size: 36px;
+    }
+  }
+
+  &__subheader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 12px 0 32px 0;
+
+    & > div:first-child {
+      display: flex;
+      align-items: center;
 
       & > .type-badge {
         font-size: 22px;
         color: white;
       }
+
+      & > .subtype-badge {
+        margin: 0 24px 0 12px;
+      }
     }
+  }
+
+  &__content {
+    width: 900px;
+    max-width: 900px;
 
     &__info {
       display: flex;
@@ -118,7 +138,6 @@ export default {
         width: 650px;
         min-width: 650px;
         height: 360px;
-        margin-top: 24px;
         object-fit: cover;
       }
 
@@ -200,6 +219,26 @@ export default {
     & > p {
       font-size: 18px;
       line-height: 24px;
+    }
+
+    &__tags {
+      display: inline-flex;
+      flex-wrap: wrap;
+
+      & > p {
+        font-weight: bold;
+        align-self: center;
+        margin-right: 4px;
+      }
+
+      & > span {
+        white-space: nowrap;
+        color: map-get($colors-util, 'blue');
+        background-color: rgba(map-get($colors-util, 'blue'), 0.15);
+        border-radius: 4px;
+        padding: 3px 5px;
+        margin-left: 4px;
+      }
     }
   }
 }

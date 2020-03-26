@@ -2,7 +2,7 @@
   <header class="search-header">
     <div class="search-header__logo">
       <logo />
-      <contribute-button />
+      <vpo-button text="contribuir" />
     </div>
     <div class="search-header__filters">
       <dropdown class="badge" type="course" />

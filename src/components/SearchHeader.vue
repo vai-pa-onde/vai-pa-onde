@@ -1,10 +1,10 @@
 <template>
   <header class="search-header">
-    <div>
+    <div class="search-header__logo">
       <logo />
       <contribute-button />
     </div>
-    <div>
+    <div class="search-header__filters">
       <dropdown class="badge" type="course" />
       <dropdown class="badge" type="event" />
       <dropdown class="badge" type="product" />
@@ -16,14 +16,7 @@
 
 <script>
 export default {
-  name: 'search-header',
-  computed: {
-    courseFilters() {
-      return [
-        { label: 'CURSOS' }
-      ]
-    }
-  }
+  name: 'search-header'
 }
 </script>
 
@@ -31,7 +24,7 @@ export default {
 .search-header {
   @extend %side-padding;
 
-  & > div {
+  &__logo, &__filters {
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
@@ -71,6 +64,16 @@ export default {
           color: #A8A8A8;
         }
       }
+    }
+  }
+
+  @media screen and (max-width: 1200px) {
+    &__logo > .contribute-button {
+      display: none;
+    }
+
+    &__filters {
+      display: none;
     }
   }
 }

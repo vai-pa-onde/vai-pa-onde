@@ -58,5 +58,9 @@ export default {
       }
     }
   }
+
+  @media screen and (max-width: 992px) {
+    font-size: 30px;
+  }
 }
 </style>

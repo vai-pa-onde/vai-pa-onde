@@ -48,6 +48,9 @@ export default {
       this.isOpen = false
     },
     set(option) {
+      this.$router.push({
+        name: 'filter'
+      })
       this.selected = option
     }
   },

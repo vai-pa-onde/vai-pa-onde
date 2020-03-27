@@ -8,12 +8,18 @@ const state = {
   allActivities: []
 }
 
-const getters = {}
+const getters = {
+  all: state => state.allActivities,
+  filterByType: state => type => state.allActivities.filter(it => it.type === type)
+}
 
 const actions = {
   async fetch({ commit }) {
     try {
-      const csv = await http.get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=514874226&single=true&output=csv`).then(data => data.text())
+      const csv = await http
+        .get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=514874226&single=true&output=csv`)
+        .then(data => data.text())
+
       parse(csv, { columns: true }, (err, output) => {
         if (err) {
           throw err

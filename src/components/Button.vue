@@ -33,6 +33,7 @@ export default {
 .vpo-button {
   color: inherit;
   text-decoration: none;
+  white-space: nowrap;
   background-color: map-get($colors-util, 'blue');
   font: {
     size: 24px;

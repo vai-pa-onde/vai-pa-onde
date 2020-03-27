@@ -2,13 +2,15 @@
   <header class="search-header">
     <div class="search-header__logo">
       <logo />
-      <contribute-button />
+      <vpo-button text="contribuir" />
     </div>
     <div class="search-header__filters">
-      <dropdown class="badge" type="course" />
-      <dropdown class="badge" type="event" />
-      <dropdown class="badge" type="product" />
-      <dropdown class="badge" type="content" />
+      <div class="search-header__filters__navigation">
+        <dropdown class="badge" type="course" />
+        <dropdown class="badge" type="event" />
+        <dropdown class="badge" type="product" />
+        <dropdown class="badge" type="content" />
+      </div>
       <input placeholder="pesquisar">
     </div>
   </header>
@@ -29,9 +31,13 @@ export default {
     align-items: flex-end;
     justify-content: space-between;
     margin-top: 32px;
+  }
 
-    &:last-child {
-      align-items: center;
+  &__filters {
+    align-items: center;
+
+    &__navigation {
+      display: inline-flex;
 
       & > .dropdown {
         margin: 0 8px;
@@ -40,40 +46,76 @@ export default {
           margin-left: 0;
         }
       }
+    }
 
-      & > input {
-        flex-grow: 1;
-        margin-left: 30px;
-        appearance: none;
-        border: none;
-        outline: none;
-        font-size: 24px;
-        line-height: 27px;
-        color: #777;
-        border-radius: 10px;
-        padding: 8px 8px 8px 40px;
-        background: {
-          color: #F7F7F7;
-          repeat: no-repeat;
-          image: url("~@/assets/search.svg");
-          size: 20px 20px;
-          position: 10px center;
-        }
+    & > input {
+      flex-grow: 1;
+      margin-left: 30px;
+      appearance: none;
+      border: none;
+      outline: none;
+      font-size: 24px;
+      line-height: 27px;
+      color: #777;
+      border-radius: 10px;
+      padding: 8px 8px 8px 40px;
+      background: {
+        color: #F7F7F7;
+        repeat: no-repeat;
+        image: url("~@/assets/search.svg");
+        size: 20px 20px;
+        position: 10px center;
+      }
 
-        &::placeholder {
-          color: #A8A8A8;
-        }
+      &::placeholder {
+        color: #A8A8A8;
       }
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    &__logo > .contribute-button {
-      display: none;
+  @media screen and (max-width: 964px) {
+    &__filters {
+      flex-direction: column;
+
+      &__navigation {
+        width: 100%;
+        margin-bottom: 14px;
+
+        & > .dropdown {
+          flex: 1;
+
+          &:first-child {
+            margin-left: 0;
+          }
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+
+      & > input {
+        margin-left: 0;
+        width: 100%;
+      }
+    }
+  }
+
+  @media screen and (max-width: 654px) {
+    &__logo {
+      & > .vpo-button {
+        display: none;
+      }
     }
 
     &__filters {
-      display: none;
+      &__navigation {
+        display: none;
+      }
+
+      & > input {
+        margin-left: 0;
+      }
     }
   }
 }

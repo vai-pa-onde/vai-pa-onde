@@ -23,7 +23,9 @@ export default {
 
 <style lang="scss" scoped>
 .type-badge {
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 6px;
   text-transform: uppercase;
   width: min-content;

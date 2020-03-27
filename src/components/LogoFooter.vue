@@ -2,7 +2,7 @@
   <footer class="logo-footer">
     <div class="logo-footer__content">
       <logo />
-      <contribute-button dark />
+      <vpo-button outlined text="contribuir" />
     </div>
   </footer>
 </template>

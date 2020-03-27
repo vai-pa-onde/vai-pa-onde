@@ -1,5 +1,5 @@
 <template>
-  <div class="logo">
+  <div class="logo" @click="goToHome">
     <div class="logo__name">Vai pa onde?</div>
     <div class="logo__decoration">
       <div />
@@ -12,7 +12,14 @@
 
 <script>
 export default {
-  name: 'logo'
+  name: 'logo',
+  methods: {
+    goToHome() {
+      if (this.$route.name !== 'home') {
+        this.$router.push({ name: 'home' })
+      }
+    }
+  }
 }
 </script>
 
@@ -22,6 +29,7 @@ export default {
   flex-direction: column;
   width: min-content;
   font-size: 55px;
+  cursor: pointer;
 
   &__name {
     background-color: black;

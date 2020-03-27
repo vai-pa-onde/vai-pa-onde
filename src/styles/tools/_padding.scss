@@ -1,6 +1,6 @@
 %side-padding {
-  padding-left: max(calc(100vw - 1200px) / 2, 32px);
-  padding-right: max(calc(100vw - 1200px) / 2, 32px);
+  padding-left: calc((100vw - 1200px) / 2);
+  padding-right: calc((100vw - 1200px) / 2);
 
   @media screen and (max-width: 1264px) {
     padding-left: 32px;

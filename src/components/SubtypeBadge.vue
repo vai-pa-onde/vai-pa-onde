@@ -25,6 +25,7 @@ export default {
   text-transform: uppercase;
   width: min-content;
   color: white;
+  line-height: 22px;
   font: {
     size: 16px;
     weight: bold;

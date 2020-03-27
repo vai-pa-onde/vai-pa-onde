@@ -7,7 +7,7 @@
     <div class="activity-details__subheader">
       <div>
         <type-badge :class="`type-background type-background--${activity.type}`" :type="activity.type" />
-        <subtype-badge :class="`type-background type-background--${activity.type}`" :type="activity.subtype" />
+        <subtype-badge :class="`type-background type-background--${activity.type}`" :subtype="activity.subtype" />
         <p>Publicado em 22 de março de 2020</p>
       </div>
       <vpo-button dark :href="activity.link" text="acessar link" />
@@ -77,12 +77,13 @@ export default {
     align-items: center;
     margin: 12px 0 32px 0;
 
-    & > div:first-child {
+    & > div {
       display: flex;
       align-items: center;
 
       & > .type-badge {
         font-size: 22px;
+        line-height: 22px;
         color: white;
       }
 
@@ -166,6 +167,14 @@ export default {
 
   @media screen and (max-width: 768px) {
     &__subheader {
+      & > div {
+        width: 100%;
+
+        & > p {
+          margin-left: auto;
+        }
+      }
+
       & > .vpo-button {
         display: none;
       }
@@ -190,6 +199,20 @@ export default {
         width: min-content;
         margin-left: auto;
         margin-bottom: 20px;
+      }
+    }
+  }
+
+  @media screen and (max-width: 576px) {
+    &__subheader > div {
+      & > .type-badge {
+        font-size: 16px;
+        line-height: 22px;
+        color: white;
+      }
+
+      & > p {
+        font-size: 14px;
       }
     }
   }

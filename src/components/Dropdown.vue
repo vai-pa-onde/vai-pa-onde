@@ -83,31 +83,33 @@ export default {
   position: relative;
   cursor: pointer;
   width: min-content;
+  font-size: 16px;
 
-  &:nth-child(1) {
+  &--course {
     @include dropdown-style('yellow');
   }
 
-  &:nth-child(2) {
+  &--event {
     @include dropdown-style('pink');
   }
 
-  &:nth-child(3) {
+  &--product {
     @include dropdown-style('teal');
   }
 
-  &:nth-child(4) {
+  &--content {
     @include dropdown-style('red');
   }
 
   & > .selected {
     display: flex;
+    justify-content: space-between;
     align-items: center;
     width: 100%;
     border-radius: 10px;
     user-select: none;
     font: {
-      size: 18px;
+      size: 1.15em;
       weight: bold;
     }
 
@@ -135,8 +137,8 @@ export default {
 
     & > .option {
       padding: 8px 16px;
-      font-size: 16px;
-      line-height: 19px;
+      font-size: 1em;
+      line-height: 1.2;
       color: black;
 
       &:first-child {

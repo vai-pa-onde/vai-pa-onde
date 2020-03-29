@@ -176,6 +176,7 @@ export default {
 
           & > .vpo-button {
             margin: 36px 20px;
+            font-size: 18px;
           }
         }
       }

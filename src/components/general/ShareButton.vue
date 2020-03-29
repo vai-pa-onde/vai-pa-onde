@@ -7,7 +7,7 @@ export default {
   name: 'share-button',
   computed: {
     canShare() {
-      return !window.navigator.share
+      return !!window.navigator.share
     }
   },
   methods: {

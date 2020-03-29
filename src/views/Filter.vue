@@ -1,9 +1,6 @@
 <template>
   <div class="filter">
-    <div :class="`filter__separator type-background type-background--${type}`">
-      <span class="type">{{ typeLabel }}</span>
-      <span class="subtype">| {{ subtypeLabel }}</span>
-    </div>
+    <current-section-indicator />
     <activity-list :activities="activities" />
   </div>
 </template>
@@ -17,27 +14,34 @@ import subtypeName from '@/js/subtypeName'
 export default {
   name: 'filtered-list',
   computed: {
-    ...mapGetters({ filterByType: 'activities/filterByType' }),
+    ...mapGetters({
+      filterByType: 'activities/filterByType',
+      filterBySubtype: 'activities/filterBySubtype'
+    }),
     type() {
       return this.$route.params.type
     },
     subtype() {
-      return this.$route.params.subtype || subtypesByType[this.type].slice(-1)
-    },
-    typeLabel() {
-      return typeName[this.type]
-    },
-    subtypeLabel() {
-      return subtypeName[this.subtype]
+      return this.$route.params.subtype || subtypesByType[this.type].slice(-1)[0]
     },
     activities() {
+      if (this.$route.params.subtype) {
+        return this.filterBySubtype(this.subtype)
+      }
+
       return this.filterByType(this.type)
     }
   },
-  created() {
-    if (!Object.keys(typeName).includes(this.type) || !Object.keys(subtypeName).includes(this.subtype)) {
-      this.$router.replace({ name: 'home' })
+  beforeRouteEnter(to, from, next) {
+    if (!Object.keys(typeName).includes(to.params.type)) {
+      return next(false)
     }
+
+    if (!!to.params.subtype && !Object.keys(subtypeName).includes(to.params.subtype)) {
+      return next(false)
+    }
+
+    next()
   }
 }
 </script>
@@ -48,21 +52,6 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
-
-  &__separator {
-    @extend %side-padding;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    margin-top: 32px;
-    font-size: 24px;
-    width: 100%;
-
-    & > .type {
-      text-transform: uppercase;
-      font-weight: bold;
-      margin-right: 6px;
-    }
-  }
 
   &__activities {
     @extend %side-padding;

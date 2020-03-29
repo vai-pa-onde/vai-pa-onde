@@ -2,7 +2,7 @@
   <div :class="`activity-info-card type-background type-background--${type}`">
     <div class="activity-info-card__valid-until">
       <p class="label">válido até:</p>
-      <p>30 de março, 2020</p>
+      <p>{{ validUntil }}</p>
     </div>
 
     <a class="label link" :href="link" target="_blank">acessar</a>
@@ -77,6 +77,7 @@ export default {
     margin-top: 16px;
     margin-bottom: 2px;
     font-weight: bold;
+    width: 100%;
   }
 
   a {
@@ -89,7 +90,7 @@ export default {
         width: 16px;
         height: 16px;
         margin-left: 5px;
-        margin-top: 4px;
+        margin-top: 5px;
         background: {
           repeat: no-repeat;
           image: url('~@/assets/new-tab.svg');
@@ -141,6 +142,10 @@ export default {
   @media screen and (max-width: 964px) {
     height: 250px;
     font-size: 12px;
+
+    .label.link::after {
+      margin-top: 3px;
+    }
   }
 
   @media screen and (max-width: 768px) {

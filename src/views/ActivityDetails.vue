@@ -8,7 +8,7 @@
       <div>
         <type-badge :class="`type-background type-background--${activity.type}`" :type="activity.type" />
         <subtype-badge :class="`type-background type-background--${activity.type}`" :subtype="activity.subtype" />
-        <p>Publicado em 22 de março de 2020</p>
+        <p>Publicado em {{ activity.publishedAt }}</p>
       </div>
       <vpo-button dark :href="activity.link" text="acessar link" />
     </div>

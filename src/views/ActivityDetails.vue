@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-details">
+  <div class="activity-details" v-if="activity">
     <div class="activity-details__header">
       <h1>{{ activity.title }}</h1>
       <h2>{{ activity.brand }}</h2>
@@ -25,10 +25,13 @@
       </div>
     </div>
   </div>
+  <div class="activity-details" v-else>
+    <not-found-card>A ação que você estava procurado não exite ou foi removida =(</not-found-card>
+  </div>
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapState, mapGetters } from 'vuex'
 
 export default {
   name: 'activity-details',
@@ -36,10 +39,11 @@ export default {
     activity: null
   }),
   computed: {
-    ...mapState({ activities: state => state.activities.allActivities })
+    ...mapState({ activities: state => state.activities.allActivities }),
+    ...mapGetters({ getActivityById: 'activities/getById' })
   },
   created() {
-    this.activity = this.activities[this.$route.params.id]
+    this.activity = this.getActivityById(this.$route.params.id)
   }
 }
 </script>
@@ -137,6 +141,10 @@ export default {
         margin-bottom: 6px;
       }
     }
+  }
+
+  & > .not-found-card {
+    margin: 42px auto;
   }
 
   @media screen and (max-width: 964px) {

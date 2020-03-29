@@ -23,7 +23,8 @@ const state = {
 const getters = {
   all: state => search(state),
   filterByType: state => type => search(state).filter(it => it.type === type),
-  filterBySubtype: state => subtype => search(state).filter(it => it.subtype === subtype)
+  filterBySubtype: state => subtype => search(state).filter(it => it.subtype === subtype),
+  getById: state => id => state.allActivities.find(it => it.id === id)
 }
 
 const actions = {

@@ -1,9 +1,9 @@
 <template>
   <div class="activity-list">
     <activity
-      :key="i"
-      v-for="(activity, i) in activities"
-      :id="i"
+      :key="activity.id"
+      v-for="activity in activities"
+      :id="activity.id"
       :title="activity.title"
       :brand="activity.brand"
       :type="activity.type"

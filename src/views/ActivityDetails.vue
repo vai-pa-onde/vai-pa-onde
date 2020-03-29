@@ -19,9 +19,9 @@
       </div>
       <vpo-button dark :href="activity.link" text="acessar link" />
       <p>{{ activity.description }}</p>
-      <div class="activity-details__content__tags" v-if="tags.length != 0">
+      <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
-        <span :key="i" v-for="(tag, i) in tags">{{ tag }}</span>
+        <span :key="i" v-for="(tag, i) in activity.tags">{{ tag }}</span>
       </div>
     </div>
   </div>
@@ -36,10 +36,7 @@ export default {
     activity: null
   }),
   computed: {
-    ...mapState({ activities: state => state.activities.allActivities }),
-    tags() {
-      return this.activity.tags.split(',').map(it => it.trim())
-    }
+    ...mapState({ activities: state => state.activities.allActivities })
   },
   created() {
     this.activity = this.activities[this.$route.params.id]
@@ -127,6 +124,7 @@ export default {
         font-weight: bold;
         align-self: center;
         margin-right: 4px;
+        margin-bottom: 6px;
       }
 
       & > span {
@@ -136,6 +134,7 @@ export default {
         border-radius: 4px;
         padding: 3px 5px;
         margin-left: 4px;
+        margin-bottom: 6px;
       }
     }
   }
@@ -199,6 +198,7 @@ export default {
         width: min-content;
         margin-left: auto;
         margin-bottom: 20px;
+        font-size: 18px;
       }
     }
   }

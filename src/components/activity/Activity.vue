@@ -19,7 +19,7 @@
 export default {
   name: 'activity',
   props: {
-    id: Number,
+    id: String,
     title: String,
     brand: String,
     type: String

@@ -26,7 +26,8 @@ import subtypesByType from '@/js/subtypesByType'
 export default {
   name: 'dropdown',
   props: {
-    type: String
+    type: String,
+    selected: String
   },
   data: () => ({
     isOpen: false
@@ -48,15 +49,21 @@ export default {
       this.isOpen = false
     },
     set(option) {
-      this.$router.push({
-        name: 'filter'
-      })
-      this.selected = option
+      if (option.includes('all')) {
+        this.$router.push({
+          name: 'type-filter',
+          params: { type: this.type }
+        })
+      } else {
+        this.$router.push({
+          name: 'subtype-filter',
+          params: {
+            type: this.type,
+            subtype: option
+          }
+        })
+      }
     }
-  },
-  created() {
-    const subtypes = subtypesByType[this.type]
-    this.selected = subtypes[subtypes.length - 1]
   }
 }
 </script>
@@ -132,7 +139,7 @@ export default {
     top: 100%;
     z-index: 1;
     background-color: white;
-    box-shadow: 0px 3px 8px rgba(0, 0, 0, 0.04);
+    box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);
     text-transform: none;
 
     & > .option {
@@ -140,10 +147,6 @@ export default {
       font-size: 1em;
       line-height: 1.2;
       color: black;
-
-      &:first-child {
-        border-top: 3px solid white;
-      }
 
       &--selected {
         font-weight: bold;

@@ -2,14 +2,21 @@
   <footer class="logo-footer">
     <div class="logo-footer__content">
       <logo />
-      <vpo-button outlined text="contribuir" />
+      <vpo-button outlined :href="formUrl" text="contribuir" />
     </div>
   </footer>
 </template>
 
 <script>
+import config from '@/config'
+
 export default {
-  name: 'logo-footer'
+  name: 'logo-footer',
+  computed: {
+    formUrl() {
+      return config.contributeFormUrl
+    }
+  }
 }
 </script>
 

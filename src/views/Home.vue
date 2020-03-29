@@ -1,8 +1,6 @@
 <template>
   <div class="home">
-    <div class="home__separator">
-      Todos os resultados
-    </div>
+    <current-section-indicator />
     <activity-list :activities="activities" />
   </div>
 </template>

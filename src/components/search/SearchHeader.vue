@@ -2,23 +2,44 @@
   <header class="search-header">
     <div class="search-header__logo">
       <logo />
-      <vpo-button text="contribuir" />
+      <vpo-button :href="formUrl" text="contribuir" />
     </div>
     <div class="search-header__filters">
       <div class="search-header__filters__navigation">
-        <dropdown class="badge" type="course" />
-        <dropdown class="badge" type="event" />
-        <dropdown class="badge" type="product" />
-        <dropdown class="badge" type="content" />
+        <dropdown class="badge" type="course" :selected="selectedSubtype" />
+        <dropdown class="badge" type="event" :selected="selectedSubtype" />
+        <dropdown class="badge" type="product" :selected="selectedSubtype" />
+        <dropdown class="badge" type="content" :selected="selectedSubtype" />
       </div>
-      <input placeholder="pesquisar">
+      <input @input="searchChanged" placeholder="pesquisar">
     </div>
   </header>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+import config from '@/config'
+
 export default {
-  name: 'search-header'
+  name: 'search-header',
+  data: () => ({
+    searchUpdateTimeout: null
+  }),
+  computed: {
+    formUrl() {
+      return config.contributeFormUrl
+    },
+    selectedSubtype() {
+      return this.$route.params.subtype
+    }
+  },
+  methods: {
+    ...mapActions({ doSearch: 'activities/doSearch' }),
+    searchChanged(evt) {
+      clearTimeout(this.searchUpdateTimeout)
+      this.searchUpdateTimeout = setTimeout(() => this.doSearch(evt.target.value), 200)
+    }
+  }
 }
 </script>
 

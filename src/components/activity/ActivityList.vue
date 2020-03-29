@@ -1,5 +1,5 @@
 <template>
-  <div class="activity-list">
+  <div class="activity-list" v-if="activities.length > 0">
     <activity
       :key="activity.id"
       v-for="activity in activities"
@@ -8,6 +8,9 @@
       :brand="activity.brand"
       :type="activity.type"
     />
+  </div>
+  <div class="activity-list activity-list--not-found" v-else>
+    <not-found-card>Nenhum resultado correspondente com sua pesquisa</not-found-card>
   </div>
 </template>
 
@@ -27,6 +30,11 @@ export default {
   display: grid;
   grid-template-columns: repeat(4, 270px);
   gap: 40px;
+
+  &--not-found {
+    display: flex;
+    margin-top: 64px;
+  }
 
   @media screen and (max-width: 1264px) {
     grid-template-columns: repeat(3, 260px);

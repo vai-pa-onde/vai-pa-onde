@@ -44,6 +44,7 @@ export default {
   &:hover {
     color: inherit;
     text-decoration: none;
+    background-color: rgba(map-get($colors-util, 'blue'), 0.8);
   }
 
   &--dark {

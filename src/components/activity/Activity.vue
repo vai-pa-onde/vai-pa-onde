@@ -33,6 +33,7 @@ export default {
   flex-direction: column;
   cursor: pointer;
   font-size: 20px;
+  color: white;
 
   img {
     display: block;
@@ -50,10 +51,10 @@ export default {
     & > h1 {
       word-wrap: break-word;
       text-transform: uppercase;
-      line-height: 1.3em;
+      line-height: 1.2;
       flex-grow: 1;
       font: {
-        size: 1.2em;
+        size: 1em;
         weight: bold;
       }
     }

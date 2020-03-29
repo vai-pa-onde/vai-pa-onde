@@ -14,6 +14,26 @@ function search(state) {
   )
 }
 
+function findRecommendations(activities, activity) {
+  const filteredActivities = activities.filter(it => it.id !== activity.id)
+
+  const activityById = {}
+  filteredActivities.forEach(it => { activityById[it.id] = it })
+
+  const countById = {}
+  filteredActivities.forEach(it => { countById[it.id] = 0 })
+
+  activity.tags.forEach(tag =>
+    filteredActivities.forEach(it => {
+      if (it.tags.includes(tag)) {
+        countById[it.id]++
+      }
+    })
+  )
+
+  return Object.entries(countById).sort((a, b) => b[1] - a[1]).map(it => activityById[it[0]])
+}
+
 const state = {
   loaded: false,
   searchString: null,
@@ -23,7 +43,9 @@ const state = {
 const getters = {
   all: state => search(state),
   filterByType: state => type => search(state).filter(it => it.type === type),
-  filterBySubtype: state => subtype => search(state).filter(it => it.subtype === subtype)
+  filterBySubtype: state => subtype => search(state).filter(it => it.subtype === subtype),
+  getById: state => id => state.allActivities.find(it => it.id === id),
+  recommendations: state => activity => findRecommendations(state.allActivities, activity)
 }
 
 const actions = {

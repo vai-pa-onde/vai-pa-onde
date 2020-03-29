@@ -1,12 +1,7 @@
 <template>
   <div class="logo" @click="goToHome">
     <div class="logo__name">Vai pa onde?</div>
-    <div class="logo__decoration">
-      <div />
-      <div />
-      <div />
-      <div />
-    </div>
+    <colors-stripe />
   </div>
 </template>
 
@@ -38,33 +33,6 @@ export default {
     font-weight: bold;
     white-space: nowrap;
     padding: 8px 16px;
-  }
-
-  &__decoration {
-    display: inline-flex;
-    width: 100%;
-    height: 10px;
-
-    & > div {
-      width: 25%;
-      height: 100%;
-
-      &:nth-child(1) {
-        background-color: map-get($colors-util, 'yellow');
-      }
-
-      &:nth-child(2) {
-        background-color: map-get($colors-util, 'pink');
-      }
-
-      &:nth-child(3) {
-        background-color: map-get($colors-util, 'teal');
-      }
-
-      &:nth-child(4) {
-        background-color: map-get($colors-util, 'red');
-      }
-    }
   }
 
   @media screen and (max-width: 992px) {

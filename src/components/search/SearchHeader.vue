@@ -2,7 +2,7 @@
   <header class="search-header">
     <div class="search-header__logo">
       <logo />
-      <vpo-button text="contribuir" />
+      <vpo-button :href="formUrl" text="contribuir" />
     </div>
     <div class="search-header__filters">
       <div class="search-header__filters__navigation">
@@ -18,12 +18,17 @@
 
 <script>
 import { mapActions } from 'vuex'
+import config from '@/config'
+
 export default {
   name: 'search-header',
   data: () => ({
     searchUpdateTimeout: null
   }),
   computed: {
+    formUrl() {
+      return config.contributeFormUrl
+    },
     selectedSubtype() {
       return this.$route.params.subtype
     }

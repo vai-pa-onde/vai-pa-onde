@@ -1,21 +1,42 @@
 export default {
   course: [
-    'art',
     'business',
+    'law',
+    'audioVisual',
+    'art',
+    'general',
+    'communication',
+    'dataScience',
+    'welfare',
     'marketing',
-    'selfDevelopment',
+    'engineering',
+    'technology',
+    'selfDevelopment', // ?
     'allInCourse'
   ],
   event: [
+    'show',
     'live',
     'congress',
-    'show',
     'allInEvent'
   ],
   product: [
+    'games',
+    'streaming',
+    'app',
+    'carrier', // ?
+    'videoConference', // ?
     'allInProduct'
   ],
   content: [
+    'ebook',
+    'mentoring',
+    'culture', // ?
+    'sport', // ?
+    'museum', // ?
+    'helpAndDonation', // ?
+    'list', // ?
+    'laborMarket', // ?
     'allInContent'
   ]
 }

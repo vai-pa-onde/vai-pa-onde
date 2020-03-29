@@ -1,6 +1,16 @@
 <template>
   <header class="search-header">
     <div class="search-header__logo">
+      <drawer v-model="isDrawerOpen">
+        <div class="drawer-content">
+          <h1>Categorias</h1>
+          <dropdown @selected="closeDrawer" class="badge" type="course" :selected="selectedSubtype" />
+          <dropdown @selected="closeDrawer" class="badge" type="event" :selected="selectedSubtype" />
+          <dropdown @selected="closeDrawer" class="badge" type="product" :selected="selectedSubtype" />
+          <dropdown @selected="closeDrawer" class="badge" type="content" :selected="selectedSubtype" />
+          <vpo-button :href="formUrl" text="contribuir" />
+        </div>
+      </drawer>
       <logo />
       <vpo-button :href="formUrl" text="contribuir" />
     </div>
@@ -23,6 +33,7 @@ import config from '@/config'
 export default {
   name: 'search-header',
   data: () => ({
+    isDrawerOpen: false,
     searchUpdateTimeout: null
   }),
   computed: {
@@ -38,6 +49,9 @@ export default {
     searchChanged(evt) {
       clearTimeout(this.searchUpdateTimeout)
       this.searchUpdateTimeout = setTimeout(() => this.doSearch(evt.target.value), 200)
+    },
+    closeDrawer() {
+      this.isDrawerOpen = false
     }
   }
 }
@@ -52,6 +66,10 @@ export default {
     align-items: flex-end;
     justify-content: space-between;
     margin-top: 32px;
+  }
+
+  &__logo > .drawer {
+    display: none;
   }
 
   &__filters {
@@ -123,7 +141,45 @@ export default {
   }
 
   @media screen and (max-width: 654px) {
+    &__logo, &__filters {
+      margin-top: 14px;
+    }
+
     &__logo {
+      align-items: center;
+
+      & > .drawer {
+        display: block;
+
+        .drawer-content {
+          display: flex;
+          flex-direction: column;
+
+          & > h1 {
+            background-color: black;
+            color: white;
+            width: 100%;
+            padding: 16px 24px;
+            text-align: center;
+            text-transform: uppercase;
+            margin-bottom: 36px;
+            font: {
+              size: 18px;
+              weight: bold;
+            }
+          }
+
+          & > .dropdown {
+            margin: 4px 0;
+            width: 100%;
+          }
+
+          & > .vpo-button {
+            margin: 36px 20px;
+          }
+        }
+      }
+
       & > .vpo-button {
         display: none;
       }

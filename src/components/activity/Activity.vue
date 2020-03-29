@@ -33,6 +33,7 @@ export default {
   flex-direction: column;
   cursor: pointer;
   font-size: 20px;
+  color: white;
 
   img {
     display: block;

@@ -24,6 +24,10 @@
         <span :key="i" v-for="(tag, i) in activity.tags">{{ tag }}</span>
       </div>
     </div>
+    <div class="activity-details__recommendations">
+      <h3>Você também vai gostar de</h3>
+      <activity-list inline :activities="recommendations" />
+    </div>
   </div>
   <div class="activity-details" v-else>
     <not-found-card>A ação que você estava procurado não exite ou foi removida =(</not-found-card>
@@ -36,14 +40,32 @@ import { mapState, mapGetters } from 'vuex'
 export default {
   name: 'activity-details',
   data: () => ({
-    activity: null
+    activity: null,
+    windowWidth: 0
   }),
   computed: {
     ...mapState({ activities: state => state.activities.allActivities }),
-    ...mapGetters({ getActivityById: 'activities/getById' })
+    ...mapGetters({ getActivityById: 'activities/getById', getRecommendations: 'activities/recommendations' }),
+    recommendations() {
+      let maxRecommendations
+      if (this.windowWidth < 374) {
+        maxRecommendations = 1
+      } else if (this.windowWidth < 992) {
+        maxRecommendations = 2
+      } else if (this.windowWidth < 1264) {
+        maxRecommendations = 3
+      } else {
+        maxRecommendations = 4
+      }
+
+      return this.getRecommendations(this.activity).slice(0, maxRecommendations)
+    }
   },
   created() {
     this.activity = this.getActivityById(this.$route.params.id)
+
+    this.windowWidth = window.innerWidth
+    window.addEventListener('resize', () => { this.windowWidth = window.innerWidth })
   }
 }
 </script>
@@ -143,6 +165,27 @@ export default {
     }
   }
 
+  &__recommendations {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & > h3 {
+      width: 100%;
+      text-transform: uppercase;
+      margin-top: 38px;
+      font: {
+        size: 24px;
+        weight: 900;
+      }
+    }
+
+    & > .activity-list {
+      padding: 0;
+      margin-bottom: 0;
+    }
+  }
+
   & > .not-found-card {
     margin: 42px auto;
   }
@@ -207,6 +250,16 @@ export default {
         margin-left: auto;
         margin-bottom: 20px;
         font-size: 18px;
+      }
+    }
+
+    &__recommendations {
+      & > h3 {
+        font-size: 18px;
+      }
+
+      & > .activity-list {
+        margin-top: 18px;
       }
     }
   }

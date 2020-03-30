@@ -30,21 +30,24 @@ export default {
     validUntil: String
   },
   computed: {
+    pageLink() {
+      return `https://www.vaipaonde.com.br/acao/${this.id}`
+    },
     whatsappLink() {
       if (isMobile()) {
-        return `whatsapp://send?text=${this.link}`
+        return `whatsapp://send?text=${this.pageLink}`
       }
 
-      return `https://web.whatsapp.com/send?text=${this.link}`
+      return `https://web.whatsapp.com/send?text=${this.pageLink}`
     }
   },
   methods: {
     shareOnFacebook() {
-      window.open(`https://www.facebook.com/sharer/sharer.php?app_id=2952570301453352&sdk=joey&u=${encodeURIComponent('https://www.vaipaonde.com.br')}&display=popup&ref=plugin&src=share_button`, 'Facebook', 'width=640,height=580')
+      window.open(`https://www.facebook.com/sharer/sharer.php?app_id=2952570301453352&sdk=joey&u=${encodeURIComponent(this.pageLink)}&display=popup&ref=plugin&src=share_button`, 'Facebook', 'width=640,height=580')
     },
     copyToClipboard() {
       const el = document.createElement('textarea')
-      el.value = this.activity.link
+      el.value = this.pageLink
       el.setAttribute('readonly', '')
       el.style.position = 'absolute'
       el.style.left = '-9999px'

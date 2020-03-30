@@ -2,7 +2,7 @@
   <footer class="logo-footer">
     <div class="logo-footer__content">
       <logo />
-      <vpo-button outlined :href="formUrl" text="contribuir" />
+      <vpo-link outlined :href="formUrl" text="contribuir" />
     </div>
   </footer>
 </template>

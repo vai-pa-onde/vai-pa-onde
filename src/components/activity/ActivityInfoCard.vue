@@ -13,7 +13,7 @@
       <a class="share share--whatsapp" :href="whatsappLink" data-action="share/whatsapp/share" target="_blank">compartilhar no whatsapp</a>
       <p class="share share--clipboard" @click="copyToClipboard">copiar link</p>
     </div>
-    <share-button class="activity-info-card__share-mobile" />
+    <share-button class="activity-info-card__share-mobile" :activityId="id" :activityTitle="title" />
   </div>
 </template>
 
@@ -23,6 +23,8 @@ import { isMobile } from '@/js/deviceInfo'
 export default {
   name: 'activity-info-card',
   props: {
+    id: String,
+    title: String,
     link: String,
     type: String,
     validUntil: String

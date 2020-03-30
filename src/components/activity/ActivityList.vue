@@ -7,6 +7,7 @@
       :title="activity.title"
       :brand="activity.brand"
       :type="activity.type"
+      :image="activity.image"
     />
   </div>
   <div class="activity-list activity-list--not-found" v-else>

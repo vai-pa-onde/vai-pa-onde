@@ -67,7 +67,8 @@ const actions = {
           }
 
           Object.assign(it, {
-            tags: newTags
+            tags: newTags,
+            image: it.image || require(`@/assets/${it.type}-fallback.png`)
           })
         })
 

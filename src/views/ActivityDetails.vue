@@ -49,6 +49,9 @@ export default {
     activity: null,
     windowWidth: 0
   }),
+  watch: {
+    '$route.params.id': 'setActivity'
+  },
   computed: {
     ...mapState({ activities: state => state.activities.allActivities }),
     ...mapGetters({ getActivityById: 'activities/getById', getRecommendations: 'activities/recommendations' }),
@@ -67,8 +70,13 @@ export default {
       return this.getRecommendations(this.activity).slice(0, maxRecommendations)
     }
   },
+  methods: {
+    setActivity() {
+      this.activity = this.getActivityById(this.$route.params.id)
+    }
+  },
   created() {
-    this.activity = this.getActivityById(this.$route.params.id)
+    this.setActivity()
 
     this.windowWidth = window.innerWidth
     window.addEventListener('resize', () => { this.windowWidth = window.innerWidth })
@@ -85,7 +93,7 @@ export default {
   margin-bottom: 64px;
 
   &__header {
-    margin-bottom: 16px;
+    margin-bottom: 8px;
     & > h1 {
       text-transform: uppercase;
       margin-bottom: 6px;
@@ -104,20 +112,25 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 12px 0 32px 0;
+    margin-bottom: 22px;
 
     & > div {
       display: flex;
       align-items: center;
+      flex-wrap: wrap;
 
       & > .type-badge {
         font-size: 22px;
         line-height: 22px;
+        margin-right: 8px;
         color: white;
       }
 
       & > .subtype-badge {
-        margin: 0 24px 0 12px;
+        margin-right: auto;
+        margin-top: 10px;
+        margin-bottom: 10px;
+        margin-right: 18px;
       }
     }
   }
@@ -226,8 +239,8 @@ export default {
       & > div {
         width: 100%;
 
-        & > p {
-          margin-left: auto;
+        & > .subtype-badge {
+          margin-right: auto;
         }
       }
 

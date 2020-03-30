@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Filter from '../views/Filter.vue'
 import ActivityDetails from '../views/ActivityDetails.vue'
 import About from '../views/About.vue'
+import NotFound from '../views/NotFound.vue'
 
 Vue.use(VueRouter)
 
@@ -29,6 +30,10 @@ const routes = [
     path: '/sobre',
     name: 'about',
     component: About
+  }, {
+    path: '*',
+    name: '404',
+    component: NotFound
   }
 ]
 

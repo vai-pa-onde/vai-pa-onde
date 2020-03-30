@@ -23,6 +23,7 @@ export default {
   display: block;
   padding: 6px;
   text-transform: uppercase;
+  white-space: nowrap;
   width: min-content;
   color: white;
   line-height: 22px;

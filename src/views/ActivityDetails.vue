@@ -36,7 +36,7 @@
     </div>
   </div>
   <div class="activity-details" v-else>
-    <not-found-card>A ação que você estava procurado não exite ou foi removida =(</not-found-card>
+    <not-found-card>A ação que você estava procurando não existe ou foi removida =(</not-found-card>
   </div>
 </template>
 

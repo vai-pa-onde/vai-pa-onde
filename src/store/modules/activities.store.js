@@ -60,6 +60,7 @@ const actions = {
           throw err
         }
 
+        console.log(output.map(it => it.deleted))
         output.forEach(it => {
           let newTags = []
           if (it.tags.length > 0) {
@@ -68,11 +69,12 @@ const actions = {
 
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/${it.type}-fallback.png`)
+            image: it.image || require(`@/assets/${it.type}-fallback.png`),
+            deleted: it.deleted === 'TRUE'
           })
         })
 
-        commit('SET_ALL_ACTIVITIES', output)
+        commit('SET_ALL_ACTIVITIES', output.filter(it => !it.deleted))
         commit('SET_LOADED')
       })
     } catch {}

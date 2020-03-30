@@ -4,15 +4,21 @@
       <drawer v-model="isDrawerOpen">
         <div class="drawer-content">
           <h1>Categorias</h1>
-          <dropdown @selected="closeDrawer" class="badge" type="course" :selected="selectedSubtype" />
-          <dropdown @selected="closeDrawer" class="badge" type="event" :selected="selectedSubtype" />
-          <dropdown @selected="closeDrawer" class="badge" type="product" :selected="selectedSubtype" />
-          <dropdown @selected="closeDrawer" class="badge" type="content" :selected="selectedSubtype" />
-          <vpo-button :href="formUrl" text="contribuir" />
+          <div class="drawer-content__dropdowns">
+            <dropdown @selected="closeDrawer" class="badge" type="course" :selected="selectedSubtype" />
+            <dropdown @selected="closeDrawer" class="badge" type="event" :selected="selectedSubtype" />
+            <dropdown @selected="closeDrawer" class="badge" type="product" :selected="selectedSubtype" />
+            <dropdown @selected="closeDrawer" class="badge" type="content" :selected="selectedSubtype" />
+          </div>
+          <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
+          <vpo-link :href="formUrl" text="contribuir" />
         </div>
       </drawer>
       <logo />
-      <vpo-button :href="formUrl" text="contribuir" />
+      <div class="search-header__logo__links">
+        <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
+        <vpo-link :href="formUrl" text="contribuir" />
+      </div>
     </div>
     <div class="search-header__filters">
       <div class="search-header__filters__navigation">
@@ -63,18 +69,22 @@ export default {
 
   &__logo, &__filters {
     display: flex;
-    align-items: flex-end;
+    align-items: center;
     justify-content: space-between;
     margin-top: 32px;
   }
 
-  &__logo > .drawer {
-    display: none;
+  &__logo {
+    & > .drawer {
+      display: none;
+    }
+
+    &__links > .button {
+      margin-left: 12px;
+    }
   }
 
   &__filters {
-    align-items: center;
-
     &__navigation {
       display: inline-flex;
 
@@ -146,8 +156,6 @@ export default {
     }
 
     &__logo {
-      align-items: center;
-
       & > .drawer {
         display: block;
 
@@ -162,26 +170,29 @@ export default {
             padding: 16px 24px;
             text-align: center;
             text-transform: uppercase;
-            margin-bottom: 36px;
             font: {
               size: 18px;
               weight: bold;
             }
           }
 
-          & > .dropdown {
-            margin: 4px 0;
-            width: 100%;
+          &__dropdowns {
+            margin: 36px 0 30px 0;
+
+            & > .dropdown {
+              margin: 4px 0;
+              width: 100%;
+            }
           }
 
-          & > .vpo-button {
-            margin: 36px 20px;
+          & > .button {
+            margin: 6px 20px;
             font-size: 18px;
           }
         }
       }
 
-      & > .vpo-button {
+      &__links {
         display: none;
       }
     }

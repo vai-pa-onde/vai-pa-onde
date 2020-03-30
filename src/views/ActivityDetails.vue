@@ -10,7 +10,7 @@
         <subtype-badge :class="`type-background type-background--${activity.type}`" :subtype="activity.subtype" />
         <p>Publicado em {{ activity.publishedAt }}</p>
       </div>
-      <vpo-button dark :href="activity.link" text="acessar link" />
+      <vpo-link dark :href="activity.link" text="acessar link" />
     </div>
     <div class="activity-details__content">
       <div class="activity-details__content__info">
@@ -23,7 +23,7 @@
           :validUntil="activity.validUntil"
         />
       </div>
-      <vpo-button dark :href="activity.link" text="acessar link" />
+      <vpo-link dark :href="activity.link" text="acessar link" />
       <p>{{ activity.description }}</p>
       <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
@@ -138,7 +138,7 @@ export default {
       }
     }
 
-    & > .vpo-button {
+    & > .button {
       display: none;
     }
 
@@ -231,7 +231,7 @@ export default {
         }
       }
 
-      & > .vpo-button {
+      & > .button {
         display: none;
       }
     }
@@ -250,7 +250,7 @@ export default {
         }
       }
 
-      & > .vpo-button {
+      & > .button {
         display: block;
         width: min-content;
         margin-left: auto;

@@ -1,16 +1,20 @@
 <template>
-  <button @click="$emit('click')" :class="classes">
+  <a :class="classes" target="_blank" :href="href">
     {{ text }}
-  </button>
+  </a>
 </template>
 
 <script>
 export default {
-  name: 'vpo-button',
+  name: 'vpo-link',
   props: {
     outlined: Boolean,
     dark: Boolean,
-    text: String
+    text: String,
+    href: {
+      type: String,
+      default: '.'
+    }
   },
   computed: {
     classes() {

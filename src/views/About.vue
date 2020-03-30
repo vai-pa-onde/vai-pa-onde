@@ -49,6 +49,7 @@ export default {
   flex-grow: 1;
 
   & > h1 {
+    margin-top: 24px;
     margin-bottom: 42px;
     text-transform: uppercase;
     line-height: 130px;
@@ -60,6 +61,7 @@ export default {
 
   &__content {
     display: flex;
+    margin-bottom: 24px;
 
     & > .colors-stripe {
       flex-direction: column-reverse;

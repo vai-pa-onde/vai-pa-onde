@@ -10,14 +10,20 @@
         <subtype-badge :class="`type-background type-background--${activity.type}`" :subtype="activity.subtype" />
         <p>Publicado em {{ activity.publishedAt }}</p>
       </div>
-      <vpo-button dark :href="activity.link" text="acessar link" />
+      <vpo-link dark :href="activity.link" text="acessar link" />
     </div>
     <div class="activity-details__content">
       <div class="activity-details__content__info">
-        <img :src="activity.image" alt />
-        <activity-info-card :type="activity.type" :link="activity.link" :validUntil="activity.validUntil" />
+        <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
+        <activity-info-card
+          :id="activity.id"
+          :title="activity.title"
+          :type="activity.type"
+          :link="activity.link"
+          :validUntil="activity.validUntil"
+        />
       </div>
-      <vpo-button dark :href="activity.link" text="acessar link" />
+      <vpo-link dark :href="activity.link" text="acessar link" />
       <p>{{ activity.description }}</p>
       <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
@@ -132,7 +138,7 @@ export default {
       }
     }
 
-    & > .vpo-button {
+    & > .button {
       display: none;
     }
 
@@ -225,7 +231,7 @@ export default {
         }
       }
 
-      & > .vpo-button {
+      & > .button {
         display: none;
       }
     }
@@ -239,12 +245,13 @@ export default {
         margin-bottom: 12px;
 
         & > img {
+          min-width: unset;
           width: 100%;
           height: auto;
         }
       }
 
-      & > .vpo-button {
+      & > .button {
         display: block;
         width: min-content;
         margin-left: auto;

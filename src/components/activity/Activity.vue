@@ -3,13 +3,13 @@
     :class="`activity type-background type-background--${type}`"
     @click="() => $router.push({ name: 'activity-details', params: { id }})"
   >
-    <img src="@/assets/activity.png" />
+    <img :src="image" alt />
     <div class="activity__content">
       <h1>{{ title }}</h1>
       <p>{{ brand }}</p>
       <div class="activity__content__info">
         <type-badge :type="type" />
-        <share-button />
+        <share-button :activityId="id" :activityTitle="title" />
       </div>
     </div>
   </div>
@@ -22,7 +22,8 @@ export default {
     id: String,
     title: String,
     brand: String,
-    type: String
+    type: String,
+    image: String
   }
 }
 </script>

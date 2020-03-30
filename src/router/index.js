@@ -22,7 +22,7 @@ const routes = [
     name: 'subtype-filter',
     component: Filter
   }, {
-    path: '/ação/:id',
+    path: '/acao/:id',
     name: 'activity-details',
     component: ActivityDetails
   }, {

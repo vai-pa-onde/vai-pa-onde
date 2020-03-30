@@ -18,7 +18,7 @@ export default {
     share(event) {
       window.navigator.share({
         text: `Olha o que eu achei! - ${this.activityTitle}`,
-        url: `https://www.vaipaonde.com.br/ação/${this.activityId}`
+        url: `https://www.vaipaonde.com.br/acao/${this.activityId}`
       })
     }
   }

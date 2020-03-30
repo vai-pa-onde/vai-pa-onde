@@ -5,6 +5,10 @@
 <script>
 export default {
   name: 'share-button',
+  props: {
+    activityId: String,
+    activityTitle: String
+  },
   computed: {
     canShare() {
       return !!window.navigator.share
@@ -13,9 +17,8 @@ export default {
   methods: {
     share(event) {
       window.navigator.share({
-        title: 'Aooba',
-        text: 'Eaeee',
-        url: 'https://www.vaipaonde.com.br/'
+        text: `Olha o que eu achei! - ${this.activityTitle}`,
+        url: `https://www.vaipaonde.com.br/ação/${this.activityId}`
       })
     }
   }

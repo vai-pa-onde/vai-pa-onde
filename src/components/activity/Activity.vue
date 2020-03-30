@@ -9,7 +9,7 @@
       <p>{{ brand }}</p>
       <div class="activity__content__info">
         <type-badge :type="type" />
-        <share-button />
+        <share-button :activityId="id" :activityTitle="title" />
       </div>
     </div>
   </div>

@@ -15,7 +15,13 @@
     <div class="activity-details__content">
       <div class="activity-details__content__info">
         <img :src="activity.image" alt />
-        <activity-info-card :type="activity.type" :link="activity.link" :validUntil="activity.validUntil" />
+        <activity-info-card
+          :id="activity.id"
+          :title="activity.title"
+          :type="activity.type"
+          :link="activity.link"
+          :validUntil="activity.validUntil"
+        />
       </div>
       <vpo-button dark :href="activity.link" text="acessar link" />
       <p>{{ activity.description }}</p>

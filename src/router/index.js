@@ -4,6 +4,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Filter from '../views/Filter.vue'
 import ActivityDetails from '../views/ActivityDetails.vue'
+import About from '../views/About.vue'
 
 Vue.use(VueRouter)
 
@@ -24,6 +25,10 @@ const routes = [
     path: '/ação/:id',
     name: 'activity-details',
     component: ActivityDetails
+  }, {
+    path: '/sobre',
+    name: 'about',
+    component: About
   }
 ]
 

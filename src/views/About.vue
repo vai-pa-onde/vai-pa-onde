@@ -34,7 +34,6 @@ export default {
   name: 'about',
   computed: {
     formLink() {
-      console.log(config)
       return config.contributeFormUrl
     }
   }

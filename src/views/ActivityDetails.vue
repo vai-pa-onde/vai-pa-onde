@@ -14,7 +14,7 @@
     </div>
     <div class="activity-details__content">
       <div class="activity-details__content__info">
-        <img :src="activity.image" alt />
+        <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
         <activity-info-card
           :id="activity.id"
           :title="activity.title"
@@ -245,6 +245,7 @@ export default {
         margin-bottom: 12px;
 
         & > img {
+          min-width: unset;
           width: 100%;
           height: auto;
         }

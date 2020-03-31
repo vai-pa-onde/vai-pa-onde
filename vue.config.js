@@ -11,6 +11,7 @@ module.exports = {
   },
   pwa: {
     workboxOptions: {
+      skipWaiting: true,
       exclude: [
         /_redirects$/
       ]

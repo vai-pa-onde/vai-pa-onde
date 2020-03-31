@@ -8,5 +8,14 @@ module.exports = {
         `
       }
     }
+  },
+  pwa: {
+    workboxOptions: {
+      exclude: [
+        /\.map$/,
+        /manifest\.json$/,
+        /_redirects$/
+      ]
+    }
   }
 }

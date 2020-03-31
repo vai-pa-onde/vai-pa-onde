@@ -12,6 +12,7 @@ export default {
 
 <style lang="scss" scoped>
 .not-found {
+  @extend %side-padding;
   width: 100%;
 
   & > .not-found-card {

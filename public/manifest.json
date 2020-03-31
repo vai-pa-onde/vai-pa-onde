@@ -1,6 +1,7 @@
 {
     "name": "Vai pa onde?",
     "short_name": "Vai pa onde?",
+    "start_url": "/index.html",
     "icons": [
         {
             "src": "/images/android-chrome-192x192.png",

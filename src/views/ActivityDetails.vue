@@ -27,7 +27,9 @@
       <p>{{ activity.description }}</p>
       <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
-        <span :key="i" v-for="(tag, i) in activity.tags">{{ tag }}</span>
+        <router-link :key="i" v-for="(tag, i) in activity.tags" :to="{ name: 'home' }" @click.native="searchTag">
+          {{ tag }}
+        </router-link>
       </div>
     </div>
     <div class="activity-details__recommendations">
@@ -41,7 +43,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'activity-details',
@@ -71,8 +73,12 @@ export default {
     }
   },
   methods: {
+    ...mapActions({ doSearch: 'activities/doSearch' }),
     setActivity() {
       this.activity = this.getActivityById(this.$route.params.id)
+    },
+    searchTag(evt) {
+      this.doSearch(evt.target.innerText)
     }
   },
   created() {
@@ -172,8 +178,9 @@ export default {
         margin-bottom: 6px;
       }
 
-      & > span {
+      & > a {
         white-space: nowrap;
+        text-decoration: none;
         color: map-get($colors-util, 'blue');
         background-color: rgba(map-get($colors-util, 'blue'), 0.15);
         border-radius: 4px;

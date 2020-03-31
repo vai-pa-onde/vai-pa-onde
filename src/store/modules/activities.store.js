@@ -10,7 +10,9 @@ function search(state) {
 
   const searchString = state.searchString
   return state.allActivities.filter(it =>
-    it.title.toLowerCase().includes(searchString) || it.brand.toLowerCase().includes(searchString)
+    it.title.toLowerCase().includes(searchString) ||
+    it.brand.toLowerCase().includes(searchString) ||
+    it.tags.includes(searchString)
   )
 }
 
@@ -63,7 +65,7 @@ const actions = {
         output.forEach(it => {
           let newTags = []
           if (it.tags.length > 0) {
-            newTags = it.tags.split(',').map(it => it.trim())
+            newTags = it.tags.split(',').map(it => it.trim().toLowerCase())
           }
 
           Object.assign(it, {

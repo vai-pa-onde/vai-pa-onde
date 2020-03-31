@@ -27,13 +27,13 @@
         <dropdown class="badge" type="product" :selected="selectedSubtype" />
         <dropdown class="badge" type="content" :selected="selectedSubtype" />
       </div>
-      <input @input="searchChanged" placeholder="pesquisar">
+      <input :value="searchString" @input="searchChanged" placeholder="pesquisar">
     </div>
   </header>
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapState } from 'vuex'
 import config from '@/config'
 
 export default {
@@ -43,6 +43,7 @@ export default {
     searchUpdateTimeout: null
   }),
   computed: {
+    ...mapState({ searchString: state => state.activities.searchString }),
     formUrl() {
       return config.contributeFormUrl
     },

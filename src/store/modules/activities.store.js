@@ -60,7 +60,6 @@ const actions = {
           throw err
         }
 
-        console.log(output.map(it => it.deleted))
         output.forEach(it => {
           let newTags = []
           if (it.tags.length > 0) {

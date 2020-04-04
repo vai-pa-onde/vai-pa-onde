@@ -4,13 +4,13 @@
     @click="() => $router.push({ name: 'activity-details', params: { id }})"
   >
     <img :src="image" alt />
+    <type-badge class="activity__type" :type="type" />
     <div class="activity__content">
       <h1>{{ title }}</h1>
       <p>{{ brand }}</p>
-      <div class="activity__content__info">
-        <type-badge :type="type" />
-        <share-button :activityId="id" :activityTitle="title" />
-      </div>
+    </div>
+    <div class="activity__date">
+      até 25.05
     </div>
   </div>
 </template>
@@ -30,6 +30,7 @@ export default {
 
 <style lang="scss" scoped>
 .activity {
+  position: relative;
   display: flex;
   flex-direction: column;
   cursor: pointer;
@@ -39,8 +40,15 @@ export default {
   img {
     display: block;
     width: 100%;
-    height: 140px;
+    height: 125px;
     object-fit: cover;
+  }
+
+  &__type {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: white;
   }
 
   &__content {
@@ -63,17 +71,23 @@ export default {
     & > p {
       line-height: 1.2;
       font-size: 1em;
-      margin: 12px 0;
+      margin: 12px 0 0 0;
     }
+  }
 
-    &__info {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+  &__date {
+    background-color: rgba(white, 0.3);
+    margin: 0 0 0 auto;
+    padding: 5px;
+    font: {
+      family: 'Play';
+      size: 16px;
+    }
+  }
 
-      & > .type-badge {
-        background-color: white;
-      }
+  @media screen and (max-width: 968px) {
+    img {
+      height: 110px;
     }
   }
 
@@ -81,7 +95,7 @@ export default {
     font-size: 14px;
 
     img {
-      height: 90px;
+      height: 80px;
     }
 
     &__content {
@@ -97,7 +111,7 @@ export default {
     font-size: 16px;
 
     img {
-      height: 110px;
+      height: 100px;
     }
   }
 }

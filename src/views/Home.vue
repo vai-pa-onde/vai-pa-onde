@@ -17,7 +17,7 @@
         <type-description-card type="product" />
         <type-description-card type="content" />
       </div>
-      <vpo-button @click="$router.push({ name: 'all' })" dark text="ver todos" />
+      <vpo-button @click="$router.push({ name: 'all-activities' })" dark text="ver todos" />
     </div>
   </div>
 </template>

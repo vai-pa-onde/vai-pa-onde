@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css?family=Play:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Work+Sans:wght@400;500;700&display=swap');
 @import 'node_modules/reset-css/sass/reset';
 @import '~@/styles/main';
 
@@ -31,7 +31,7 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  font-family: 'Play', 'Avenir', Helvetica, Arial, sans-serif;
+  font-family: 'Work Sans', 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: white;

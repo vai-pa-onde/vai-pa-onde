@@ -1,16 +1,30 @@
 <template>
   <div class="home">
-    <current-section-indicator />
-    <activity-list :activities="activities" />
+    <div class="home__separator separator-bar">
+      <span class="separator-bar__main">
+        O que você quer fazer?
+      </span>
+    </div>
+    <div class="home__content">
+      <div class="home__content__counters">
+        <activities-counter />
+        <activities-counter />
+        <activities-counter />
+      </div>
+      <div class="home__content__types">
+        <type-description-card />
+        <type-description-card />
+        <type-description-card />
+        <type-description-card />
+      </div>
+      <vpo-button @click="$router.push({ name: 'all' })" dark text="ver todos" />
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
-
 export default {
-  name: 'home',
-  computed: mapGetters({ activities: 'activities/all' })
+  name: 'all-activities'
 }
 </script>
 
@@ -22,17 +36,31 @@ export default {
   align-items: center;
 
   &__separator {
-    @extend %side-padding;
-    padding-top: 12px;
-    padding-bottom: 12px;
-    margin-top: 32px;
-    width: 100%;
-
-    text-transform: uppercase;
     background-color: black;
-    font: {
-      size: 24px;
-      weight: bold;
+    font-size: 12px;
+  }
+
+  &__content {
+    @extend %side-padding;
+    margin-top: 18px;
+    background-color: map-get($colors-util, 'light-gray');
+
+    &__counters {
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      gap: 8px;
+      margin-bottom: 18px;
+    }
+
+    &__types {
+      display: grid;
+      grid-template-columns: repeat(2, auto);
+      gap: 20px;
+    }
+
+    & > .vpo-button {
+      margin: 24px 16px;
+      width: calc(100% - 32px)
     }
   }
 }

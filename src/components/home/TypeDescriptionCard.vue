@@ -48,6 +48,7 @@ export default {
     padding: 8px;
     background-color: rgba(black, 0.15);
     text-transform: uppercase;
+    text-align: center;
     font: {
       size: 18px;
       weight: bold;

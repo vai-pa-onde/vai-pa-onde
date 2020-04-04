@@ -70,7 +70,7 @@ const actions = {
 
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/${it.type}-fallback.png`),
+            image: it.image || require(`@/assets/fallback.png`),
             deleted: it.deleted === 'TRUE'
           })
         })

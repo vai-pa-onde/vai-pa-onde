@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
+import AllActivities from '../views/AllActivities.vue'
 import Filter from '../views/Filter.vue'
 import ActivityDetails from '../views/ActivityDetails.vue'
 import About from '../views/About.vue'
@@ -14,6 +15,10 @@ const routes = [
     path: '/',
     name: 'home',
     component: Home
+  }, {
+    path: '/todas',
+    name: 'all-activities',
+    component: AllActivities
   }, {
     path: '/categoria/:type',
     name: 'type-filter',

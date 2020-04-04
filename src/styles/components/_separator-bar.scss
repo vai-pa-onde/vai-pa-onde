@@ -1,0 +1,17 @@
+.separator-bar {
+  @extend %side-padding;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  margin-top: 32px;
+  width: 100%;
+  font: {
+    family: 'Play';
+    size: 24px;
+  }
+
+  &__main {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+}

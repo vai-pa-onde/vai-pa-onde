@@ -1,0 +1,17 @@
+.type-text {
+  &--course {
+    color: map-get($colors-util, 'yellow');
+  }
+
+  &--event {
+    color: map-get($colors-util, 'pink');
+  }
+
+  &--product {
+    color: map-get($colors-util, 'teal');
+  }
+
+  &--content {
+    color: map-get($colors-util, 'red');
+  }
+}

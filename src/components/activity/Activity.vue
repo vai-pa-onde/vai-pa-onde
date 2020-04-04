@@ -36,6 +36,19 @@ export default {
   cursor: pointer;
   font-size: 20px;
   color: white;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+  margin-top: 12px;
+  margin-bottom: -12px;
+
+  &:hover {
+    border: 6px solid white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+    width: calc(100% + 12px);
+    height: calc(100% + 12px);
+    transform: translateY(-6px);
+    margin-left: -6px;
+    margin-top: 0;
+  }
 
   img {
     display: block;
@@ -70,8 +83,11 @@ export default {
 
     & > p {
       line-height: 1.2;
-      font-size: 1em;
       margin: 12px 0 0 0;
+      font: {
+        size: 1em;
+        weight: 500;
+      }
     }
   }
 

@@ -122,7 +122,7 @@ export default {
     border-radius: 10px;
     user-select: none;
     font: {
-      size: 1.15em;
+      size: 1em;
       weight: bold;
     }
 

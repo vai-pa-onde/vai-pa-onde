@@ -1,19 +1,22 @@
 <template>
-  <div :class="`activity-info-card type-background type-background--${type}`">
-    <div class="activity-info-card__valid-until">
-      <p class="label">válido até:</p>
-      <p>{{ validUntil }}</p>
-    </div>
+  <div class="activity-info-card">
+    <div class="activity-info-card__content">
+      <vpo-link outlined :href="link" text="accessar" />
 
-    <a class="label link" :href="link" target="_blank">acessar</a>
+      <div class="activity-info-card__content__valid-until">
+        <p class="label">válido até:</p>
+        <p>{{ validUntil }}</p>
+      </div>
 
-    <div class="activity-info-card__share-desktop">
-      <p class="label">compartilhar</p>
-      <p class="share share--facebook" @click="shareOnFacebook">compartilhar no facebook</p>
-      <a class="share share--whatsapp" :href="whatsappLink" data-action="share/whatsapp/share" target="_blank">compartilhar no whatsapp</a>
-      <p class="share share--clipboard" @click="copyToClipboard">copiar link</p>
+      <div class="activity-info-card__content__share-desktop">
+        <p class="label">compartilhar via</p>
+        <p class="share share--facebook" @click="shareOnFacebook">facebook</p>
+        <a class="share share--whatsapp" :href="whatsappLink" data-action="share/whatsapp/share" target="_blank">whatsapp</a>
+        <p class="share share--clipboard" @click="copyToClipboard">link</p>
+      </div>
+      <share-button class="activity-info-card__content__share-mobile" :activityId="id" :activityTitle="title" />
     </div>
-    <share-button class="activity-info-card__share-mobile" :activityId="id" :activityTitle="title" />
+    <span :class="`activity-info-card__decoration type-background type-background--${type}`" />
   </div>
 </template>
 
@@ -64,119 +67,127 @@ export default {
 
 <style lang="scss" scoped>
 .activity-info-card {
-  padding: 8px 24px;
+  display: flex;
   color: white;
+  height: 300px;
   line-height: 1.25;
   font-size: 14px;
-  height: 300px;
   flex-grow: 1;
 
-  p, a {
-    display: inline-flex;
-    font-size: 1em;
-  }
+  &__content {
+    padding: 16px 24px;
+    background-color: black;
+    flex-grow: 1;
 
-  .label {
-    font-size: 1.35em;
-    display: inline-flex;
-    margin-top: 16px;
-    margin-bottom: 2px;
-    font-weight: bold;
-    width: 100%;
-  }
+    p, a {
+      display: inline-flex;
+      font-size: 1em;
+      margin-bottom: 6px;
+    }
 
-  a {
-    color: inherit;
-    text-decoration: none;
+    .label {
+      font-size: 1.35em;
+      display: inline-flex;
+      margin-top: 16px;
+      margin-bottom: 4px;
+      font-weight: bold;
+      width: 100%;
+    }
 
-    &.link {
-      &::after {
-        content: '';
-        width: 16px;
-        height: 16px;
-        margin-left: 5px;
-        margin-top: 5px;
-        background: {
-          repeat: no-repeat;
-          image: url('~@/assets/new-tab.svg');
-          size: 100% 100%;
+    a:not(.button) {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    &__share-desktop {
+      display: flex;
+      flex-direction: column;
+
+      & > .share {
+        align-items: center;
+        cursor: pointer;
+
+        &::before {
+          content: '';
+          width: 14px;
+          height: 14px;
+          margin-right: 10px;
+          margin-top: 1px;
+          background: {
+            repeat: no-repeat;
+            size: 100% 100%;
+          }
+        }
+
+        &--facebook::before {
+          background-image: url('~@/assets/facebook.svg');
+        }
+
+        &--instagram::before {
+          background-image: url('~@/assets/instagram.svg');
+        }
+
+        &--whatsapp::before {
+          background-image: url('~@/assets/whatsapp.svg');
+        }
+
+        &--clipboard::before {
+          background-image: url('~@/assets/link.svg');
         }
       }
     }
-  }
 
-  &__share-desktop {
-    & > .share {
-      align-items: center;
-      cursor: pointer;
-
-      &::before {
-        content: '';
-        width: 14px;
-        height: 14px;
-        margin-right: 10px;
-        margin-top: 1px;
-        background: {
-          repeat: no-repeat;
-          size: 100% 100%;
-        }
-      }
-
-      &--facebook::before {
-        background-image: url('~@/assets/facebook.svg');
-      }
-
-      &--instagram::before {
-        background-image: url('~@/assets/instagram.svg');
-      }
-
-      &--whatsapp::before {
-        background-image: url('~@/assets/whatsapp.svg');
-      }
-
-      &--clipboard::before {
-        background-image: url('~@/assets/link.svg');
-      }
+    &__share-mobile {
+      display: none;
     }
   }
 
-  &__share-mobile {
-    display: none;
+  &__decoration {
+    display: block;
+    min-width: 22px;
   }
 
   @media screen and (max-width: 964px) {
     height: 250px;
-    font-size: 12px;
 
-    .label.link::after {
-      margin-top: 3px;
+    &__content {
+      font-size: 12px;
     }
   }
 
   @media screen and (max-width: 768px) {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     height: auto;
-    padding: 8px;
 
-    .label {
-      display: block;
-      margin-top: 0;
+    &__content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: auto;
+      padding: 8px;
+
+      & > .vpo-link {
+        display: none;
+      }
+
+      .label {
+        display: block;
+        margin-top: 0;
+      }
+
+      &__share-desktop {
+        display: none;
+      }
+
+      &__share-mobile.share-button {
+        display: block;
+        height: 24px;
+        width: 24px;
+      }
     }
 
-    & > .link {
-      display: none;
-    }
-
-    &__share-desktop {
-      display: none;
-    }
-
-    &__share-mobile.share-button {
-      display: block;
-      height: 24px;
-      width: 24px;
+    &__decoration {
+      height: 8px;
     }
   }
 }

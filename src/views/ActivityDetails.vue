@@ -4,14 +4,6 @@
       <h1>{{ activity.title }}</h1>
       <h2>{{ activity.brand }}</h2>
     </div>
-    <div class="activity-details__subheader">
-      <div>
-        <type-badge :class="`type-background type-background--${activity.type}`" :type="activity.type" />
-        <subtype-badge :class="`type-background type-background--${activity.type}`" :subtype="activity.subtype" />
-        <p>Publicado em {{ activity.publishedAt }}</p>
-      </div>
-      <vpo-link dark :href="activity.link" text="acessar link" />
-    </div>
     <div class="activity-details__content">
       <div class="activity-details__content__info">
         <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
@@ -27,9 +19,7 @@
       <p>{{ activity.description }}</p>
       <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
-        <router-link :key="i" v-for="(tag, i) in activity.tags" :to="{ name: 'home' }" @click.native="searchTag">
-          {{ tag }}
-        </router-link>
+        <tag :key="i" v-for="(tag, i) in activity.tags" @click="searchTag" :text="tag" dismissable />
       </div>
     </div>
     <div class="activity-details__recommendations">
@@ -79,6 +69,7 @@ export default {
     },
     searchTag(evt) {
       this.doSearch(evt.target.innerText)
+      this.$router.push({ name: 'home' })
     }
   },
   created() {
@@ -99,7 +90,8 @@ export default {
   margin-bottom: 64px;
 
   &__header {
-    margin-bottom: 8px;
+    margin-bottom: 24px;
+
     & > h1 {
       text-transform: uppercase;
       margin-bottom: 6px;
@@ -114,37 +106,7 @@ export default {
     }
   }
 
-  &__subheader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 22px;
-
-    & > div {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-
-      & > .type-badge {
-        font-size: 22px;
-        line-height: 22px;
-        margin-right: 8px;
-        color: white;
-      }
-
-      & > .subtype-badge {
-        margin-right: auto;
-        margin-top: 10px;
-        margin-bottom: 10px;
-        margin-right: 18px;
-      }
-    }
-  }
-
   &__content {
-    width: 900px;
-    max-width: 900px;
-
     &__info {
       display: flex;
       margin-bottom: 18px;
@@ -175,17 +137,6 @@ export default {
         font-weight: bold;
         align-self: center;
         margin-right: 4px;
-        margin-bottom: 6px;
-      }
-
-      & > a {
-        white-space: nowrap;
-        text-decoration: none;
-        color: map-get($colors-util, 'blue');
-        background-color: rgba(map-get($colors-util, 'blue'), 0.15);
-        border-radius: 4px;
-        padding: 3px 5px;
-        margin-left: 4px;
         margin-bottom: 6px;
       }
     }
@@ -228,9 +179,6 @@ export default {
     }
 
     &__content {
-      width: 704px;
-      max-width: 704px;
-
       &__info {
         & > img {
           width: 480px;
@@ -242,24 +190,7 @@ export default {
   }
 
   @media screen and (max-width: 768px) {
-    &__subheader {
-      & > div {
-        width: 100%;
-
-        & > .subtype-badge {
-          margin-right: auto;
-        }
-      }
-
-      & > .button {
-        display: none;
-      }
-    }
-
     &__content {
-      width: auto;
-      max-width: 100%;
-
       &__info {
         flex-direction: column;
         margin-bottom: 12px;
@@ -292,17 +223,6 @@ export default {
   }
 
   @media screen and (max-width: 576px) {
-    &__subheader > div {
-      & > .type-badge {
-        font-size: 16px;
-        line-height: 22px;
-        color: white;
-      }
-
-      & > p {
-        font-size: 14px;
-      }
-    }
   }
 }
 </style>

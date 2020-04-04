@@ -1,19 +1,46 @@
 <template>
-  <div class="type-description-card type-background type-background--course">
-    <h1 class="type-text type-text--course">24</h1>
+  <div :class="`type-description-card type-background type-background--${type}`">
+    <h1 :class="`type-text type-text--${type}`">24</h1>
     <div class="type-description-card__content">
-      <h2>Cursos</h2>
-      Descrição dessa categoria, com exemplos forem ipsum oadsissad
+      <h2>{{ content.title }}</h2>
+      {{ content.description }}
     </div>
-    <div class="type-description-card__cta" @click="$emit('click')">
+    <div class="type-description-card__cta" @click="$router.push({ name: 'type-filter', params: { type } })">
       Conferir
     </div>
   </div>
 </template>
 
 <script>
+const contentByType = {
+  course: {
+    title: 'Cursos',
+    description: 'Descrição dessa categoria, com exemplos forem ipsum oadsissad'
+  },
+  event: {
+    title: 'Eventos',
+    description: 'Descrição dessa categoria, com exemplos forem ipsum oadsissad'
+  },
+  product: {
+    title: 'Produtos',
+    description: 'Descrição dessa categoria, com exemplos forem ipsum oadsissad'
+  },
+  content: {
+    title: 'Conteúdos',
+    description: 'Descrição dessa categoria, com exemplos forem ipsum oadsissad'
+  }
+}
+
 export default {
-  name: 'type-description-card'
+  name: 'type-description-card',
+  props: {
+    type: String
+  },
+  computed: {
+    content() {
+      return contentByType[this.type]
+    }
+  }
 }
 </script>
 

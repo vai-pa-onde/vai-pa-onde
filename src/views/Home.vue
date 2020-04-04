@@ -12,10 +12,10 @@
         <activities-counter />
       </div>
       <div class="home__content__types">
-        <type-description-card />
-        <type-description-card />
-        <type-description-card />
-        <type-description-card />
+        <type-description-card type="course" />
+        <type-description-card type="event" />
+        <type-description-card type="product" />
+        <type-description-card type="content" />
       </div>
       <vpo-button @click="$router.push({ name: 'all' })" dark text="ver todos" />
     </div>
@@ -47,15 +47,15 @@ export default {
 
     &__counters {
       display: grid;
-      grid-template-columns: repeat(3, auto);
+      grid-template-columns: repeat(3, 1fr);
       gap: 8px;
       margin-bottom: 18px;
     }
 
     &__types {
       display: grid;
-      grid-template-columns: repeat(2, auto);
-      gap: 20px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 8px;
     }
 
     & > .vpo-button {

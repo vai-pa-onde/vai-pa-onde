@@ -22,6 +22,7 @@ export default {
 
 <style lang="scss" scoped>
 .drawer {
+  z-index: 1000;
   &__hamburger {
     cursor: pointer;
 

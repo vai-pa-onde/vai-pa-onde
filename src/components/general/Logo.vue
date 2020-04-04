@@ -23,8 +23,11 @@ export default {
   display: flex;
   flex-direction: column;
   width: min-content;
-  font-size: 55px;
   cursor: pointer;
+  font: {
+    family: 'Play';
+    size: 55px;
+  }
 
   &__name {
     background-color: black;

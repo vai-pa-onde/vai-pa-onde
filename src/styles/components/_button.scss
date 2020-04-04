@@ -1,4 +1,6 @@
 .button {
+  display: flex;
+  align-items: center;
   appearance: none;
   outline: none;
   color: inherit;
@@ -8,7 +10,7 @@
   background-color: map-get($colors-util, 'blue');
   font: {
     family: 'Play', 'Avenir', Helvetica, Arial, sans-serif;
-    size: 24px;
+    size: 20px;
     weight: bold;
   }
   transition: color 0.3s, background-color 0.3s;

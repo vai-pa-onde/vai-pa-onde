@@ -76,6 +76,7 @@ export default {
     background-color: rgba(black, 0.15);
     text-transform: uppercase;
     text-align: center;
+    cursor: pointer;
     font: {
       size: 18px;
       weight: bold;

@@ -11,13 +11,16 @@
             <dropdown @selected="closeDrawer" class="badge" type="content" :selected="selectedSubtype" />
           </div>
           <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
-          <vpo-link :href="formUrl" text="contribuir" />
+          <vpo-link :href="formUrl" dark text="mandar uma ação" />
         </div>
       </drawer>
+
       <logo />
+      <p>O portal com <b>tudo para você ficar em casa.</b></p>
+
       <div class="search-header__logo__links">
         <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
-        <vpo-link :href="formUrl" text="contribuir" />
+        <vpo-link :href="formUrl" dark text="mandar uma ação" />
       </div>
     </div>
     <div class="search-header__filters">
@@ -80,8 +83,23 @@ export default {
       display: none;
     }
 
-    &__links > .button {
-      margin-left: 12px;
+    &__links {
+      display: flex;
+
+      & > .button {
+        margin-left: 12px;
+      }
+    }
+
+    & > p {
+      color: black;
+      font-size: 20px;
+      margin: 0 12px;
+      margin-right: auto;
+
+      & > b {
+        font-weight: bold;
+      }
     }
   }
 
@@ -123,7 +141,31 @@ export default {
     }
   }
 
+  @media screen and (max-width: 1200px) {
+    &__logo {
+      &__links > .button {
+        font-size: 18px;
+      }
+    }
+  }
+
   @media screen and (max-width: 964px) {
+    &__logo {
+      flex-wrap: wrap;
+
+      & > p {
+        order: 3;
+        font-size: 18px;
+        margin: 16px 0 0 0;
+        width: 100%;
+        text-align: center;
+      }
+
+      &__links {
+        order: 2;
+      }
+    }
+
     &__filters {
       flex-direction: column;
 
@@ -191,6 +233,10 @@ export default {
             font-size: 18px;
           }
         }
+      }
+
+      & > p {
+        font-size: 16px;
       }
 
       &__links {

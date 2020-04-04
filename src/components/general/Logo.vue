@@ -25,8 +25,8 @@ export default {
   width: min-content;
   cursor: pointer;
   font: {
+    size: 26px;
     family: 'Play';
-    size: 55px;
   }
 
   &__name {
@@ -38,8 +38,12 @@ export default {
     padding: 8px 16px;
   }
 
-  @media screen and (max-width: 992px) {
+  @media screen and (min-width: 992px) {
     font-size: 30px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 34px;
   }
 }
 </style>

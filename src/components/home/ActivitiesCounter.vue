@@ -37,6 +37,7 @@ export default {
     text-align: center;
 
     & > p {
+      margin-bottom: 6px;
       color: black;
       font: {
         size: 14px;
@@ -50,6 +51,43 @@ export default {
         size: 16px;
         weight: bold;
       }
+    }
+  }
+
+  @include breakpoint('medium') {
+    display: flex;
+
+    & > h1 {
+      width: auto;
+      border-left: 20px solid #0079BA;
+      padding: 20px 12px;
+    }
+
+    &__content {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      justify-content: center;
+      text-align: left;
+      padding: 0 24px;
+    }
+  }
+
+  @include breakpoint('large') {
+    & > h1 {
+      font-size: 50px;
+    }
+
+    &__content {
+      & > p, & > h2 {
+        font-size: 18px;
+      }
+    }
+  }
+
+  @include breakpoint('extra-large') {
+    & > h1 {
+      font-size: 64px;
     }
   }
 }

@@ -23,9 +23,9 @@ export default {
   name: 'filter-list',
   computed: {
     ...mapGetters({
-      allActivities: 'activities/all',
-      filterByType: 'activities/filterByType',
-      filterBySubtype: 'activities/filterBySubtype'
+      allActivities: 'search/activities',
+      filterByType: 'search/filterByType',
+      filterBySubtype: 'search/filterBySubtype'
     }),
     ...mapState({ searchString: state => state.activities.searchString }),
     type() {

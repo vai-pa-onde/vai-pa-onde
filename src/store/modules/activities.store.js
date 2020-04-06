@@ -3,19 +3,6 @@ import parse from 'csv-parse'
 
 const spreadsheetId = '2PACX-1vRqN0edpOYftetA6gUkMDPONc5o2NHKG9yJLrzDtbhxe-SUqCHMgNaUodI8o4Q4pOX66iDHPGMLC7D2'
 
-function search(state) {
-  if (!state.searchString) {
-    return state.allActivities
-  }
-
-  const searchString = state.searchString
-  return state.allActivities.filter(it =>
-    it.title.toLowerCase().includes(searchString) ||
-    it.brand.toLowerCase().includes(searchString) ||
-    it.tags.includes(searchString)
-  )
-}
-
 function findRecommendations(activities, activity) {
   const filteredActivities = activities.filter(it => it.id !== activity.id)
 
@@ -38,14 +25,10 @@ function findRecommendations(activities, activity) {
 
 const state = {
   loaded: false,
-  searchString: null,
   allActivities: []
 }
 
 const getters = {
-  all: state => search(state),
-  filterByType: state => type => search(state).filter(it => it.type === type),
-  filterBySubtype: state => subtype => search(state).filter(it => it.subtype === subtype),
   getById: state => id => state.allActivities.find(it => it.id === id),
   recommendations: state => activity => findRecommendations(state.allActivities, activity)
 }
@@ -79,14 +62,6 @@ const actions = {
         commit('SET_LOADED')
       })
     } catch {}
-  },
-  doSearch({ commit }, searchString) {
-    let trimmedSearchString = searchString.trim()
-    if (trimmedSearchString === '') {
-      commit('SET_SEARCH_STRING', null)
-    }
-
-    commit('SET_SEARCH_STRING', trimmedSearchString.toLowerCase())
   }
 }
 
@@ -96,9 +71,6 @@ const mutations = {
   },
   SET_LOADED(state) {
     state.loaded = true
-  },
-  SET_SEARCH_STRING(state, searchString) {
-    state.searchString = searchString
   }
 }
 

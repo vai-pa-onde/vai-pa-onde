@@ -39,7 +39,7 @@ export default {
     type: String
   },
   computed: {
-    ...mapGetters({ activitiesByType: 'activities/filterByType' }),
+    ...mapGetters({ activitiesByType: 'search/filterByType' }),
     content() {
       return contentByType[this.type]
     },

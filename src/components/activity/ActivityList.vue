@@ -27,7 +27,7 @@ export default {
 <style lang="scss" scoped>
 .activity-list {
   @extend %side-padding;
-  margin: 32px 0;
+  margin: 20px 0 44px 0;
   display: grid;
   grid-template-columns: repeat(4, 270px);
   gap: 40px;

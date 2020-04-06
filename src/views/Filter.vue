@@ -1,23 +1,33 @@
 <template>
   <div class="filter">
     <current-section-indicator />
-    <activity-list :activities="activities" />
+    <div>
+      <div class="filter__search-bar">
+        <div class="filter__search-bar__search">
+          <span :class="type ? `type-background type-background--${type}` : ''"/>
+          <input :value="searchString" @input="searchChanged" :placeholder="`Buscar em ${typeLabel}`">
+        </div>
+      </div>
+      <activity-list :activities="activities" />
+    </div>
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import typeName from '@/js/typeName'
 import subtypesByType from '@/js/subtypesByType'
 import subtypeName from '@/js/subtypeName'
 
 export default {
-  name: 'filtered-list',
+  name: 'filter-list',
   computed: {
     ...mapGetters({
+      allActivities: 'activities/all',
       filterByType: 'activities/filterByType',
       filterBySubtype: 'activities/filterBySubtype'
     }),
+    ...mapState({ searchString: state => state.activities.searchString }),
     type() {
       return this.$route.params.type
     },
@@ -29,11 +39,27 @@ export default {
         return this.filterBySubtype(this.subtype)
       }
 
-      return this.filterByType(this.type)
+      if (this.$route.params.type) {
+        return this.filterByType(this.type)
+      }
+
+      return this.allActivities
+    },
+    typeLabel() {
+      if (this.type) {
+        return typeName[this.type].toLowerCase()
+      }
+
+      return 'todos os resultados'
+    }
+  },
+  methods: {
+    searchChanged() {
+
     }
   },
   beforeRouteEnter(to, from, next) {
-    if (!Object.keys(typeName).includes(to.params.type)) {
+    if (!!to.params.type && !Object.keys(typeName).includes(to.params.type)) {
       return next(false)
     }
 
@@ -52,38 +78,57 @@ export default {
   flex-direction: column;
   flex-grow: 1;
   align-items: center;
+  background-color: map-get($colors-util, 'light-gray');
+  margin-top: 16px;
 
-  &__activities {
+  & > .separator-bar {
+    margin-top: 0;
+  }
+
+  &__search-bar {
     @extend %side-padding;
-    margin: 32px 0;
-    display: grid;
-    grid-template-columns: repeat(4, 270px);
-    gap: 40px;
-  }
+    margin-top: 14px;
+    width: 100%;
 
-  @media screen and (max-width: 1264px) {
-    &__activities {
-      grid-template-columns: repeat(3, 260px);
+    &__search {
+      display: flex;
+      border-radius: 10px;
+      overflow: hidden;
+
+      & > span {
+        width: 5px;
+
+        &:not(.type-background) {
+          background-color: black;
+        }
+      }
+
+      & > input {
+        appearance: none;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        line-height: 19px;
+        color: #777;
+        padding: 8px 8px 8px 32px;
+        flex-grow: 1;
+        background: {
+          color: white;
+          repeat: no-repeat;
+          image: url("~@/assets/search.svg");
+          size: 16px 16px;
+          position: 8px center;
+        }
+
+        &::placeholder {
+          color: #A8A8A8;
+        }
+      }
     }
   }
 
-  @media screen and (max-width: 992px) {
-    &__activities {
-      grid-template-columns: repeat(2, 235px);
-    }
-  }
-
-  @media screen and (max-width: 576px) {
-    &__activities {
-      gap: 16px 8px;
-      grid-template-columns: repeat(2, 165px);
-    }
-  }
-
-  @media screen and (max-width: 374px) {
-    &__activities {
-      grid-template-columns: repeat(1, 220px);
-    }
+  @include breakpoint('large') {
+    margin-top: 32px;;
   }
 }
 </style>

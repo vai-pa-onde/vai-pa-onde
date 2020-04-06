@@ -85,7 +85,7 @@ export default {
       line-height: 1.2;
       margin: 12px 0 0 0;
       font: {
-        size: 1em;
+        size: 0.9em;
         weight: 500;
       }
     }

@@ -38,7 +38,6 @@ export default {
 
   &__separator {
     background-color: black;
-    font-size: 12px;
   }
 
   &__content {
@@ -113,10 +112,6 @@ export default {
   }
 
   @include breakpoint('large') {
-    &__separator {
-      font-size: 20px;
-    }
-
     &__content {
       &__counters {
         gap: 32px;

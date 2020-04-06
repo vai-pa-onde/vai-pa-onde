@@ -100,7 +100,7 @@ export default {
 
     &__search {
       display: flex;
-      border-radius: 10px;
+      border-radius: 8px;
       overflow: hidden;
 
       & > span {

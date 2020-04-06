@@ -17,7 +17,7 @@ const state = {
 }
 
 const getters = {
-  activities: (state, _, __, rootGetters) => search(state, rootGetters.activities.all),
+  activities: (state, _, rootState, __) => search(state, rootState.activities.allActivities),
   filterByType: (state, _, __, rootGetters) => type => search(state, rootGetters['activities/getByType'](type)),
   filterBySubtype: (state, _, __, rootGetters) => subtype => search(state, rootGetters['activities/getBySubtype'](subtype))
 }
@@ -40,6 +40,9 @@ const mutations = {
     }
 
     state.terms = state.terms.filter(it => it !== trimmedSearchTerm)
+  },
+  reset(state) {
+    state.terms = []
   }
 }
 

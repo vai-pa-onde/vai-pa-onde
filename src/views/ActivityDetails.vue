@@ -19,7 +19,7 @@
       <p>{{ activity.description }}</p>
       <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
-        <tag :key="i" v-for="(tag, i) in activity.tags" @click="searchTag" :text="tag" dismissable />
+        <tag :key="i" v-for="(tag, i) in activity.tags" @click="searchTag" :text="tag" />
       </div>
     </div>
     <div class="activity-details__recommendations">
@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'activity-details',
@@ -63,13 +63,14 @@ export default {
     }
   },
   methods: {
-    ...mapActions({ doSearch: 'activities/doSearch' }),
+    ...mapMutations({ addSearchTerm: 'search/addTerm', resetSearch: 'search/reset' }),
     setActivity() {
       this.activity = this.getActivityById(this.$route.params.id)
     },
     searchTag(evt) {
-      this.doSearch(evt.target.innerText)
-      this.$router.push({ name: 'home' })
+      this.resetSearch()
+      this.addSearchTerm(evt.target.innerText)
+      this.$router.push({ name: 'all-activities' })
     }
   },
   created() {

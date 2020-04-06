@@ -1,12 +1,10 @@
-import activitiesStore from '@/store/modules/activities.store'
-
-function search(state) {
-  if (state.searchTerms.length === 0) {
-    return activitiesStore.state.allActivities
+function search(state, activities) {
+  if (state.terms.length === 0) {
+    return activities
   }
 
-  return activitiesStore.state.allActivities.filter(it =>
-    state.searchTerms.some(term =>
+  return activities.filter(it =>
+    state.terms.every(term =>
       it.title.toLowerCase().includes(term) ||
       it.brand.toLowerCase().includes(term) ||
       it.tags.includes(term)
@@ -15,33 +13,33 @@ function search(state) {
 }
 
 const state = {
-  searchTerms: []
+  terms: []
 }
 
 const getters = {
-  activities: state => search(state),
-  filterByType: (_, getters) => type => getters.activities.filter(it => it.type === type),
-  filterBySubtype: (_, getters) => subtype => getters.activities.filter(it => it.subtype === subtype)
+  activities: (state, _, __, rootGetters) => search(state, rootGetters.activities.all),
+  filterByType: (state, _, __, rootGetters) => type => search(state, rootGetters['activities/getByType'](type)),
+  filterBySubtype: (state, _, __, rootGetters) => subtype => search(state, rootGetters['activities/getBySubtype'](subtype))
 }
 
 const actions = {}
 
 const mutations = {
-  addSearchTerm(state, term) {
+  addTerm(state, term) {
     let trimmedSearchTerm = term.trim().toLowerCase()
-    if (trimmedSearchTerm === '' || state.searchTags.includes(trimmedSearchTerm)) {
+    if (trimmedSearchTerm === '' || state.terms.includes(trimmedSearchTerm)) {
       return
     }
 
-    state.searchTerms.push(trimmedSearchTerm)
+    state.terms.push(trimmedSearchTerm)
   },
-  removeSearchTerm(state, term) {
+  removeTerm(state, term) {
     let trimmedSearchTerm = term.trim().toLowerCase()
-    if (trimmedSearchTerm === '' || state.searchTags.includes(trimmedSearchTerm)) {
+    if (trimmedSearchTerm === '' || !state.terms.includes(trimmedSearchTerm)) {
       return
     }
 
-    state.searchTerms = state.searchTerms.filter(it => it === trimmedSearchTerm)
+    state.terms = state.terms.filter(it => it !== trimmedSearchTerm)
   }
 }
 

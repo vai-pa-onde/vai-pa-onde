@@ -59,8 +59,10 @@ export default {
 
     & > h1 {
       width: auto;
-      border-left: 20px solid #0079BA;
-      padding: 20px 12px;
+      // border-left: 20px solid #0079BA;
+      background-color: white;
+      color: black;
+      padding: 20px 12px 20px 32px;
     }
 
     &__content {

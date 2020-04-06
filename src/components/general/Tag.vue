@@ -28,6 +28,7 @@ export default {
   margin-left: 4px;
   margin-bottom: 6px;
   cursor: pointer;
+  width: min-content;
 
   &:hover {
     font-weight: bold;

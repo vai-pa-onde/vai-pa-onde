@@ -5,7 +5,10 @@
       <div class="filter__search-bar">
         <div class="filter__search-bar__search">
           <span :class="type ? `type-background type-background--${type}` : ''"/>
-          <input :value="searchString" @input="searchChanged" :placeholder="`Buscar em ${typeLabel}`">
+          <input v-model="currentTerm" :placeholder="`Buscar em ${typeLabel}`" @keyup.enter="doSearch">
+        </div>
+        <div class="filter__search-bar__tags">
+          <tag :key="term" v-for="term in searchTerms" :text="term" dismissable @dismiss="() => removeSearchTerm(term)" />
         </div>
       </div>
       <activity-list :activities="activities" />
@@ -14,20 +17,23 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters, mapState, mapMutations } from 'vuex'
 import typeName from '@/js/typeName'
 import subtypesByType from '@/js/subtypesByType'
 import subtypeName from '@/js/subtypeName'
 
 export default {
   name: 'filter-list',
+  data: () => ({
+    currentTerm: ''
+  }),
   computed: {
     ...mapGetters({
       allActivities: 'search/activities',
       filterByType: 'search/filterByType',
       filterBySubtype: 'search/filterBySubtype'
     }),
-    ...mapState({ searchString: state => state.activities.searchString }),
+    ...mapState({ searchTerms: state => state.search.terms }),
     type() {
       return this.$route.params.type
     },
@@ -54,8 +60,10 @@ export default {
     }
   },
   methods: {
-    searchChanged() {
-
+    ...mapMutations({ addSearchTerm: 'search/addTerm', removeSearchTerm: 'search/removeTerm' }),
+    doSearch() {
+      this.addSearchTerm(this.currentTerm)
+      this.currentTerm = ''
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -124,6 +132,12 @@ export default {
           color: #A8A8A8;
         }
       }
+    }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 8px;
     }
   }
 

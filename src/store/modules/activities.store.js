@@ -30,6 +30,8 @@ const state = {
 
 const getters = {
   getById: state => id => state.allActivities.find(it => it.id === id),
+  getByType: state => type => state.allActivities.filter(it => it.type === type),
+  getBySubtype: state => subtype => state.allActivities.filter(it => it.subtype === subtype),
   recommendations: state => activity => findRecommendations(state.allActivities, activity)
 }
 

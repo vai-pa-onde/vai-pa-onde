@@ -86,10 +86,6 @@ export default {
       border-bottom: 3px solid map-get($colors-util, $color);
     }
   }
-
-  @media screen and (max-width: 654px) {
-    border-right: 5px solid map-get($colors-util, $color);
-  }
 }
 
 .dropdown {
@@ -159,39 +155,6 @@ export default {
       &--selected {
         font-weight: bold;
       }
-    }
-  }
-
-  .fade-enter-active, .fade-leave-active {
-    transition: all .25s ease-out;
-  }
-
-  .fade-enter, .fade-leave-active {
-    opacity: 0;
-    transform: translateY(-30px);
-  }
-
-  @media screen and (max-width: 654px) {
-    background-color: white;
-    color: black;
-    fill: black;
-    border-radius: 0;
-    -webkit-tap-highlight-color: transparent;
-
-    & > .selected {
-      font: {
-        size: 18px;
-        weight: 500;
-      }
-
-      & > .open-dropdown-icon {
-        height: 15px;
-      }
-    }
-
-    & > .options {
-      top: 0;
-      left: 100%;
     }
   }
 }

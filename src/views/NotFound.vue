@@ -17,6 +17,7 @@ export default {
 
   & > .not-found-card {
     margin: 0 auto;
+    background-color: map-get($colors-util, 'light-gray');
   }
 }
 </style>

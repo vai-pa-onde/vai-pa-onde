@@ -44,6 +44,7 @@ export default {
     @extend %side-padding;
     padding-top: 18px;
     background-color: map-get($colors-util, 'light-gray');
+    flex-grow: 1;
 
     &__counters {
       display: grid;

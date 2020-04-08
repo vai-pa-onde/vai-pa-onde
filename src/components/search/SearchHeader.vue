@@ -1,20 +1,7 @@
 <template>
   <header class="search-header">
     <div class="search-header__logo">
-      <drawer v-model="isDrawerOpen">
-        <div class="drawer-content">
-          <h1>Categorias</h1>
-          <div class="drawer-content__dropdowns">
-            <dropdown @selected="closeDrawer" class="badge" type="course" :selected="selectedSubtype" />
-            <dropdown @selected="closeDrawer" class="badge" type="event" :selected="selectedSubtype" />
-            <dropdown @selected="closeDrawer" class="badge" type="product" :selected="selectedSubtype" />
-            <dropdown @selected="closeDrawer" class="badge" type="content" :selected="selectedSubtype" />
-          </div>
-          <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
-          <vpo-link :href="formUrl" dark text="mandar uma ação" />
-        </div>
-      </drawer>
-
+      <drawer v-model="isDrawerOpen"/>
       <logo />
       <p>O portal com <b>tudo para você ficar em casa.</b></p>
 
@@ -141,14 +128,6 @@ export default {
     }
   }
 
-  @media screen and (max-width: 1200px) {
-    &__logo {
-      &__links > .button {
-        font-size: 18px;
-      }
-    }
-  }
-
   @media screen and (max-width: 964px) {
     &__logo {
       flex-wrap: wrap;
@@ -201,38 +180,6 @@ export default {
     &__logo {
       & > .drawer {
         display: block;
-
-        .drawer-content {
-          display: flex;
-          flex-direction: column;
-
-          & > h1 {
-            background-color: black;
-            color: white;
-            width: 100%;
-            padding: 16px 24px;
-            text-align: center;
-            text-transform: uppercase;
-            font: {
-              size: 18px;
-              weight: bold;
-            }
-          }
-
-          &__dropdowns {
-            margin: 36px 0 30px 0;
-
-            & > .dropdown {
-              margin: 4px 0;
-              width: 100%;
-            }
-          }
-
-          & > .button {
-            margin: 6px 20px;
-            font-size: 18px;
-          }
-        }
       }
 
       & > p {

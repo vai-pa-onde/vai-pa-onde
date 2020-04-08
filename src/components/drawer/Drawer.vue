@@ -1,11 +1,11 @@
 <template>
   <div class="drawer">
-    <div class="drawer__hamburger" @click="() => $emit('input', true)">
+    <div class="drawer__hamburger" @click="$emit('input', true)">
       <hamburger-icon />
     </div>
-    <div @click="() => $emit('input', false)" :class="`drawer__overlay ${value ? 'drawer__overlay--open' : ''}`">
+    <div @click="$emit('input', false)" :class="`drawer__overlay ${value ? 'drawer__overlay--open' : ''}`">
       <div class="drawer__overlay__content" @click.stop>
-        <slot />
+        <drawer-content :isDrawerOpen="value" @closeDrawer="$emit('input', false)" />
       </div>
     </div>
   </div>

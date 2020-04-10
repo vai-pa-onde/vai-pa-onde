@@ -1,6 +1,6 @@
 <template>
-  <div class="activities-counter">
-    <h1>30</h1>
+  <div class="activities-counter" v-if="count != 0">
+    <h1>{{ count }}</h1>
     <div class="activities-counter__content">
       <p>Ações</p>
       <h2>Adicionadas hoje</h2>
@@ -9,8 +9,21 @@
 </template>
 
 <script>
+import { mapState } from 'vuex'
+
 export default {
-  name: 'activities-counter'
+  name: 'activities-counter',
+  computed: {
+    ...mapState({ activities: state => state.activities.allActivities }),
+    count() {
+      const today = new Date()
+      return this.activities.filter(it =>
+        it.publishedAtDate.getDate() === today.getDate() &&
+        it.publishedAtDate.getMonth() === today.getMonth() &&
+        it.publishedAtDate.getYear() === today.getYear()
+      ).length
+    }
+  }
 }
 </script>
 
@@ -59,7 +72,6 @@ export default {
 
     & > h1 {
       width: auto;
-      // border-left: 20px solid #0079BA;
       background-color: white;
       color: black;
       padding: 20px 12px 20px 32px;

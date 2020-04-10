@@ -54,9 +54,11 @@ const actions = {
             newTags = it.tags.split(',').map(it => it.trim().toLowerCase())
           }
 
+          const splittedDate = it.publishedAt.split('/')
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/fallback.png`)
+            image: it.image || require(`@/assets/fallback.png`),
+            publishedAtDate: new Date(`20${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}`)
           })
 
           delete it.deleted

@@ -1,14 +1,14 @@
 <template>
-  <div :class="`current-section-indicator ${type ? `type-background type-background--${type}` : 'current-section-indicator--all'}`">
+  <div :class="`current-section-indicator separator-bar ${type ? `type-background type-background--${type}` : 'current-section-indicator--all'}`">
     <div class="current-section-indicator__search-indicator" v-if="searchString">
-      <span class="main">Busca:</span>
+      <span class="separator-bar__main">Busca:</span>
       <span>{{ searchString }}</span>
     </div>
     <div v-else-if="type">
-      <span class="main">{{ typeLabel }}</span>
+      <span class="separator-bar__main">{{ typeLabel }}</span>
       <span>| {{ subtypeLabel }}</span>
     </div>
-    <span class="main" v-else>Todos os resultados</span>
+    <span class="separator-bar__main" v-else>Todos os resultados</span>
   </div>
 </template>
 
@@ -44,21 +44,8 @@ export default {
 
 <style lang="scss" scoped>
 .current-section-indicator {
-  @extend %side-padding;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  margin-top: 32px;
-  font-size: 24px;
-  width: 100%;
-
   &--all {
     background-color: black;
-  }
-
-  .main {
-    text-transform: uppercase;
-    font-weight: bold;
-    margin-right: 6px;
   }
 }
 </style>

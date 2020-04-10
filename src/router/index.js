@@ -15,6 +15,10 @@ const routes = [
     name: 'home',
     component: Home
   }, {
+    path: '/todas',
+    name: 'all-activities',
+    component: Filter
+  }, {
     path: '/categoria/:type',
     name: 'type-filter',
     component: Filter

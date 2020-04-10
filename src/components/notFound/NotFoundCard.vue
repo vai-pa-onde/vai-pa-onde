@@ -19,7 +19,7 @@ export default {
 
 <style lang="scss" scoped>
 .not-found-card {
-  background-color: #F7F7F7;
+  background-color: white;
   max-width: 800px;
   width: fit-content;
 

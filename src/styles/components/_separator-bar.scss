@@ -1,0 +1,22 @@
+.separator-bar {
+  @extend %side-padding;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  width: 100%;
+  margin-top: 16px;
+  font: {
+    family: 'Play';
+    size: 12px;
+  }
+
+  &__main {
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-right: 6px;
+  }
+
+  @include breakpoint('large') {
+    font-size: 20px;
+    margin-top: 32px;
+  }
+}

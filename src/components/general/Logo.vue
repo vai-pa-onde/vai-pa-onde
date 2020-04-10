@@ -23,8 +23,11 @@ export default {
   display: flex;
   flex-direction: column;
   width: min-content;
-  font-size: 55px;
   cursor: pointer;
+  font: {
+    size: 26px;
+    family: 'Play';
+  }
 
   &__name {
     background-color: black;
@@ -35,8 +38,12 @@ export default {
     padding: 8px 16px;
   }
 
-  @media screen and (max-width: 992px) {
+  @media screen and (min-width: 992px) {
     font-size: 30px;
+  }
+
+  @media screen and (min-width: 1200px) {
+    font-size: 34px;
   }
 }
 </style>

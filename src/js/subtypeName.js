@@ -1,37 +1,25 @@
 export default {
-  business: 'Negócios',
-  law: 'Direito',
-  audioVisual: 'Audiovisual',
-  art: 'Artes',
-  general: 'Diversas Áreas',
-  communication: 'Comunicação',
-  dataScience: 'Data Science',
-  welfare: 'Saúde',
-  marketing: 'Marketing',
-  engineering: 'Engenharia',
-  technology: 'Tecnologia',
-  selfDevelopment: 'Desenvolvimento Pessoal', // ?
-  allInCourse: 'Todos',
+  course: 'Cursos online',
+  mentoringAndConsulting: 'Mentorias e Consultorias',
+  lecture: 'Palestras',
+  allInLearn: 'Todos',
 
   show: 'Shows',
   live: 'Lives',
   congress: 'Congressos',
-  allInEvent: 'Todos',
+  allInParticipate: 'Todos',
 
-  games: 'Games',
-  streaming: 'Streaming',
+  game: 'Games',
+  stream: 'Streaming',
   app: 'Aplicativos',
-  carrier: 'Operadoras', // ?
-  videoConference: 'Videoconferência', // ?
-  allInProduct: 'Todos',
+  activity: 'Atividades',
+  allInDo: 'Todos',
 
   ebook: 'EBooks',
-  mentoring: 'Mentoria',
-  culture: 'Cultura', // ?
-  sport: 'Esportes', // ?
-  museum: 'Museus', // ?
-  helpAndDonation: 'Ajuda e Doação', // ?
-  list: 'Listas', // ?
-  laborMarket: 'Mercado de Trabalho', // ?
-  allInContent: 'Todos'
+  blogPost: 'Blog posts',
+  instagramProfile: 'Perfis do Instagram',
+  psychologicalSupport: 'Apoio psicológico',
+  podcast: 'Podcasts',
+  helpAndDonation: 'Ajuda e Doação',
+  allInShare: 'Todos'
 }

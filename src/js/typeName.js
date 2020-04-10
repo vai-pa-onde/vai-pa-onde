@@ -1,6 +1,6 @@
 export default {
-  course: 'CURSOS',
-  product: 'PRODUTOS',
-  content: 'CONTEÚDOS',
-  event: 'EVENTOS'
+  learn: 'APRENDER',
+  participate: 'PARTICIPAR',
+  do: 'FAZER',
+  share: 'COMPARTILHAR'
 }

@@ -1,0 +1,17 @@
+.type-text {
+  &--learn {
+    color: map-get($colors-util, 'yellow');
+  }
+
+  &--participate {
+    color: map-get($colors-util, 'pink');
+  }
+
+  &--do {
+    color: map-get($colors-util, 'teal');
+  }
+
+  &--share {
+    color: map-get($colors-util, 'red');
+  }
+}

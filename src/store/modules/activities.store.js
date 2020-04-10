@@ -3,19 +3,6 @@ import parse from 'csv-parse'
 
 const spreadsheetId = '2PACX-1vRqN0edpOYftetA6gUkMDPONc5o2NHKG9yJLrzDtbhxe-SUqCHMgNaUodI8o4Q4pOX66iDHPGMLC7D2'
 
-function search(state) {
-  if (!state.searchString) {
-    return state.allActivities
-  }
-
-  const searchString = state.searchString
-  return state.allActivities.filter(it =>
-    it.title.toLowerCase().includes(searchString) ||
-    it.brand.toLowerCase().includes(searchString) ||
-    it.tags.includes(searchString)
-  )
-}
-
 function findRecommendations(activities, activity) {
   const filteredActivities = activities.filter(it => it.id !== activity.id)
 
@@ -38,15 +25,13 @@ function findRecommendations(activities, activity) {
 
 const state = {
   loaded: false,
-  searchString: null,
   allActivities: []
 }
 
 const getters = {
-  all: state => search(state),
-  filterByType: state => type => search(state).filter(it => it.type === type),
-  filterBySubtype: state => subtype => search(state).filter(it => it.subtype === subtype),
   getById: state => id => state.allActivities.find(it => it.id === id),
+  getByType: state => type => state.allActivities.filter(it => it.type === type),
+  getBySubtype: state => subtype => state.allActivities.filter(it => it.subtype === subtype),
   recommendations: state => activity => findRecommendations(state.allActivities, activity)
 }
 
@@ -54,7 +39,7 @@ const actions = {
   async fetch({ commit }) {
     try {
       const csv = await http
-        .get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=514874226&single=true&output=csv`)
+        .get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=843317981&single=true&output=csv`)
         .then(data => data.text())
 
       parse(csv, { columns: true }, (err, output) => {
@@ -62,31 +47,28 @@ const actions = {
           throw err
         }
 
-        output.forEach(it => {
+        const validActivities = output.filter(it => it.deleted === 'FALSE')
+        validActivities.forEach(it => {
           let newTags = []
           if (it.tags.length > 0) {
             newTags = it.tags.split(',').map(it => it.trim().toLowerCase())
           }
 
+          const splittedDate = it.publishedAt.split('/')
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/${it.type}-fallback.png`),
-            deleted: it.deleted === 'TRUE'
+            image: it.image || require(`@/assets/fallback.png`),
+            publishedAtDate: new Date(`20${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}`)
           })
+
+          delete it.deleted
         })
 
-        commit('SET_ALL_ACTIVITIES', output.filter(it => !it.deleted))
+        console.log(validActivities)
+        commit('SET_ALL_ACTIVITIES', validActivities)
         commit('SET_LOADED')
       })
     } catch {}
-  },
-  doSearch({ commit }, searchString) {
-    let trimmedSearchString = searchString.trim()
-    if (trimmedSearchString === '') {
-      commit('SET_SEARCH_STRING', null)
-    }
-
-    commit('SET_SEARCH_STRING', trimmedSearchString.toLowerCase())
   }
 }
 
@@ -96,9 +78,6 @@ const mutations = {
   },
   SET_LOADED(state) {
     state.loaded = true
-  },
-  SET_SEARCH_STRING(state, searchString) {
-    state.searchString = searchString
   }
 }
 

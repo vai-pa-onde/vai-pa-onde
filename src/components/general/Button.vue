@@ -15,7 +15,7 @@ export default {
   computed: {
     classes() {
       return {
-        'vpo-link': true,
+        'vpo-button': true,
         'badge': true,
         'button': true,
         'button--dark': this.dark,

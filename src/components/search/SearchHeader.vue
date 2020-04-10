@@ -10,11 +10,9 @@
         <vpo-link :href="formUrl" dark text="mandar uma ação" />
       </div>
     </div>
-    <div class="search-header__filters">
-      <div class="search-header__filters__navigation">
-        <dropdown :key="type" v-for="type in types" class="badge" :type="type" :selected="selectedSubtype" />
-      </div>
-      <input :value="searchString" @input="searchChanged" placeholder="pesquisar">
+    <div class="search-header__navigation">
+      <dropdown :key="type" v-for="type in types" class="badge" :type="type" :selected="selectedSubtype" />
+      <router-link :to="{ name: 'all-activities' }" class="badge">Tudo</router-link>
     </div>
   </header>
 </template>
@@ -59,7 +57,7 @@ export default {
 .search-header {
   @extend %side-padding;
 
-  &__logo, &__filters {
+  &__logo, &__navigation {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -91,41 +89,28 @@ export default {
     }
   }
 
-  &__filters {
-    &__navigation {
-      display: inline-flex;
+  &__navigation {
+    display: inline-flex;
 
-      & > .dropdown {
-        margin: 0 8px;
+    & > .dropdown {
+      margin: 0 8px;
 
-        &:first-child {
-          margin-left: 0;
-        }
+      &:first-child {
+        margin-left: 0;
       }
     }
 
-    & > input {
-      flex-grow: 1;
-      margin-left: 30px;
-      appearance: none;
-      border: none;
-      outline: none;
-      font-size: 24px;
-      line-height: 27px;
-      color: #777;
-      border-radius: 10px;
-      padding: 8px 8px 8px 40px;
-      background: {
-        color: #F7F7F7;
-        repeat: no-repeat;
-        image: url("~@/assets/search.svg");
-        size: 20px 20px;
-        position: 10px center;
-      }
-
-      &::placeholder {
-        color: #A8A8A8;
-      }
+    & > a {
+      display: block;
+      background-color: rgba(black, 0.25);
+      text-decoration: none;
+      color: black;
+      margin: 0 8px;
+      font: {
+        family: 'Play';
+        size: 16px;
+        weight: 900;
+      };
     }
   }
 
@@ -146,35 +131,26 @@ export default {
       }
     }
 
-    &__filters {
-      flex-direction: column;
+    &__navigation {
+      width: 100%;
+      margin-bottom: 14px;
 
-      &__navigation {
-        width: 100%;
-        margin-bottom: 14px;
+      & > .dropdown {
+        flex: 1;
 
-        & > .dropdown {
-          flex: 1;
-
-          &:first-child {
-            margin-left: 0;
-          }
-
-          &:last-child {
-            margin-right: 0;
-          }
+        &:first-child {
+          margin-left: 0;
         }
-      }
 
-      & > input {
-        margin-left: 0;
-        width: 100%;
+        &:last-child {
+          margin-right: 0;
+        }
       }
     }
   }
 
-  @media screen and (max-width: 654px) {
-    &__logo, &__filters {
+  @media screen and (max-width: 768px) {
+    &__logo, &__navigation {
       margin-top: 14px;
     }
 
@@ -192,14 +168,8 @@ export default {
       }
     }
 
-    &__filters {
-      &__navigation {
-        display: none;
-      }
-
-      & > input {
-        margin-left: 0;
-      }
+    &__navigation {
+      display: none;
     }
   }
 }

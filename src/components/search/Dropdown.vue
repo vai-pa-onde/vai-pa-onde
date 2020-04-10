@@ -143,8 +143,6 @@ export default {
     background-color: white;
     box-shadow: 0px 6px 6px rgba(0, 0, 0, 0.2);
     text-transform: none;
-    overflow: auto;
-    max-height: 260px;
 
     & > .option {
       padding: 8px 16px;

@@ -34,7 +34,7 @@ export default {
   display: flex;
   flex-direction: column;
   cursor: pointer;
-  font-size: 20px;
+  font-size: 16px;
   color: white;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
   border: 6px solid transparent;
@@ -48,7 +48,7 @@ export default {
   img {
     display: block;
     width: 100%;
-    height: 125px;
+    height: 100px;
     object-fit: cover;
   }
 
@@ -63,7 +63,7 @@ export default {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
-    padding: 12px 16px 20px 16px;
+    padding: 8px 12px 14px 12px;
 
     & > h1 {
       word-wrap: break-word;
@@ -102,33 +102,31 @@ export default {
     }
   }
 
-  @media screen and (max-width: 968px) {
-    img {
-      height: 110px;
-    }
-  }
-
-  @media screen and (max-width: 576px) {
+  @media screen and (min-width: 374px) {
     font-size: 14px;
 
     img {
       height: 80px;
     }
-
-    &__content {
-      padding: 8px 12px 14px 12px;
-
-      & > h1 {
-        font-size: 1em;
-      }
-    }
   }
 
-  @media screen and (max-width: 374px) {
+  @media screen and (min-width: 576px) {
     font-size: 16px;
 
     img {
-      height: 100px;
+      height: 110px;
+    }
+
+    &__content {
+      padding: 12px 16px 20px 16px;
+    }
+  }
+
+  @media screen and (min-width: 968px) {
+    font-size: 20px;
+
+    img {
+      height: 125px;
     }
   }
 }

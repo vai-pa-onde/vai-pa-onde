@@ -1,22 +1,24 @@
 <template>
-  <div class="activity-list" v-if="activities.length > 0">
-    <div class="activity-list__options">
-      <p>{{ activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
+  <div :class="`activity-list ${activities.length === 0 ? 'activity-list--not-found' : ''}`">
+    <div class="activity-list__container" v-if="activities.length > 0">
+      <div class="activity-list__options">
+        <p>{{ activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
+      </div>
+      <div class="activity-list__activities">
+        <activity
+          :key="activity.id"
+          v-for="activity in activities"
+          :id="activity.id"
+          :title="activity.title"
+          :brand="activity.brand"
+          :type="activity.type"
+          :image="activity.image"
+        />
+      </div>
     </div>
-    <div class="activity-list__activities">
-      <activity
-        :key="activity.id"
-        v-for="activity in activities"
-        :id="activity.id"
-        :title="activity.title"
-        :brand="activity.brand"
-        :type="activity.type"
-        :image="activity.image"
-      />
+    <div class="activity-list__container" v-else>
+      <not-found-card>Nenhum resultado correspondente com sua pesquisa</not-found-card>
     </div>
-  </div>
-  <div class="activity-list activity-list--not-found" v-else>
-    <not-found-card>Nenhum resultado correspondente com sua pesquisa</not-found-card>
   </div>
 </template>
 
@@ -37,6 +39,15 @@ export default {
   &--not-found {
     display: flex;
     margin-top: 64px;
+
+    .not-found-card {
+      margin: 0 auto;
+    }
+  }
+
+  &__container {
+    width: 220px;
+    justify-content: center;
   }
 
   &__options {
@@ -55,12 +66,20 @@ export default {
   }
 
   @media screen and (min-width: 374px) {
+    &__container {
+      width: 336px;
+    }
+
     &__activities {
       grid-template-columns: repeat(2, 165px);
     }
   }
 
   @include breakpoint('small') {
+    &__container {
+      width: 510px;
+    }
+
     &__options {
       font-size: 18px;
     }
@@ -72,12 +91,20 @@ export default {
   }
 
   @include breakpoint('large') {
+    &__container {
+      width: 860px;
+    }
+
     &__activities {
       grid-template-columns: repeat(3, 260px);
     }
   }
 
   @media screen and (min-width: 1264px) {
+    &__container {
+      width: 1200px;
+    }
+
     &__activities {
       grid-template-columns: repeat(4, 270px);
     }

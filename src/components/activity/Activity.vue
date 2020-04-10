@@ -1,16 +1,16 @@
 <template>
   <div
-    :class="`activity type-background type-background--${type}`"
+    class="activity"
     @click="() => $router.push({ name: 'activity-details', params: { id }})"
   >
-    <img :src="image" alt />
+    <img :src="image" alt :class="`type-background type-background--${type}`" />
     <type-badge class="activity__type" :type="type" />
-    <div class="activity__content">
+    <div :class="`activity__content type-background type-background--${type}`">
       <h1>{{ title }}</h1>
       <p>{{ brand }}</p>
     </div>
-    <div class="activity__date">
-      até 25.05
+    <div :class="`activity__date type-background type-background--${type}`">
+      <div>até 25.05</div>
     </div>
   </div>
 </template>
@@ -36,18 +36,13 @@ export default {
   cursor: pointer;
   font-size: 20px;
   color: white;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
-  margin-top: 12px;
-  margin-bottom: -12px;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 6px solid transparent;
 
   &:hover {
-    border: 6px solid white;
+    border-color: white;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-    width: calc(100% + 12px);
-    height: calc(100% + 12px);
-    transform: translateY(-6px);
-    margin-left: -6px;
-    margin-top: 0;
+    transform: translateY(-8px);
   }
 
   img {
@@ -92,12 +87,18 @@ export default {
   }
 
   &__date {
-    background-color: rgba(white, 0.3);
-    margin: 0 0 0 auto;
-    padding: 5px;
+    width: 100%;
     font: {
       family: 'Play';
       size: 16px;
+    }
+
+    & > div {
+      background-color: rgba(white, 0.3);
+      padding: 5px;
+      width: min-content;
+      white-space: nowrap;
+      margin-left: auto;
     }
   }
 

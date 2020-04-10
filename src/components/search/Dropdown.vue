@@ -94,19 +94,19 @@ export default {
   width: min-content;
   font-size: 16px;
 
-  &--course {
+  &--learn {
     @include dropdown-style('yellow');
   }
 
-  &--event {
+  &--participate {
     @include dropdown-style('pink');
   }
 
-  &--product {
+  &--do {
     @include dropdown-style('teal');
   }
 
-  &--content {
+  &--share {
     @include dropdown-style('red');
   }
 

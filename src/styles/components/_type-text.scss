@@ -1,17 +1,17 @@
 .type-text {
-  &--course {
+  &--learn {
     color: map-get($colors-util, 'yellow');
   }
 
-  &--event {
+  &--participate {
     color: map-get($colors-util, 'pink');
   }
 
-  &--product {
+  &--do {
     color: map-get($colors-util, 'teal');
   }
 
-  &--content {
+  &--share {
     color: map-get($colors-util, 'red');
   }
 }

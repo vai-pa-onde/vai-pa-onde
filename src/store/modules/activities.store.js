@@ -39,7 +39,7 @@ const actions = {
   async fetch({ commit }) {
     try {
       const csv = await http
-        .get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=514874226&single=true&output=csv`)
+        .get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=843317981&single=true&output=csv`)
         .then(data => data.text())
 
       parse(csv, { columns: true }, (err, output) => {
@@ -47,7 +47,8 @@ const actions = {
           throw err
         }
 
-        output.forEach(it => {
+        const validActivities = output.filter(it => it.deleted === 'FALSE')
+        validActivities.forEach(it => {
           let newTags = []
           if (it.tags.length > 0) {
             newTags = it.tags.split(',').map(it => it.trim().toLowerCase())
@@ -55,12 +56,14 @@ const actions = {
 
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/fallback.png`),
-            deleted: it.deleted === 'TRUE'
+            image: it.image || require(`@/assets/fallback.png`)
           })
+
+          delete it.deleted
         })
 
-        commit('SET_ALL_ACTIVITIES', output.filter(it => !it.deleted))
+        console.log(validActivities)
+        commit('SET_ALL_ACTIVITIES', validActivities)
         commit('SET_LOADED')
       })
     } catch {}

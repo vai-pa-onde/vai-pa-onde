@@ -10,10 +10,7 @@
         <div key="main"  class="drawer-content__pagination__page drawer-content__pagination__page--main" v-if="!currentType">
           <vpo-button @click="viewAbout" dark outlined text="sobre" />
           <div class="drawer-content__pagination__page__navigators">
-            <navigation-button type="course" text="Aprender" @click="changeTypeNavigation('course')" />
-            <navigation-button type="event" text="Participar" @click="changeTypeNavigation('event')"/>
-            <navigation-button type="product" text="Fazer" @click="changeTypeNavigation('product')" />
-            <navigation-button type="content" text="Compartilhar" @click="changeTypeNavigation('content')" />
+            <navigation-button v-for="{ id, name } in types" :key="id" :type="id" :text="name" @click="changeTypeNavigation(id)" />
             <navigation-button text="Tudo" @click="viewAll" />
           </div>
           <vpo-link :href="formUrl" text="sugerir" />
@@ -55,6 +52,9 @@ export default {
   computed: {
     formUrl() {
       return config.contributeFormUrl
+    },
+    types() {
+      return Object.entries(typeName).map(it => ({ id: it[0], name: it[1] }))
     },
     subtypes() {
       return subtypesByType[this.currentType].map(subtype => ({ id: subtype, name: subtypeName[subtype] }))

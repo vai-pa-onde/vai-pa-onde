@@ -15,20 +15,20 @@
 import { mapGetters } from 'vuex'
 
 const contentByType = {
-  course: {
-    title: 'Cursos',
+  learn: {
+    title: 'Aprender',
     description: 'Descrição dessa categoria, com exemplos lorem ipsum oadsissad'
   },
-  event: {
-    title: 'Eventos',
+  participate: {
+    title: 'Participar',
     description: 'Descrição dessa categoria, com exemplos lorem ipsum oadsissad'
   },
-  product: {
-    title: 'Produtos',
+  do: {
+    title: 'Fazer',
     description: 'Descrição dessa categoria, com exemplos lorem ipsum oadsissad'
   },
-  content: {
-    title: 'Conteúdos',
+  share: {
+    title: 'Compartilhar',
     description: 'Descrição dessa categoria, com exemplos lorem ipsum oadsissad'
   }
 }

@@ -1,42 +1,30 @@
 export default {
-  course: [
-    'business',
-    'law',
-    'audioVisual',
-    'art',
-    'general',
-    'communication',
-    'dataScience',
-    'welfare',
-    'marketing',
-    'engineering',
-    'technology',
-    'selfDevelopment', // ?
-    'allInCourse'
+  learn: [
+    'course',
+    'mentoringAndConsulting',
+    'lecture',
+    'allInLearn'
   ],
-  event: [
+  participate: [
     'show',
     'live',
     'congress',
-    'allInEvent'
+    'allInParticipate'
   ],
-  product: [
-    'games',
-    'streaming',
+  do: [
+    'game',
+    'stream',
     'app',
-    'carrier', // ?
-    'videoConference', // ?
-    'allInProduct'
+    'activity',
+    'allInDo'
   ],
-  content: [
+  share: [
     'ebook',
-    'mentoring',
-    'culture', // ?
-    'sport', // ?
-    'museum', // ?
-    'helpAndDonation', // ?
-    'list', // ?
-    'laborMarket', // ?
-    'allInContent'
+    'blogPost',
+    'instagramProfile',
+    'psychologicalSupport',
+    'podcast',
+    'helpAndDonation',
+    'allInShare'
   ]
 }

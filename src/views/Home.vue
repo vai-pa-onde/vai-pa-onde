@@ -8,15 +8,10 @@
     <div class="home__content">
       <div class="home__content__counters">
         <activities-counter />
-        <activities-counter />
-        <activities-counter />
       </div>
       <h1>Vontade de fazer alguma coisa, né minha filha?</h1>
       <div class="home__content__types">
-        <type-description-card type="course" />
-        <type-description-card type="event" />
-        <type-description-card type="product" />
-        <type-description-card type="content" />
+        <type-description-card :key="type" v-for="type in types" :type="type" />
       </div>
       <vpo-button @click="$router.push({ name: 'all-activities' })" dark text="ver todos" />
     </div>
@@ -24,8 +19,15 @@
 </template>
 
 <script>
+import typeName from '@/js/typeName'
+
 export default {
-  name: 'all-activities'
+  name: 'all-activities',
+  computed: {
+    types() {
+      return Object.keys(typeName)
+    }
+  }
 }
 </script>
 

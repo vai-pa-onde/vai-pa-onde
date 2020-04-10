@@ -12,10 +12,7 @@
     </div>
     <div class="search-header__filters">
       <div class="search-header__filters__navigation">
-        <dropdown class="badge" type="course" :selected="selectedSubtype" />
-        <dropdown class="badge" type="event" :selected="selectedSubtype" />
-        <dropdown class="badge" type="product" :selected="selectedSubtype" />
-        <dropdown class="badge" type="content" :selected="selectedSubtype" />
+        <dropdown :key="type" v-for="type in types" class="badge" :type="type" :selected="selectedSubtype" />
       </div>
       <input :value="searchString" @input="searchChanged" placeholder="pesquisar">
     </div>
@@ -25,6 +22,7 @@
 <script>
 import { mapActions, mapState } from 'vuex'
 import config from '@/config'
+import typeName from '@/js/typeName'
 
 export default {
   name: 'search-header',
@@ -34,6 +32,9 @@ export default {
   }),
   computed: {
     ...mapState({ searchString: state => state.activities.searchString }),
+    types() {
+      return Object.keys(typeName)
+    },
     formUrl() {
       return config.contributeFormUrl
     },

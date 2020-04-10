@@ -1,5 +1,5 @@
 <template>
-  <span :class="`type-badge type-badge--${type}`">{{ badgeText }}</span>
+  <span :class="`type-badge type-text type-text--${type}`">{{ badgeText }}</span>
 </template>
 
 <script>
@@ -9,8 +9,7 @@ export default {
   name: 'type-badge',
   props: {
     type: {
-      type: String,
-      validator: s => ['course', 'event', 'product', 'content'].includes(s)
+      type: String
     }
   },
   computed: {
@@ -32,22 +31,6 @@ export default {
   font: {
     size: 16px;
     weight: bold;
-  }
-
-  &--course {
-    color: map-get($colors-util, 'yellow');
-  }
-
-  &--event {
-    color: map-get($colors-util, 'pink');
-  }
-
-  &--product {
-    color: map-get($colors-util, 'teal');
-  }
-
-  &--content {
-    color: map-get($colors-util, 'red');
   }
 
   @media screen and (max-width: 576px) {

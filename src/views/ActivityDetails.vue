@@ -7,15 +7,21 @@
     <div class="activity-details__content">
       <div class="activity-details__content__info">
         <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
-        <activity-info-card
-          :id="activity.id"
-          :title="activity.title"
-          :type="activity.type"
-          :link="activity.link"
-          :validUntil="activity.validUntil"
-        />
+        <div>
+          <activity-info-card
+            :id="activity.id"
+            :title="activity.title"
+            :type="activity.type"
+            :link="activity.link"
+            :validUntil="activity.validUntil"
+          />
+          <p>Publicado em: {{ activity.publishedAt }}</p>
+        </div>
       </div>
-      <vpo-link dark :href="activity.link" text="acessar link" />
+      <div class="activity-details__content__cta-mobile">
+        <p>Publicado em: {{ activity.publishedAt }}</p>
+        <vpo-link dark :href="activity.link" text="acessar link" />
+      </div>
       <p>{{ activity.description }}</p>
       <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
         <p>tags:</p>
@@ -118,9 +124,18 @@ export default {
         height: 360px;
         object-fit: cover;
       }
+
+      & > div {
+        width: 100%;
+
+        & > p {
+          padding: 12px;
+          font-size: 14px;
+        }
+      }
     }
 
-    & > .button {
+    &__cta-mobile {
       display: none;
     }
 
@@ -201,14 +216,26 @@ export default {
           width: 100%;
           height: auto;
         }
+
+        & > div > p {
+          display: none;
+        }
       }
 
-      & > .button {
-        display: block;
-        width: min-content;
-        margin-left: auto;
-        margin-bottom: 20px;
-        font-size: 18px;
+      &__cta-mobile {
+        display: flex;
+
+        & > p {
+          font-size: 12px;
+          margin-right: 8px;
+        }
+
+        & > .button {
+          width: min-content;
+          margin-left: auto;
+          margin-bottom: 20px;
+          font-size: 18px;
+        }
       }
     }
 
@@ -221,9 +248,6 @@ export default {
         margin-top: 18px;
       }
     }
-  }
-
-  @media screen and (max-width: 576px) {
   }
 }
 </style>

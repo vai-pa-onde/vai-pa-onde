@@ -1,9 +1,9 @@
 <template>
-  <div class="activities-counter" v-if="count != 0">
-    <h1>{{ count }}</h1>
+  <div class="activities-counter" v-if="data.counter != 0">
+    <h1>{{ data.counter }}</h1>
     <div class="activities-counter__content">
       <p>Ações</p>
-      <h2>Adicionadas hoje</h2>
+      <h2>{{ data.subtitle }}</h2>
     </div>
   </div>
 </template>
@@ -13,15 +13,41 @@ import { mapState } from 'vuex'
 
 export default {
   name: 'activities-counter',
+  props: {
+    type: {
+      type: String,
+      validator: s => ['published', 'valid']
+    }
+  },
   computed: {
     ...mapState({ activities: state => state.activities.allActivities }),
-    count() {
+    publishedToday() {
       const today = new Date()
-      return this.activities.filter(it =>
-        it.publishedAtDate.getDate() === today.getDate() &&
-        it.publishedAtDate.getMonth() === today.getMonth() &&
-        it.publishedAtDate.getYear() === today.getYear()
-      ).length
+      return this.activities.filter(it => this.filterDate(today, it.publishedAtDate)).length
+    },
+    validUntilToday() {
+      const today = new Date()
+      return this.activities.filter(it => this.filterDate(today, it.validUntilDate)).length
+    },
+    data() {
+      return {
+        published: {
+          counter: this.publishedToday,
+          subtitle: 'Adicionadas hoje'
+        },
+        valid: {
+          counter: this.validUntilToday,
+          subtitle: 'Vencendo hoje'
+        }
+      }[this.type]
+    }
+  },
+  methods: {
+    filterDate(today, date) {
+      return date !== null &&
+      date.getDate() === today.getDate() &&
+      date.getMonth() === today.getMonth() &&
+      date.getYear() === today.getYear()
     }
   }
 }

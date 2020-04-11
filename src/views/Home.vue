@@ -7,7 +7,8 @@
     </div>
     <div class="home__content">
       <div class="home__content__counters">
-        <activities-counter />
+        <activities-counter type="published" />
+        <activities-counter type="valid" />
       </div>
       <h1>Vontade de fazer alguma coisa, né minha filha?</h1>
       <div class="home__content__types">

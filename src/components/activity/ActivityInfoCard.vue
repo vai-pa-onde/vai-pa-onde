@@ -1,7 +1,7 @@
 <template>
   <div class="activity-info-card">
     <div class="activity-info-card__content">
-      <vpo-link outlined :href="link" text="accessar" />
+      <vpo-link outlined :href="link" text="acessar" />
 
       <div class="activity-info-card__content__valid-until">
         <p class="label">válido até:</p>

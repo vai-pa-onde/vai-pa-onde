@@ -17,11 +17,11 @@ import { mapGetters } from 'vuex'
 const contentByType = {
   learn: {
     title: 'Aprender',
-    description: 'Aqui você vai encontrar shows, lives, festivais e congressos. Tudo online, hein?'
+    description: 'Cursos online, palestra, mentoras. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
   },
   participate: {
     title: 'Participar',
-    description: 'Cursos online, palestra, mentoras. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
+    description: 'Aqui você vai encontrar shows, lives, festivais e congressos. Tudo online, hein?'
   },
   do: {
     title: 'Fazer',
@@ -76,7 +76,7 @@ export default {
     & > h2 {
       text-transform: uppercase;
       font: {
-        size: 1.25em;
+        size: 1.2em;
         weight: bold;
       }
     }
@@ -89,7 +89,7 @@ export default {
     text-align: center;
     cursor: pointer;
     font: {
-      size: 1.3em;
+      size: 1.2em;
       weight: bold;
     }
   }
@@ -122,11 +122,11 @@ export default {
     }
 
     &__content > h2 {
-      font-size: 30px;
+      font-size: 28px;
     }
 
     &__cta {
-      font-size: 30px;
+      font-size: 28px;
     }
   }
 }

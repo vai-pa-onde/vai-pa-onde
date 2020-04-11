@@ -10,8 +10,8 @@ module.exports = {
     }
   },
   pwa: {
+    appleMobileWebAppCapable: 'yes',
     workboxOptions: {
-      appleMobileWebAppCapable: 'yes',
       exclude: [
         /_redirects$/
       ]

@@ -29,7 +29,11 @@ function convertToDate(date) {
     return null
   }
 
-  return new Date(`20${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}`)
+  return new Date(`20${splittedDate[2]}-${splittedDate[1]}-${splittedDate[0]}T00:00:00`)
+}
+
+function isAfter(date, today) {
+  return date.getYear() >= today.getYear() && date.getMonth() >= today.getMonth() && date.getDate() >= today.getDate()
 }
 
 const state = {
@@ -56,8 +60,7 @@ const actions = {
           throw err
         }
 
-        const validActivities = output.filter(it => it.deleted === 'FALSE')
-        validActivities.forEach(it => {
+        output.forEach(it => {
           let newTags = []
           if (it.tags.length > 0) {
             newTags = it.tags.split(',').map(it => it.trim().toLowerCase())
@@ -69,11 +72,14 @@ const actions = {
             publishedAtDate: convertToDate(it.publishedAt),
             validUntilDate: convertToDate(it.validUntil)
           })
-
-          delete it.deleted
         })
 
-        const sortedActivities = validActivities.sort((a, b) => a.publishedAtDate < b.publishedAtDate)
+        const today = new Date('2020-04-18T01:00:00')
+        const sortedActivities = output
+          .filter(it => it.deleted === 'FALSE')
+          .filter(it => it.validUntilDate === null || isAfter(it.validUntilDate, today))
+          .sort((a, b) => a.publishedAtDate < b.publishedAtDate)
+
         commit('SET_ALL_ACTIVITIES', sortedActivities)
         commit('SET_LOADED')
       })

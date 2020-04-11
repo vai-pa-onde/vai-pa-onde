@@ -73,7 +73,8 @@ const actions = {
           delete it.deleted
         })
 
-        commit('SET_ALL_ACTIVITIES', validActivities)
+        const sortedActivities = validActivities.sort((a, b) => a.publishedAtDate < b.publishedAtDate)
+        commit('SET_ALL_ACTIVITIES', sortedActivities)
         commit('SET_LOADED')
       })
     } catch {}

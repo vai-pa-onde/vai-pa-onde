@@ -9,8 +9,8 @@
       <h1>{{ title }}</h1>
       <p>{{ brand }}</p>
     </div>
-    <div :class="`activity__date type-background type-background--${type}`">
-      <div>até 25.05</div>
+    <div :class="`activity__date type-background type-background--${type}`" v-if="validUntilDate">
+      <div>até {{ validUntil }}</div>
     </div>
   </div>
 </template>
@@ -23,7 +23,16 @@ export default {
     title: String,
     brand: String,
     type: String,
-    image: String
+    image: String,
+    validUntilDate: Date
+  },
+  computed: {
+    validUntil() {
+      const day = this.validUntilDate.getDate().toString().padStart(2, '0')
+      const month = (this.validUntilDate.getMonth() + 1).toString().padStart(2, '0')
+
+      return `${day}.${month}`
+    }
   }
 }
 </script>

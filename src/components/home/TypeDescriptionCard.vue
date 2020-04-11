@@ -1,14 +1,17 @@
 <template>
-  <div :class="`type-description-card type-background type-background--${type}`">
+  <router-link
+    :class="`type-description-card type-background type-background--${type}`"
+    :to="{ name: 'type-filter', params: { type } }"
+  >
     <h1 :class="`type-text type-text--${type}`">{{ numberOfActivities }}</h1>
     <div class="type-description-card__content">
       <h2>{{ content.title }}</h2>
       {{ content.description }}
     </div>
-    <div class="type-description-card__cta" @click="$router.push({ name: 'type-filter', params: { type } })">
+    <div class="type-description-card__cta">
       Conferir
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -55,6 +58,8 @@ export default {
   display: flex;
   flex-direction: column;
   font-size: 14px;
+  text-decoration: none;
+  color: inherit;
 
   & > h1 {
     background-color: rgba(white, 0.75);

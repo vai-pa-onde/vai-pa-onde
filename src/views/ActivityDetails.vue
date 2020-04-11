@@ -1,36 +1,39 @@
 <template>
   <div class="activity-details" v-if="activity">
-    <div class="activity-details__header">
-      <h1>{{ activity.title }}</h1>
-      <h2>{{ activity.brand }}</h2>
-    </div>
-    <div class="activity-details__content">
-      <div class="activity-details__content__info">
-        <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
-        <div>
-          <activity-info-card
-            :id="activity.id"
-            :title="activity.title"
-            :type="activity.type"
-            :link="activity.link"
-            :validUntil="activity.validUntil"
-          />
+    <current-section-indicator />
+    <div class="activity-details__container">
+      <div class="activity-details__header">
+        <h1>{{ activity.title }}</h1>
+        <h2>{{ activity.brand }}</h2>
+      </div>
+      <div class="activity-details__content">
+        <div class="activity-details__content__info">
+          <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
+          <div>
+            <activity-info-card
+              :id="activity.id"
+              :title="activity.title"
+              :type="activity.type"
+              :link="activity.link"
+              :validUntil="activity.validUntil"
+            />
+            <p>Publicado em: {{ activity.publishedAt }}</p>
+          </div>
+        </div>
+        <div class="activity-details__content__cta-mobile">
           <p>Publicado em: {{ activity.publishedAt }}</p>
+          <vpo-link dark :href="activity.link" text="acessar link" />
+        </div>
+        <p>{{ activity.description }}</p>
+        <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
+          <p>tags:</p>
+          <tag :key="i" v-for="(tag, i) in activity.tags" @click="searchTag" :text="tag" />
         </div>
       </div>
-      <div class="activity-details__content__cta-mobile">
-        <p>Publicado em: {{ activity.publishedAt }}</p>
-        <vpo-link dark :href="activity.link" text="acessar link" />
+      <div class="activity-details__recommendations">
+        <h3>Você também vai gostar de</h3>
+        <activity-list inline :activities="recommendations" />
       </div>
-      <p>{{ activity.description }}</p>
-      <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
-        <p>tags:</p>
-        <tag :key="i" v-for="(tag, i) in activity.tags" @click="searchTag" :text="tag" />
-      </div>
-    </div>
-    <div class="activity-details__recommendations">
-      <h3>Você também vai gostar de</h3>
-      <activity-list inline :activities="recommendations" />
     </div>
   </div>
   <div class="activity-details" v-else>
@@ -90,11 +93,14 @@ export default {
 
 <style lang="scss" scoped>
 .activity-details {
-  @extend %side-padding;
   flex-grow: 1;
   color: #000000;
-  margin-top: 42px;
   margin-bottom: 64px;
+
+  &__container {
+    @extend %side-padding;
+    padding-top: 24px;
+  }
 
   &__header {
     margin-bottom: 24px;

@@ -1,8 +1,9 @@
 <template>
   <div :class="`current-section-indicator separator-bar ${type ? `type-background type-background--${type}` : 'current-section-indicator--all'}`">
-    <div class="current-section-indicator__search-indicator" v-if="searchString">
-      <span class="separator-bar__main">Busca:</span>
-      <span>{{ searchString }}</span>
+    <div v-if="activity">
+      <router-link :to="{ name: 'all-activities' }">Navegar</router-link> >
+      <router-link :to="{ name: 'type-filter', params: { type } }">{{ typeLabel }}</router-link> >
+      <router-link :to="{ name: 'subtype-filter', params: { type, subtype } }">{{ subtypeLabel }}</router-link>
     </div>
     <div v-else-if="type">
       <span class="separator-bar__main">{{ typeLabel }}</span>
@@ -13,7 +14,7 @@
 </template>
 
 <script>
-import { mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import typeName from '@/js/typeName'
 import subtypeName from '@/js/subtypeName'
 import subtypesByType from '@/js/subtypesByType'
@@ -21,19 +22,22 @@ import subtypesByType from '@/js/subtypesByType'
 export default {
   name: 'current-section-indicator',
   computed: {
-    ...mapState({ searchString: state => state.activities.searchString }),
+    ...mapGetters({ getById: 'activities/getById' }),
+    activity() {
+      return this.getById(this.$route.params.id)
+    },
     type() {
-      return this.$route.params.type
+      return this.$route.params.type || (this.activity ? this.activity.type : null)
     },
     subtype() {
       if (!this.type) {
         return null
       }
 
-      return this.$route.params.subtype || subtypesByType[this.type].slice(-1)[0]
+      return this.$route.params.subtype || (this.activity ? this.activity.subtype : null) || subtypesByType[this.type].slice(-1)[0]
     },
     typeLabel() {
-      return typeName[this.type]
+      return typeName[this.type].toLowerCase()
     },
     subtypeLabel() {
       return subtypeName[this.subtype]
@@ -46,6 +50,21 @@ export default {
 .current-section-indicator {
   &--all {
     background-color: black;
+  }
+
+  & > div {
+    color: white;
+
+    & > a {
+      text-decoration: none;
+      text-transform: capitalize;
+      color: white;
+      margin: 0 4px;
+
+      &:first-child {
+        margin-left: 0;
+      }
+    }
   }
 }
 </style>

@@ -12,6 +12,7 @@ module.exports = {
   pwa: {
     appleMobileWebAppCapable: 'yes',
     workboxOptions: {
+      skipWaiting: true,
       exclude: [
         /_redirects$/
       ]

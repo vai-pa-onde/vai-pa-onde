@@ -177,7 +177,7 @@ export default {
       margin-top: 38px;
       font: {
         size: 24px;
-        weight: 900;
+        weight: bold;
       }
     }
 

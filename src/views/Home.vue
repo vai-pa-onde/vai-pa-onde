@@ -145,7 +145,7 @@ export default {
       }
 
       &__types {
-        gap: 50px;
+        gap: 36px;
       }
     }
   }

@@ -79,6 +79,10 @@ export default {
     background-color: black;
     flex-grow: 1;
 
+    & > .button {
+      font-size: 20px;
+    }
+
     p, a {
       display: inline-flex;
       font-size: 1em;
@@ -164,7 +168,7 @@ export default {
       justify-content: space-between;
       align-items: center;
       height: auto;
-      padding: 8px;
+      padding: 8px 16px;
 
       & > .vpo-link {
         display: none;

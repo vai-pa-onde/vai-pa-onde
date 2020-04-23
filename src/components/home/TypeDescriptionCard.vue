@@ -57,11 +57,11 @@ export default {
 .type-description-card {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
   color: inherit;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
-  border: 6px solid map-get($colors-util, 'light-gray');
+  border: 0px solid map-get($colors-util, 'light-gray');
 
   &:hover {
     transform: translateY(-4px);
@@ -96,7 +96,7 @@ export default {
     & > h2 {
       text-transform: uppercase;
       font: {
-        size: 1.2em;
+        size: 1.1em;
         weight: bold;
       }
     }
@@ -120,6 +120,7 @@ export default {
 
   @include breakpoint('medium') {
     font-size: 16px;
+    border-width: 6px;
 
     & > h1 > span {
       font-size: 0.6em;

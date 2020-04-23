@@ -1,13 +1,13 @@
 <template>
   <div :class="`modal ${value ? 'modal--open' : ''}`" @click="$emit('input', false)">
-    <div class="modal__box">
+    <div class="modal__box" @click.stop>
       <h1 class="modal__box__title">{{ title }}</h1>
       <div class="modal__box__content">
         <slot />
       </div>
       <div class="modal__box__actions">
-        <vpo-button text="cancelar" @click="$emit('input', false)" />
-        <vpo-button :text="action" @click="$emit('confirm')" />
+        <vpo-button outlined dark text="cancelar" @click="$emit('input', false)" />
+        <vpo-button dark :text="action" @click="$emit('confirm')" />
       </div>
     </div>
   </div>
@@ -20,6 +20,15 @@ export default {
     title: String,
     action: String,
     value: Boolean
+  },
+  watch: {
+    value() {
+      if (this.value) {
+        document.body.style.overflow = 'hidden'
+      } else {
+        document.body.style.overflow = 'auto'
+      }
+    }
   }
 }
 </script>
@@ -39,7 +48,6 @@ export default {
   height: 100vh;
   width: 100vw;
   background-color: rgba(black, 0.4);
-  border-radius: 12px;
 
   opacity: 0;
   pointer-events: none;
@@ -51,26 +59,34 @@ export default {
   }
 
   &__box {
+    display: flex;
+    flex-direction: column;
     background-color: white;
     max-width: 100%;
     max-height: 100%;
+    border-radius: 12px;
+    overflow: hidden;
 
     &__title {
-      padding: 16px;
+      padding: 18px 48px;
+      background-color: black;
+      text-transform: uppercase;
+      text-align: center;
       font: {
         family: 'Play';
-        font-size: 16px;
-        font-weight: bold;
+        size: 28px;
+        weight: bold;
       }
     }
 
     &__content {
       overflow-y: auto;
-      padding: 12px 16px;
+      padding: 12px 18px;
     }
 
     &__actions {
       display: flex;
+      justify-content: flex-end;
       width: 100%;
       padding: 16px;
 
@@ -82,13 +98,8 @@ export default {
 
   @include breakpoint('medium') {
     &__box {
-      max-width: 450px;
-    }
-  }
-
-  @include breakpoint('large') {
-    &__box {
-      max-width: 600px;
+      width: 475px;
+      max-width: 475px;
     }
   }
 }

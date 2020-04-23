@@ -7,7 +7,7 @@
 
       <div class="search-header__logo__links">
         <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
-        <vpo-link :href="formUrl" dark text="mandar uma ação" />
+        <suggestion-modal />
       </div>
     </div>
     <div class="search-header__navigation">
@@ -19,7 +19,6 @@
 
 <script>
 import { mapActions, mapState } from 'vuex'
-import config from '@/config'
 import typeName from '@/js/typeName'
 
 export default {
@@ -32,9 +31,6 @@ export default {
     ...mapState({ searchString: state => state.activities.searchString }),
     types() {
       return Object.keys(typeName)
-    },
-    formUrl() {
-      return config.contributeFormUrl
     },
     selectedSubtype() {
       return this.$route.params.subtype
@@ -72,7 +68,7 @@ export default {
     &__links {
       display: flex;
 
-      & > .button {
+      & > * {
         margin-left: 12px;
       }
     }

@@ -1,13 +1,13 @@
 <template>
   <div :class="`modal ${value ? 'modal--open' : ''}`" @click="$emit('input', false)">
     <div class="modal__box" @click.stop>
-      <h1 class="modal__box__title">{{ title }}</h1>
+      <h1 :class="`modal__box__title ${error ? 'modal__box__title--error' : ''}`">{{ title }}</h1>
       <div class="modal__box__content">
         <slot />
       </div>
       <div class="modal__box__actions">
         <vpo-button outlined dark text="cancelar" @click="$emit('input', false)" />
-        <vpo-button dark :text="action" :loading="isActionLoading" @click="$emit('confirm')" />
+        <vpo-button dark :error="error" :text="action" :loading="isActionLoading" @click="$emit('confirm')" />
       </div>
     </div>
   </div>
@@ -20,6 +20,7 @@ export default {
     title: String,
     action: String,
     isActionLoading: Boolean,
+    error: Boolean,
     value: Boolean
   },
   watch: {
@@ -78,6 +79,10 @@ export default {
         size: 18px;
         weight: bold;
       }
+
+      &--error {
+        background-color: map-get($colors-util, 'red');
+      }
     }
 
     &__content {
@@ -117,6 +122,7 @@ export default {
 
   @include breakpoint('small') {
     padding: 40px;
+    align-items: center;
 
     &__box {
       border-radius: 12px;

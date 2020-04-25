@@ -1,6 +1,6 @@
 <template>
   <div class="chooser">
-    <div class="chooser__option" :key="i" v-for="(option, i) in options">
+    <div :class="{ 'chooser__option': true, 'chooser__option--small': !option.label }" :key="i" v-for="(option, i) in options">
       <input
         @input="$emit('input', option.value)"
         :checked="i === 0 ? 'checked' : null"
@@ -39,6 +39,10 @@ export default {
     padding: 4px 0;
     margin-bottom: 2px;
 
+    &--small {
+      height: 25px;
+    }
+
     & > input {
       appearance: none;
       width: 4px;
@@ -74,6 +78,7 @@ export default {
         font-size: 12px;
         font-weight: 600;
         margin-bottom: 2px;
+        white-space: nowrap;
       }
 
       & > span {
@@ -86,6 +91,10 @@ export default {
     &__option {
       height: 42px;
       padding: 2px 0;
+
+      &--small {
+        height: 32px;
+      }
 
       & > label {
         & > p {

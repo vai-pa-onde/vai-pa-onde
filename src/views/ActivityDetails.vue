@@ -95,11 +95,11 @@ export default {
 .activity-details {
   flex-grow: 1;
   color: #000000;
-  margin-bottom: 64px;
 
   &__container {
     @extend %side-padding;
     padding-top: 24px;
+    padding-bottom: 64px;
     background-color: map-get($colors-util, 'light-gray');
   }
 

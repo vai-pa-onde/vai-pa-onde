@@ -10,7 +10,7 @@
   white-space: nowrap;
   cursor: pointer;
   background-color: map-get($colors-util, 'blue');
-  border: 2px solid map-get($colors-util, 'blue');
+  border: 2px solid transparent;
 
   line-height: 1;
   font: {
@@ -24,18 +24,18 @@
     color: inherit;
     text-decoration: none;
     background-color: rgba(map-get($colors-util, 'blue'), 0.8);
-    border-color: rgba(map-get($colors-util, 'blue'), 0.8);
+    border-color: transparent;
   }
 
   &--dark {
     background-color: black;
-    border-color: black;
+    border-color: transparent;
     color: white;
 
     &:hover {
       color: white;
       background-color: rgba(black, 0.8);
-      border-color: rgba(black, 0.8);
+      border-color: transparent;
     }
   }
 
@@ -59,6 +59,30 @@
       color: white;
       background-color: black;
       border-color: black;
+    }
+  }
+
+  &--error {
+    background-color: map-get($colors-util, 'red');
+    color: white;
+    border-color: transparent;
+
+    &:hover {
+      color: white;
+      background-color: rgba(map-get($colors-util, 'red'), 0.8);
+      border-color: transparent;
+    }
+  }
+
+  &--error.button--outlined {
+    background-color: transparent;
+    color: map-get($colors-util, 'red');
+    border-color: map-get($colors-util, 'red');
+
+    &:hover {
+      color: white;
+      background-color: map-get($colors-util, 'red');
+      border-color: map-get($colors-util, 'red');
     }
   }
 

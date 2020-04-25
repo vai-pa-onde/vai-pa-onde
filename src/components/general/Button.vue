@@ -17,6 +17,7 @@ export default {
   props: {
     outlined: Boolean,
     dark: Boolean,
+    error: Boolean,
     text: String,
     loading: Boolean
   },
@@ -28,6 +29,7 @@ export default {
         'button': true,
         'button--dark': this.dark,
         'button--outlined': this.outlined,
+        'button--error': this.error,
         'button--loading': this.loading
       }
     }

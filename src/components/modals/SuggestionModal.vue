@@ -1,7 +1,7 @@
 <template>
   <div class="suggestion-modal">
     <vpo-button :dark="!outlined" :outlined="outlined" text="mandar uma ação" @click="isModalOpen = true" />
-    <modal v-model="isModalOpen" title="mandar uma ação" action="enviar" :isActionLoading="$store.state.suggestion.sending" @confirm="send">
+    <modal v-model="isModalOpen" title="mandar uma ação" action="enviar" :isActionLoading="$store.state.feedback.sending" @confirm="send">
       <div class="modal-content">
         <p>
           <b>Sentiu falta de alguma coisa?</b> Se sabe de algo que vai acontecer, ou se promove alguma ação,
@@ -17,7 +17,7 @@
         <vpo-input v-model="suggestion.brand" placeholder="Responsável pela ação" label="Nome da pessoa, grupo, coletivo ou marca promovendo a ação" />
         <vpo-input v-model="suggestion.link" placeholder="Link de acesso" label="Como fazemos para acessar a ação?" />
         <vpo-input v-model="suggestion.description" placeholder="Descrição" />
-        <vpo-input v-model="suggestion.validUntil" placeholder="Ação válida até" label="Em caso de festival, colocar o último dia" type="date" optional />
+        <vpo-input v-model="suggestion.validUntil" placeholder="Ação válida até" label="Em caso de festival, colocar o último dia" optional />
       </div>
     </modal>
   </div>
@@ -69,12 +69,13 @@ export default {
     }
   },
   methods: {
-    ...mapActions({ sendSuggestion: 'suggestion/send' }),
+    ...mapActions({ sendSuggestion: 'feedback/sendSuggestion' }),
     async send() {
       try {
-        console.log(this.suggestion)
         await this.sendSuggestion(this.suggestion)
       } catch {}
+
+      this.isModalOpen = false
     }
   }
 }

@@ -42,12 +42,12 @@ export default {
 
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 40px;
+  align-items: flex-end;
+  padding-top: 40px;
 
   height: 100vh;
   width: 100vw;
-  background-color: rgba(black, 0.4);
+  background-color: rgba(black, 0.6);
 
   opacity: 0;
   pointer-events: none;
@@ -61,34 +61,40 @@ export default {
   &__box {
     display: flex;
     flex-direction: column;
-    background-color: white;
     max-width: 100%;
     max-height: 100%;
-    border-radius: 12px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
     overflow: hidden;
 
     &__title {
-      padding: 18px 48px;
+      padding: 14px 0;
       background-color: black;
       text-transform: uppercase;
       text-align: center;
       font: {
         family: 'Play';
-        size: 28px;
+        size: 18px;
         weight: bold;
       }
     }
 
     &__content {
       overflow-y: auto;
-      padding: 12px 18px;
+      padding: 12px 16px;
+      color: black;
+      font-size: 12px;
+      line-height: 1.4;
+      background-color: white;
     }
 
     &__actions {
       display: flex;
       justify-content: flex-end;
       width: 100%;
-      padding: 16px;
+      padding: 12px;
+      border-top: 1px solid rgba(0, 0, 0, 0.2);
+      background-color: white;
 
       & > .button {
         margin-left: 18px;
@@ -96,10 +102,51 @@ export default {
     }
   }
 
+  @include breakpoint('extra-small') {
+    &__box {
+      &__title {
+        font-size: 24px;
+      }
+
+      &__content {
+        font-size: 14px;
+      }
+    }
+  }
+
+  @include breakpoint('small') {
+    padding: 40px;
+
+    &__box {
+      border-radius: 12px;
+    }
+  }
+
   @include breakpoint('medium') {
     &__box {
-      width: 475px;
-      max-width: 475px;
+      width: 575px;
+      max-width: 575px;
+
+      &__title {
+        padding: 18px 48px;
+        font-size: 32px;
+      }
+
+      &__content {
+        padding: 20px 38px;
+        font-size: 16px;
+      }
+
+      &__actions {
+        padding: 16px;
+      }
+    }
+  }
+
+  @include breakpoint('large') {
+    &__box {
+      width: 650px;
+      max-width: 650px;
     }
   }
 }

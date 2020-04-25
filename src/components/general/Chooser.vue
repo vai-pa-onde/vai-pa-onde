@@ -5,12 +5,12 @@
         @input="$emit('input', option.value)"
         :checked="i === 0 ? 'checked' : null"
         :value="option.value"
-        :id="option.value"
+        :id="`${_uid}__${option.value}`"
         :name="`vpo-chooser__${_uid}`"
         :class="`type-background type-background--${option.type}`"
         type="radio"
       />
-      <label :for="option.value">
+      <label :for="`${_uid}__${option.value}`">
         <p :class="`type-text type-text--${option.type}`">{{ option.text }}</p>
         <span v-if="option.label">{{ option.label }}</span>
       </label>
@@ -35,8 +35,9 @@ export default {
   &__option {
     display: flex;
     align-items: center;
-    height: 36px;
+    height: 40px;
     padding: 4px 0;
+    margin-bottom: 2px;
 
     & > input {
       appearance: none;
@@ -65,6 +66,7 @@ export default {
 
       & > p, & > span {
         transition: color 0.2s;
+        line-height: 1;
       }
 
       & > p {
@@ -76,6 +78,43 @@ export default {
 
       & > span {
         font-size: 9px;
+      }
+    }
+  }
+
+  @include breakpoint('extra-small') {
+    &__option {
+      height: 42px;
+      padding: 2px 0;
+
+      & > label {
+        & > p {
+          font-size: 14px;
+        }
+
+        & > span {
+          font-size: 11px;
+        }
+      }
+    }
+  }
+
+  @include breakpoint('small') {
+    &__option {
+      height: 40px;
+      padding: 4px 0;
+      margin-bottom: 4px;
+
+      & > label {
+        margin-left: 6px;
+
+        & > p {
+          font-size: 16px;
+        }
+
+        & > span {
+          font-size: 12px;
+        }
       }
     }
   }

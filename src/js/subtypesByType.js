@@ -8,6 +8,7 @@ export default {
   participate: [
     'show',
     'live',
+    'festival',
     'congress',
     'allInParticipate'
   ],
@@ -22,8 +23,10 @@ export default {
     'ebook',
     'blogPost',
     'instagramProfile',
+    'youtubeChannel',
     'psychologicalSupport',
     'podcast',
+    'news',
     'helpAndDonation',
     'allInShare'
   ]

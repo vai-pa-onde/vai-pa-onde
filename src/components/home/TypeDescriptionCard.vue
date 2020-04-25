@@ -20,7 +20,7 @@ import { mapGetters } from 'vuex'
 const contentByType = {
   learn: {
     title: 'Aprender',
-    description: 'Cursos online, palestra, mentoras. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
+    description: 'Cursos online, palestra, mentorias. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
   },
   participate: {
     title: 'Participar',

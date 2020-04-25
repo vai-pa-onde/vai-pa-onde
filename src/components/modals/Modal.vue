@@ -7,7 +7,7 @@
       </div>
       <div class="modal__box__actions">
         <vpo-button outlined dark text="cancelar" @click="$emit('input', false)" />
-        <vpo-button dark :text="action" @click="$emit('confirm')" />
+        <vpo-button dark :text="action" :loading="isActionLoading" @click="$emit('confirm')" />
       </div>
     </div>
   </div>
@@ -19,6 +19,7 @@ export default {
   props: {
     title: String,
     action: String,
+    isActionLoading: Boolean,
     value: Boolean
   },
   watch: {

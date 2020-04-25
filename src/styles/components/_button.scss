@@ -1,4 +1,5 @@
 .button {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -59,5 +60,61 @@
       background-color: black;
       border-color: black;
     }
+  }
+
+  &--loading {
+    & > span {
+      color: transparent;
+    }
+
+    & > div {
+      position: absolute;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 1;
+      width: 100%;
+      left: 0;
+
+      & > span {
+        display: block;
+        margin: 0 2px;
+        font-size: 1.5em;
+        height: 2px;
+        width: 2px;
+        border-radius: 2px;
+        background-color: white;
+        animation: wave .6s ease-in-out infinite;
+
+        &:first-child, &:last-child {
+          animation-delay: 0s;
+        }
+
+        &:nth-child(2), &:nth-child(4) {
+          animation-delay: 0.2s;
+        }
+
+        &:nth-child(3) {
+          animation-delay: 0.4s;
+        }
+      }
+    }
+  }
+}
+
+@keyframes wave {
+  0% {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  50% {
+    padding-bottom: 4px;
+    padding-top: 4px;
+  }
+
+  100% {
+    padding-top: 0;
+    padding-bottom: 0;
   }
 }

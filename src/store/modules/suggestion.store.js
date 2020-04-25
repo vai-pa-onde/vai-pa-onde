@@ -5,7 +5,7 @@ const state = {
 const getters = {}
 
 const actions = {
-  async sendSuggestion({ commit }, body) {
+  async send({ commit }, body) {
     commit('SET_SENDING', true)
 
     try {

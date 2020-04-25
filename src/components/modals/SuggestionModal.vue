@@ -1,7 +1,7 @@
 <template>
   <div class="suggestion-modal">
     <vpo-button :dark="!outlined" :outlined="outlined" text="mandar uma ação" @click="isModalOpen = true" />
-    <modal v-model="isModalOpen" title="mandar uma ação" action="enviar">
+    <modal v-model="isModalOpen" title="mandar uma ação" action="enviar" :isActionLoading="$store.state.suggestion.sending" @confirm="send">
       <div class="modal-content">
         <p>
           <b>Sentiu falta de alguma coisa?</b> Se sabe de algo que vai acontecer, ou se promove alguma ação,
@@ -12,18 +12,19 @@
           Tipo de ação
           <span>Escolha o tipo que mais se encaixa</span>
         </p>
-        <chooser v-model="type" :options="chooserOptions" />
-        <vpo-input placeholder="Título da ação" />
-        <vpo-input placeholder="Responsável pela ação" label="Nome da pessoa, grupo, coletivo ou marca promovendo a ação" />
-        <vpo-input placeholder="Link de acesso" label="Como fazemos para acessar a ação?" />
-        <vpo-input placeholder="Descrição" />
-        <vpo-input placeholder="Ação válida até" label="Em caso de festival, colocar o último dia" optional />
+        <chooser v-model="suggestion.type" :options="chooserOptions" />
+        <vpo-input v-model="suggestion.title" placeholder="Título da ação" />
+        <vpo-input v-model="suggestion.brand" placeholder="Responsável pela ação" label="Nome da pessoa, grupo, coletivo ou marca promovendo a ação" />
+        <vpo-input v-model="suggestion.link" placeholder="Link de acesso" label="Como fazemos para acessar a ação?" />
+        <vpo-input v-model="suggestion.description" placeholder="Descrição" />
+        <vpo-input v-model="suggestion.validUntil" placeholder="Ação válida até" label="Em caso de festival, colocar o último dia" type="date" optional />
       </div>
     </modal>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   name: 'suggestion-modal',
   props: {
@@ -31,7 +32,14 @@ export default {
   },
   data: () => ({
     isModalOpen: false,
-    type: 'learn'
+    suggestion: {
+      type: 'learn',
+      title: '',
+      brand: '',
+      link: '',
+      description: '',
+      validUntil: ''
+    }
   }),
   computed: {
     chooserOptions() {
@@ -58,6 +66,15 @@ export default {
           type: 'share'
         }
       ]
+    }
+  },
+  methods: {
+    ...mapActions({ sendSuggestion: 'suggestion/send' }),
+    async send() {
+      try {
+        console.log(this.suggestion)
+        await this.sendSuggestion(this.suggestion)
+      } catch {}
     }
   }
 }

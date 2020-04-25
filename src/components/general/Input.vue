@@ -17,6 +17,11 @@ export default {
   data: () => ({
     inputValue: null
   }),
+  watch: {
+    inputValue(val) {
+      this.$emit('input', val)
+    }
+  },
   created() {
     this.inputValue = this.value
   }

@@ -6,6 +6,7 @@ export default {
 
   show: 'Shows',
   live: 'Lives',
+  festival: 'Festivais',
   congress: 'Congressos',
   allInParticipate: 'Todos',
 
@@ -18,8 +19,10 @@ export default {
   ebook: 'EBooks',
   blogPost: 'Blog posts',
   instagramProfile: 'Perfis do Instagram',
+  youtubeChannel: 'Canal do Youtube',
   psychologicalSupport: 'Apoio psicológico',
   podcast: 'Podcasts',
   helpAndDonation: 'Ajuda e Doação',
+  news: 'Informações Covid-19',
   allInShare: 'Todos'
 }

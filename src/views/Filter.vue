@@ -11,7 +11,7 @@
           <tag :key="term" v-for="term in searchTerms" :text="term" dismissable @dismiss="() => removeSearchTerm(term)" />
         </div>
       </div>
-      <activity-list :activities="activities" />
+      <activity-list :activities="activities" showOptions />
     </div>
   </div>
 </template>

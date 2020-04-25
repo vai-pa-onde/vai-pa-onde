@@ -2,13 +2,14 @@
   <div class="activity-details" v-if="activity">
     <current-section-indicator />
     <div class="activity-details__container">
-      <div class="activity-details__header">
-        <h1>{{ activity.title }}</h1>
-        <h2>{{ activity.brand }}</h2>
-      </div>
       <div class="activity-details__content">
         <div class="activity-details__content__info">
-          <img :class="`type-background type-background--${activity.type}`" :src="activity.image" alt />
+          <div>
+            <h1>{{ activity.title }}</h1>
+            <h2>{{ activity.brand }}</h2>
+            <subtype-badge :type="activity.type" :subtype="activity.subtype" />
+            <p>{{ activity.description }}</p>
+          </div>
           <div>
             <activity-info-card
               :id="activity.id"
@@ -24,7 +25,6 @@
           <p>Publicado em: {{ activity.publishedAt }}</p>
           <vpo-link dark :href="activity.link" text="acessar link" />
         </div>
-        <p>{{ activity.description }}</p>
         <div class="activity-details__content__tags" v-if="activity.tags.length != 0">
           <p>tags:</p>
           <tag :key="i" v-for="(tag, i) in activity.tags" @click="searchTag" :text="tag" />
@@ -95,28 +95,12 @@ export default {
 .activity-details {
   flex-grow: 1;
   color: #000000;
-  margin-bottom: 64px;
 
   &__container {
     @extend %side-padding;
     padding-top: 24px;
-  }
-
-  &__header {
-    margin-bottom: 24px;
-
-    & > h1 {
-      text-transform: uppercase;
-      margin-bottom: 6px;
-      font: {
-        size: 36px;
-        weight: bold;
-      }
-    }
-
-    & > h2 {
-      font-size: 36px;
-    }
+    padding-bottom: 64px;
+    background-color: map-get($colors-util, 'light-gray');
   }
 
   &__content {
@@ -124,14 +108,37 @@ export default {
       display: flex;
       margin-bottom: 18px;
 
-      & > img {
+      & > div:first-child {
         width: 650px;
         min-width: 650px;
-        height: 360px;
-        object-fit: cover;
+        min-height: 100%;
+        padding: 24px;
+        background-color: white;
+
+        & > h1 {
+          text-transform: uppercase;
+          margin-bottom: 6px;
+          font: {
+            size: 46px;
+            weight: 900;
+          }
+        }
+
+        & > h2 {
+          font-size: 32px;
+        }
+
+        & > .subtype-badge {
+          margin: 12px 0 24px 0;
+        }
+
+        & > p {
+          font-size: 16px;
+          line-height: 1.4;
+        }
       }
 
-      & > div {
+      & > div:last-child {
         width: 100%;
 
         & > p {
@@ -143,11 +150,6 @@ export default {
 
     &__cta-mobile {
       display: none;
-    }
-
-    & > p {
-      font-size: 18px;
-      line-height: 24px;
     }
 
     &__tags {
@@ -175,7 +177,7 @@ export default {
       margin-top: 38px;
       font: {
         size: 24px;
-        weight: 900;
+        weight: bold;
       }
     }
 
@@ -190,22 +192,19 @@ export default {
   }
 
   @media screen and (max-width: 964px) {
-    &__header {
-      & > h1 {
-        font-size: 24px;
-      }
-
-      & > h2 {
-        font-size: 18px;
-      }
-    }
-
     &__content {
       &__info {
-        & > img {
+        & > div:first-child {
           width: 480px;
           min-width: 480px;
-          height: 300px;
+
+          & > h1 {
+            font-size: 36px;
+          }
+
+          & > h2 {
+            font-size: 28px;
+          }
         }
       }
     }
@@ -217,13 +216,22 @@ export default {
         flex-direction: column;
         margin-bottom: 12px;
 
-        & > img {
+        & > div:first-child {
           min-width: unset;
           width: 100%;
           height: auto;
+          padding: 16px;
+
+          & > h1 {
+            font-size: 32px;
+          }
+
+          & > h2 {
+            font-size: 24px;
+          }
         }
 
-        & > div > p {
+        & > div:last-child > p {
           display: none;
         }
       }

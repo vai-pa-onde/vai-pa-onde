@@ -1,7 +1,10 @@
 <template>
   <div class="activity-info-card">
     <div class="activity-info-card__content">
-      <vpo-link outlined :href="link" text="acessar" />
+      <div>
+        <vpo-link outlined :href="link" text="acessar" />
+        <report-modal :style="type" />
+      </div>
 
       <div class="activity-info-card__content__valid-until">
         <p class="label">válido até:</p>
@@ -78,6 +81,16 @@ export default {
     padding: 16px 24px;
     background-color: black;
     flex-grow: 1;
+
+    & > div:first-child {
+      display: flex;
+
+      & > a {
+        font-size: initial;
+        margin-bottom: 0;
+        margin-right: 12px;
+      }
+    }
 
     p, a {
       display: inline-flex;
@@ -164,9 +177,9 @@ export default {
       justify-content: space-between;
       align-items: center;
       height: auto;
-      padding: 8px;
+      padding: 8px 16px;
 
-      & > .vpo-link {
+      & > div:first-child {
         display: none;
       }
 

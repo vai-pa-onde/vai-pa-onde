@@ -4,10 +4,12 @@ $colors-util: (
   'teal': #008F95,
   'red': #E24E42,
   'blue': #0089D3,
-  'light-gray': #F4F4F4
+  'light-gray': #F4F4F4,
+  'dark-gray': #888
 );
 
 $breakpoints: (
+  'extra-small': 425px,
   'small': 576px,
   'medium': 768px,
   'large': 992px,

@@ -2,21 +2,14 @@
   <footer class="logo-footer">
     <div class="logo-footer__content">
       <logo />
-      <vpo-link outlined :href="formUrl" text="mandar uma ação" />
+      <suggestion-modal outlined />
     </div>
   </footer>
 </template>
 
 <script>
-import config from '@/config'
-
 export default {
-  name: 'logo-footer',
-  computed: {
-    formUrl() {
-      return config.contributeFormUrl
-    }
-  }
+  name: 'logo-footer'
 }
 </script>
 

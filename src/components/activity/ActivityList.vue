@@ -1,7 +1,7 @@
 <template>
   <div :class="`activity-list ${activities.length === 0 ? 'activity-list--not-found' : ''}`">
     <div class="activity-list__container" v-if="activities.length > 0">
-      <div class="activity-list__options">
+      <div class="activity-list__options" v-if="showOptions">
         <p>{{ activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
       </div>
       <div class="activity-list__activities">
@@ -27,7 +27,8 @@
 export default {
   name: 'activity-list',
   props: {
-    activities: Array
+    activities: Array,
+    showOptions: Boolean
   }
 }
 </script>

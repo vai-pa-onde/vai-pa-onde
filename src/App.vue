@@ -19,7 +19,7 @@ export default {
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Work+Sans:wght@400;500;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Work+Sans:wght@400;500;700;900&display=swap');
 @import 'node_modules/reset-css/sass/reset';
 @import '~@/styles/main';
 

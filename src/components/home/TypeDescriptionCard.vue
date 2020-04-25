@@ -3,7 +3,7 @@
     :class="`type-description-card type-background type-background--${type}`"
     :to="{ name: 'type-filter', params: { type } }"
   >
-    <h1 :class="`type-text type-text--${type}`">{{ numberOfActivities }}</h1>
+    <h1 :class="`type-text type-text--${type}`">{{ numberOfActivities }}<span>ações</span></h1>
     <div class="type-description-card__content">
       <h2>{{ content.title }}</h2>
       {{ content.description }}
@@ -20,7 +20,7 @@ import { mapGetters } from 'vuex'
 const contentByType = {
   learn: {
     title: 'Aprender',
-    description: 'Cursos online, palestra, mentoras. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
+    description: 'Cursos online, palestra, mentorias. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
   },
   participate: {
     title: 'Participar',
@@ -57,17 +57,32 @@ export default {
 .type-description-card {
   display: flex;
   flex-direction: column;
-  font-size: 14px;
+  font-size: 12px;
   text-decoration: none;
   color: inherit;
+  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  border: 0px solid map-get($colors-util, 'light-gray');
+
+  &:hover {
+    transform: translateY(-4px);
+    border-color: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
+  }
 
   & > h1 {
     background-color: rgba(white, 0.75);
     padding: 8px;
+    letter-spacing: -2px;
     font: {
       family: 'Play';
       size: 2.3em;
       weight: bold;
+    }
+
+    & > span {
+      font-size: 0.5em;
+      margin-left: 6px;
+      letter-spacing: 0;
     }
   }
 
@@ -81,7 +96,7 @@ export default {
     & > h2 {
       text-transform: uppercase;
       font: {
-        size: 1.2em;
+        size: 1.1em;
         weight: bold;
       }
     }
@@ -105,6 +120,12 @@ export default {
 
   @include breakpoint('medium') {
     font-size: 16px;
+    border-width: 6px;
+
+    & > h1 > span {
+      font-size: 0.6em;
+      margin-left: 8px;
+    }
   }
 
   @include breakpoint('large') {
@@ -112,6 +133,10 @@ export default {
 
     & > h1 {
       font-size: 60px;
+
+      & > span {
+        font-size: 0.4em;
+      }
     }
 
     & > h1, &__content, &__cta {
@@ -124,14 +149,20 @@ export default {
 
     & > h1 {
       font-size: 100px;
+      letter-spacing: -6px;
+
+      & > span {
+        font-size: 0.3em;
+        margin-left: 12px;
+      }
     }
 
     &__content > h2 {
-      font-size: 28px;
+      font-size: 24px;
     }
 
     &__cta {
-      font-size: 28px;
+      font-size: 24px;
     }
   }
 }

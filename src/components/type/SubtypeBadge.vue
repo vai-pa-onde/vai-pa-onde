@@ -1,5 +1,5 @@
 <template>
-  <span class="subtype-badge">{{ badgeText }}</span>
+  <span :class="`subtype-badge type-background type-background--${type}`">{{ badgeText }}</span>
 </template>
 
 <script>
@@ -8,6 +8,7 @@ import subtypeName from '@/js/subtypeName'
 export default {
   name: 'subtype-badge',
   props: {
+    type: String,
     subtype: String
   },
   computed: {
@@ -21,7 +22,7 @@ export default {
 <style lang="scss" scoped>
 .subtype-badge {
   display: block;
-  padding: 6px;
+  padding: 8px 16px;
   text-transform: uppercase;
   white-space: nowrap;
   width: min-content;
@@ -33,6 +34,7 @@ export default {
   }
 
   @media screen and (max-width: 576px) {
+    padding: 4px 12px;
     font-size: 12px;
   }
 }

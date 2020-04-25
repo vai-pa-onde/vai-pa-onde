@@ -2,7 +2,7 @@
   <div class="activities-counter" v-if="data.counter != 0">
     <h1>{{ data.counter }}</h1>
     <div class="activities-counter__content">
-      <p>Ações</p>
+      <p>{{ data.counter > 1 ? 'Ações' : 'Ação' }}</p>
       <h2>{{ data.subtitle }}</h2>
     </div>
   </div>

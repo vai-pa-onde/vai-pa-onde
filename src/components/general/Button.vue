@@ -1,6 +1,13 @@
 <template>
-  <button @click="$emit('click')" :class="classes">
-    {{ text }}
+  <button @click="$emit('click')" :class="classes" :disabled="loading" >
+    <span>{{ text }}</span>
+    <div v-if="loading">
+      <span />
+      <span />
+      <span />
+      <span />
+      <span />
+    </div>
   </button>
 </template>
 
@@ -10,7 +17,9 @@ export default {
   props: {
     outlined: Boolean,
     dark: Boolean,
-    text: String
+    error: Boolean,
+    text: String,
+    loading: Boolean
   },
   computed: {
     classes() {
@@ -19,7 +28,9 @@ export default {
         'badge': true,
         'button': true,
         'button--dark': this.dark,
-        'button--outlined': this.outlined
+        'button--outlined': this.outlined,
+        'button--error': this.error,
+        'button--loading': this.loading
       }
     }
   }

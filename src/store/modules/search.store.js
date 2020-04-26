@@ -1,4 +1,20 @@
 function search(state, activities) {
+  activities.sort((a, b) => {
+    if (!a.validUntilDate && !b.validUntilDate) {
+      return 0
+    }
+
+    if (a.validUntilDate && b.validUntilDate) {
+      return a.validUntilDate - b.validUntilDate
+    }
+
+    if (a.validUntilDate) {
+      return -1
+    }
+
+    return 1
+  })
+
   if (state.terms.length === 0) {
     return activities
   }

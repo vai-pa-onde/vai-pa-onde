@@ -70,6 +70,14 @@ export default {
       this.currentTerm = ''
     }
   },
+  created() {
+    if (this.$route.query.search) {
+      this.$route.query.search.split(' ')
+        .map(it => it.trim())
+        .filter(it => !!it)
+        .forEach(it => this.addSearchTerm(it))
+    }
+  },
   beforeRouteEnter(to, from, next) {
     if (!!to.params.type && !Object.keys(typeName).includes(to.params.type)) {
       return next(false)

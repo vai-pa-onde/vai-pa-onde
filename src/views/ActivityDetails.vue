@@ -93,7 +93,10 @@ export default {
       return {}
     }
 
+    const publishedAt = this.activity.publishedAtDate.toISOString().split('T')[0]
     const description = this.activity.description.length <= 160 ? this.activity.description : this.activity.description.substring(0, 157) + '...'
+    const url = `https://vaipaonde.com.br/acao/${this.activity.id}`
+
     return {
       title: `Vai pa onde? | ${this.activity.title}`,
       meta: [
@@ -101,7 +104,39 @@ export default {
         { vmid: 'og:description', name: 'og:description', content: description }
       ],
       link: [
-        { rel: 'canonical', href: `https://vaipaonde.com.br/acao/${this.activity.id}` }
+        { rel: 'canonical', href: url }
+      ],
+      script: [
+        {
+          type: 'application/ld+json',
+          innerHTML: `{
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+              "@type": "WebPage",
+              "@id": "${url}"
+            },
+            "headline": "${this.activity.title}",
+            "description": "${description}",
+            "image": "https://vaipaonde.com.br/images/logo-large.png",
+            "author": {
+              "@type": "Organization",
+              "name": "Vai pa onde"
+            },
+            "publisher": {
+              "@type": "Organization",
+              "name": "Vai pa onde",
+              "logo": {
+                "@type": "ImageObject",
+                "url": "https://vaipaonde.com.br/images/android-chrome-192x192",
+                "width": 60,
+                "height": 60
+              }
+            },
+            "datePublished": "${publishedAt}",
+            "dateModified": "${publishedAt}"
+          }`
+        }
       ]
     }
   }

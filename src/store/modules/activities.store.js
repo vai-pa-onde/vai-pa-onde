@@ -68,7 +68,6 @@ const actions = {
 
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/fallback.png`),
             publishedAtDate: convertToDate(it.publishedAt),
             validUntilDate: convertToDate(it.validUntil)
           })

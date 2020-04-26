@@ -3,7 +3,7 @@
     class="activity"
     @click="() => $router.push({ name: 'activity-details', params: { id }})"
   >
-    <img :src="image" alt :class="`type-background type-background--${type}`" />
+    <img src="@/assets/activity-image.png" alt :class="`type-background type-background--${type}`" />
     <type-badge class="activity__type" :type="type" />
     <div :class="`activity__content type-background type-background--${type}`">
       <h1>{{ title }}</h1>
@@ -23,7 +23,6 @@ export default {
     title: String,
     brand: String,
     type: String,
-    image: String,
     validUntilDate: Date
   },
   computed: {

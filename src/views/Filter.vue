@@ -5,7 +5,7 @@
       <div class="filter__search-bar">
         <div class="filter__search-bar__search">
           <span :class="type ? `type-background type-background--${type}` : ''"/>
-          <input v-model="currentTerm" :placeholder="`Buscar em ${typeLabel}`" @keyup.enter="doSearch">
+          <input v-model="currentTerm" :placeholder="`Buscar em ${typeLabel.toLowerCase()}`" @keyup.enter="doSearch">
         </div>
         <div class="filter__search-bar__tags">
           <tag :key="term" v-for="term in searchTerms" :text="term" dismissable @dismiss="() => removeSearchTerm(term)" />
@@ -21,6 +21,7 @@ import { mapGetters, mapState, mapMutations } from 'vuex'
 import typeName from '@/js/typeName'
 import subtypesByType from '@/js/subtypesByType'
 import subtypeName from '@/js/subtypeName'
+import config from '@/config'
 
 export default {
   name: 'filter-list',
@@ -53,10 +54,13 @@ export default {
     },
     typeLabel() {
       if (this.type) {
-        return typeName[this.type].toLowerCase()
+        return typeName[this.type]
       }
 
-      return 'todos os resultados'
+      return 'Todos os resultados'
+    },
+    subtypeLabel() {
+      return subtypeName[this.subtype]
     }
   },
   methods: {
@@ -76,6 +80,33 @@ export default {
     }
 
     next()
+  },
+  metaInfo() {
+    let title = 'Vai pa onde?'
+    let href = 'https://vaipaonde.com.br'
+    if (this.type) {
+      title += ` | ${this.typeLabel}`
+      href += `/categoria/${this.type}`
+
+      if (this.subtype && !this.subtype.includes('all')) {
+        title += ` - ${this.subtypeLabel}`
+        href += `/subcategoria/${this.subtype}`
+      }
+    } else {
+      title += ' | Todas as ações'
+      href += 'todas'
+    }
+
+    return {
+      title,
+      meta: [
+        { vmid: 'description', name: 'description', content: config.defaultDescription },
+        { vmid: 'og:description', name: 'og:description', content: config.defaultDescription }
+      ],
+      link: [
+        { rel: 'canonical', href }
+      ]
+    }
   }
 }
 </script>

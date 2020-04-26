@@ -1,7 +1,7 @@
 <template>
-  <div
+  <router-link
     class="activity"
-    @click="() => $router.push({ name: 'activity-details', params: { id }})"
+    :to="{ name: 'activity-details', params: { id } }"
   >
     <img src="@/assets/activity-image.png" alt :class="`type-background type-background--${type}`" />
     <type-badge class="activity__type" :type="type" />
@@ -12,7 +12,7 @@
     <div :class="`activity__date type-background type-background--${type}`" v-if="validUntilDate">
       <div>até {{ validUntil }}</div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <script>
@@ -46,6 +46,7 @@ export default {
   color: white;
   transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
   border: 6px solid transparent;
+  text-decoration: none;
 
   &:hover {
     border-color: white;

@@ -28,8 +28,20 @@
 </template>
 
 <script>
+import config from '@/config'
+
 export default {
-  name: 'about'
+  name: 'about',
+  metaInfo: {
+    title: 'Vai pa onde? | Sobre',
+    meta: [
+      { vmid: 'description', name: 'description', content: config.defaultDescription },
+      { vmid: 'og:description', name: 'og:description', content: config.defaultDescription }
+    ],
+    link: [
+      { rel: 'canonical', href: `https://vaipaonde.com.br/sobre` }
+    ]
+  }
 }
 </script>
 

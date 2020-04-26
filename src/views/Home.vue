@@ -21,6 +21,7 @@
 
 <script>
 import typeName from '@/js/typeName'
+import config from '@/config'
 
 export default {
   name: 'all-activities',
@@ -28,6 +29,16 @@ export default {
     types() {
       return Object.keys(typeName)
     }
+  },
+  metaInfo: {
+    title: 'Vai pa onde?',
+    meta: [
+      { vmid: 'description', name: 'description', content: config.defaultDescription },
+      { vmid: 'og:description', name: 'og:description', content: config.defaultDescription }
+    ],
+    link: [
+      { rel: 'canonical', href: `https://vaipaonde.com.br` }
+    ]
   }
 }
 </script>

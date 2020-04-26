@@ -73,7 +73,7 @@ const actions = {
           })
         })
 
-        const today = new Date('2020-04-18T01:00:00')
+        const today = new Date()
         const sortedActivities = output
           .filter(it => it.deleted === 'FALSE')
           .filter(it => it.validUntilDate === null || isAfter(it.validUntilDate, today))

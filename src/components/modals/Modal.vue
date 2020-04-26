@@ -50,6 +50,7 @@ export default {
   height: 100vh;
   width: 100vw;
   background-color: rgba(black, 0.6);
+  color: white;
 
   opacity: 0;
   pointer-events: none;

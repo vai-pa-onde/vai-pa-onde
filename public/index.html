@@ -51,5 +51,19 @@
       firebase.initializeApp(firebaseConfig)
       firebase.analytics()
     </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org/",
+        "@type": "WebSite",
+        "name": "Vai pa onde?",
+        "url": "https://vaipaonde.com.br",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://vaipaonde.com.br/todas?search={search_term_string}",
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
   </body>
 </html>

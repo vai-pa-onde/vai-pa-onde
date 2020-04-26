@@ -93,7 +93,7 @@ export default {
       return {}
     }
 
-    const description = this.activity.description.substring(0, 160)
+    const description = this.activity.description.length <= 160 ? this.activity.description : this.activity.description.substring(0, 157) + '...'
     return {
       title: `Vai pa onde? | ${this.activity.title}`,
       meta: [

@@ -241,6 +241,7 @@ export default {
 
   & > .not-found-card {
     margin: 42px auto;
+    background-color: map-get($colors-util, 'light-gray');
   }
 
   @media screen and (max-width: 964px) {

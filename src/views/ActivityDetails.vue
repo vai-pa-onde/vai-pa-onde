@@ -87,6 +87,23 @@ export default {
 
     this.windowWidth = window.innerWidth
     window.addEventListener('resize', () => { this.windowWidth = window.innerWidth })
+  },
+  metaInfo() {
+    if (!this.activity) {
+      return {}
+    }
+
+    const description = this.activity.description.substring(0, 160)
+    return {
+      title: `Vai pa onde? | ${this.activity.title}`,
+      meta: [
+        { vmid: 'description', name: 'description', content: description },
+        { vmid: 'og:description', name: 'og:description', content: description }
+      ],
+      link: [
+        { rel: 'canonical', href: `https://vaipaonde.com.br/acao/${this.activity.id}` }
+      ]
+    }
   }
 }
 </script>

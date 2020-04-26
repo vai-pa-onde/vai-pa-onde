@@ -12,7 +12,6 @@
           :title="activity.title"
           :brand="activity.brand"
           :type="activity.type"
-          :image="activity.image"
           :validUntilDate="activity.validUntilDate"
         />
       </div>

@@ -13,7 +13,7 @@
             <navigation-button v-for="{ id, name } in types" :key="id" :type="id" :text="name" @click="changeTypeNavigation(id)" />
             <navigation-button text="Tudo" @click="viewAll" />
           </div>
-          <vpo-link :href="formUrl" text="sugerir" />
+          <suggestion-modal drawer />
         </div>
         <div :key="currentType" class="drawer-content__pagination__page" v-else>
           <div class="drawer-content__pagination__page__navigators">
@@ -32,7 +32,6 @@
 </template>
 
 <script>
-import config from '@/config'
 import subtypesByType from '@/js/subtypesByType'
 import subtypeName from '@/js/subtypeName'
 import typeName from '@/js/typeName'
@@ -50,9 +49,6 @@ export default {
     isDrawerOpen: 'waitToClose'
   },
   computed: {
-    formUrl() {
-      return config.contributeFormUrl
-    },
     types() {
       return Object.entries(typeName).map(it => ({ id: it[0], name: it[1] }))
     },
@@ -157,7 +153,7 @@ export default {
       &--main {
         order: 1;
 
-        & > .button {
+        & > .button, & > .suggestion-modal {
           margin: 16px 28px;
         }
 

@@ -1,6 +1,9 @@
 <template>
   <div class="suggestion-modal">
-    <vpo-button :dark="!outlined" :outlined="outlined" text="mandar uma ação" @click="isModalOpen = true" />
+    <vpo-button v-if="drawer" text="sugerir" @click="isModalOpen = true" />
+    <a v-else-if="text" @click="isModalOpen = true">vai de formulário</a>
+    <vpo-button v-else :dark="!outlined" :outlined="outlined" text="mandar uma ação" @click="isModalOpen = true" />
+
     <modal v-model="isModalOpen" title="mandar uma ação" action="enviar" :isActionLoading="$store.state.feedback.sending" @confirm="send">
       <div class="modal-content">
         <p>
@@ -28,7 +31,9 @@ import { mapActions } from 'vuex'
 export default {
   name: 'suggestion-modal',
   props: {
-    outlined: Boolean
+    outlined: Boolean,
+    drawer: Boolean,
+    text: Boolean
   },
   data: () => ({
     isModalOpen: false,
@@ -82,43 +87,53 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.suggestion-modal .modal-content {
-  b {
-    font-weight: bold;
+.suggestion-modal {
+  & > a {
+    cursor: pointer;
   }
 
-  & > p:not(:first-child) {
-    margin-top: 8px;
-    margin-bottom: 2px;
-    font-weight: 500;
+  & > .button {
+    width: 100%;
+  }
 
-    & > span {
-      display: block;
-      font-size: 9px;
-      font-weight: normal;
+  .modal-content {
+    b {
+      font-weight: bold;
     }
-  }
 
-  & > .chooser {
-    margin-bottom: 16px;
-  }
-
-  @include breakpoint('extra-small') {
     & > p:not(:first-child) {
-      margin-top: 10px;
+      margin-top: 8px;
+      margin-bottom: 2px;
+      font-weight: 500;
 
       & > span {
-        font-size: 11px;
+        display: block;
+        font-size: 9px;
+        font-weight: normal;
       }
     }
-  }
 
-  @include breakpoint('small') {
-    & > p:not(:first-child) {
-      margin-bottom: 4px;
+    & > .chooser {
+      margin-bottom: 16px;
+    }
 
-      & > span {
-        font-size: 12px;
+    @include breakpoint('extra-small') {
+      & > p:not(:first-child) {
+        margin-top: 10px;
+
+        & > span {
+          font-size: 11px;
+        }
+      }
+    }
+
+    @include breakpoint('small') {
+      & > p:not(:first-child) {
+        margin-bottom: 4px;
+
+        & > span {
+          font-size: 12px;
+        }
       }
     }
   }

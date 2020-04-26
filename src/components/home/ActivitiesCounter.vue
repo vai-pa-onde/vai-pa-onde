@@ -1,11 +1,16 @@
 <template>
-  <div class="activities-counter" v-if="data.counter != 0">
+  <component
+    v-if="data.counter != 0"
+    :is="routeTo ? 'router-link' : 'div'"
+    :to="routeTo"
+    class="activities-counter"
+  >
     <h1>{{ data.counter }}</h1>
     <div class="activities-counter__content">
       <p>{{ data.counter > 1 ? 'Ações' : 'Ação' }}</p>
       <h2>{{ data.subtitle }}</h2>
     </div>
-  </div>
+  </component>
 </template>
 
 <script>
@@ -14,6 +19,7 @@ import { mapState } from 'vuex'
 export default {
   name: 'activities-counter',
   props: {
+    routeTo: Object,
     type: {
       type: String,
       validator: s => ['published', 'valid']
@@ -57,6 +63,7 @@ export default {
 .activities-counter {
   border-radius: 8px;
   overflow: hidden;
+  text-decoration: none;
 
   & > h1 {
     width: 100%;

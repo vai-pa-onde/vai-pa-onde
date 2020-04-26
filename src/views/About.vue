@@ -17,7 +17,7 @@
         <h2>Quer nos ajudar?</h2>
         <p>
           Somos uma iniciativa coletiva. Se você conhece ou promove alguma ação, conteúdo, evento ou produto que
-          colabore para a quarentena da pandemia de COVID-19, <a :href="formLink" target="_blank">vai de formulário</a>.
+          colabore para a quarentena da pandemia de COVID-19, <suggestion-modal text />.
         </p>
         <p>
           Não é pra alienar, nem surtar! Vai pa onde? #Ficaemcasa e vem com a gente!
@@ -28,15 +28,8 @@
 </template>
 
 <script>
-import config from '@/config'
-
 export default {
-  name: 'about',
-  computed: {
-    formLink() {
-      return config.contributeFormUrl
-    }
-  }
+  name: 'about'
 }
 </script>
 
@@ -82,7 +75,8 @@ export default {
           font-weight: bold;
         }
 
-        & > a {
+        & > .suggestion-modal {
+          display: inline;
           color: #0089D3;
         }
       }

@@ -68,13 +68,12 @@ const actions = {
 
           Object.assign(it, {
             tags: newTags,
-            image: it.image || require(`@/assets/fallback.png`),
             publishedAtDate: convertToDate(it.publishedAt),
             validUntilDate: convertToDate(it.validUntil)
           })
         })
 
-        const today = new Date('2020-04-18T01:00:00')
+        const today = new Date()
         const sortedActivities = output
           .filter(it => it.deleted === 'FALSE')
           .filter(it => it.validUntilDate === null || isAfter(it.validUntilDate, today))

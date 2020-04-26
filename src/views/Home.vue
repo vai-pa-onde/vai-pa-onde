@@ -8,7 +8,7 @@
     <div class="home__content">
       <div class="home__content__counters">
         <activities-counter type="published" />
-        <activities-counter type="valid" />
+        <activities-counter type="valid" :routeTo="{ name: 'all-activities' }" />
       </div>
       <h1>Vontade de fazer alguma coisa, né minha filha?</h1>
       <div class="home__content__types">

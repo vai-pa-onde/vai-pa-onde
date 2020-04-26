@@ -34,6 +34,10 @@ export default {
     size: 18px;
   }
 
+  &:hover {
+    background-color: rgba(black, 0.08);
+  }
+
   & > span {
     position: absolute;
     height: 100%;

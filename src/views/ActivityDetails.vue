@@ -230,6 +230,7 @@ export default {
       width: 100%;
       text-transform: uppercase;
       margin-top: 38px;
+      text-align: center;
       font: {
         size: 24px;
         weight: bold;

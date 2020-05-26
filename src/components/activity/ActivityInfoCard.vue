@@ -160,11 +160,23 @@ export default {
     min-width: 22px;
   }
 
-  @media screen and (max-width: 964px) {
-    height: 250px;
+  @media screen and (max-width: 1025px) {
+    height: 275px;
 
     &__content {
       font-size: 12px;
+
+      & > div:first-child {
+        display: block;
+
+        & > div, & > a {
+          width: 100%;
+
+          &:not(:last-child) {
+            margin-bottom: 8px;
+          }
+        }
+      }
     }
   }
 

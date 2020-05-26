@@ -5,7 +5,7 @@ const sortMethods = {
 
 function sortByValidUntilDate(a, b) {
   if (!a.validUntilDate && !b.validUntilDate) {
-    return 0
+    return sortByPublishedAtDate(a, b)
   }
 
   if (a.validUntilDate && b.validUntilDate) {

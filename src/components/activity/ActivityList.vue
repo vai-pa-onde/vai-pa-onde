@@ -2,6 +2,7 @@
   <div :class="`activity-list ${activities.length === 0 ? 'activity-list--not-found' : ''}`">
     <div class="activity-list__container" v-if="activities.length > 0">
       <div class="activity-list__options" v-if="showOptions">
+        <activity-sort />
         <p>{{ activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
       </div>
       <div class="activity-list__activities">
@@ -52,7 +53,9 @@ export default {
   }
 
   &__options {
-    text-align: right;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 6px 12px 6px;
     color: black;
     font: {
       family: 'Play';

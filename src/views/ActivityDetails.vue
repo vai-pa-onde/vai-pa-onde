@@ -189,6 +189,7 @@ export default {
         & > p {
           font-size: 16px;
           line-height: 1.4;
+          white-space: pre-line;
         }
       }
 
@@ -229,6 +230,7 @@ export default {
       width: 100%;
       text-transform: uppercase;
       margin-top: 38px;
+      text-align: center;
       font: {
         size: 24px;
         weight: bold;
@@ -242,8 +244,14 @@ export default {
   }
 
   & > .not-found-card {
-    margin: 42px auto;
+    margin: 42px 20px;
     background-color: map-get($colors-util, 'light-gray');
+  }
+
+  @media screen and (min-width: 840px) {
+    & > .not-found-card {
+      margin: 42px auto;
+    }
   }
 
   @media screen and (max-width: 964px) {

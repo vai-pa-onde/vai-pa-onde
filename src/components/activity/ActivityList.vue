@@ -2,6 +2,7 @@
   <div :class="`activity-list ${activities.length === 0 ? 'activity-list--not-found' : ''}`">
     <div class="activity-list__container" v-if="activities.length > 0">
       <div class="activity-list__options" v-if="showOptions">
+        <activity-sort />
         <p>{{ activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
       </div>
       <div class="activity-list__activities">
@@ -52,11 +53,20 @@ export default {
   }
 
   &__options {
-    text-align: right;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 6px 6px 6px;
     color: black;
     font: {
       family: 'Play';
       size: 12px;
+    }
+
+    & > p {
+      flex-basis: 100%;
+      margin-top: 6px;
     }
   }
 
@@ -83,6 +93,11 @@ export default {
 
     &__options {
       font-size: 18px;
+      margin-bottom: 12px;
+
+      & > p {
+        flex-basis: auto;
+      }
     }
 
     &__activities {

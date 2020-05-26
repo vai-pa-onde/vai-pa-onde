@@ -63,7 +63,7 @@ export default {
           this.report.description = ''
         }
 
-        await this.sendReport(this.report)
+        await this.sendReport({ id: this.$route.params.id, ...this.report })
       } catch {}
 
       this.isModalOpen = false
@@ -73,34 +73,40 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.report-modal .modal-content {
-  font-size: 18px;
-
-  b {
-    font-weight: bold;
-  }
-
-  & > .chooser {
-    margin-bottom: 16px;
-  }
-
-  & > div {
-    width: min-content;
-    margin: 16px auto 0 auto;
-
-    & > p {
-      margin-bottom: 6px;
-    }
-  }
-
-  & > .vpo-input {
+.report-modal {
+  & > button {
     width: 100%;
-    height: 0;
-    transition: height .2s;
-    overflow: hidden;
+  }
 
-    &.open {
-      height: 50px;
+  .modal-content {
+    font-size: 18px;
+
+    b {
+      font-weight: bold;
+    }
+
+    & > .chooser {
+      margin-bottom: 16px;
+    }
+
+    & > div {
+      width: min-content;
+      margin: 16px auto 0 auto;
+
+      & > p {
+        margin-bottom: 6px;
+      }
+    }
+
+    & > .vpo-input {
+      width: 100%;
+      height: 0;
+      transition: height .2s;
+      overflow: hidden;
+
+      &.open {
+        height: 50px;
+      }
     }
   }
 }

@@ -1,19 +1,34 @@
+const sortMethods = {
+  PUBLISHED_AT: 'publishedAt',
+  VALID_UNTIL: 'validUntil'
+}
+
+function sortByValidUntilDate(a, b) {
+  if (!a.validUntilDate && !b.validUntilDate) {
+    return sortByPublishedAtDate(a, b)
+  }
+
+  if (a.validUntilDate && b.validUntilDate) {
+    return a.validUntilDate - b.validUntilDate
+  }
+
+  if (a.validUntilDate) {
+    return -1
+  }
+
+  return 1
+}
+
+function sortByPublishedAtDate(a, b) {
+  return a.publishedAtDate - b.publishedAtDate
+}
+
 function search(state, activities) {
-  activities.sort((a, b) => {
-    if (!a.validUntilDate && !b.validUntilDate) {
-      return 0
-    }
-
-    if (a.validUntilDate && b.validUntilDate) {
-      return a.validUntilDate - b.validUntilDate
-    }
-
-    if (a.validUntilDate) {
-      return -1
-    }
-
-    return 1
-  })
+  if (state.sortBy === sortMethods.VALID_UNTIL) {
+    activities.sort(sortByValidUntilDate)
+  } else {
+    activities.sort(sortByPublishedAtDate)
+  }
 
   if (state.terms.length === 0) {
     return activities
@@ -29,7 +44,8 @@ function search(state, activities) {
 }
 
 const state = {
-  terms: []
+  terms: [],
+  sortBy: sortMethods.PUBLISHED_AT
 }
 
 const getters = {
@@ -56,6 +72,9 @@ const mutations = {
     }
 
     state.terms = state.terms.filter(it => it !== trimmedSearchTerm)
+  },
+  changeSort(state, sortBy) {
+    state.sortBy = sortBy
   },
   reset(state) {
     state.terms = []

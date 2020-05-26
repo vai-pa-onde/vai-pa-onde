@@ -54,12 +54,19 @@ export default {
 
   &__options {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
-    margin: 0 6px 12px 6px;
+    align-items: center;
+    margin: 0 6px 6px 6px;
     color: black;
     font: {
       family: 'Play';
       size: 12px;
+    }
+
+    & > p {
+      flex-basis: 100%;
+      margin-top: 6px;
     }
   }
 
@@ -86,6 +93,11 @@ export default {
 
     &__options {
       font-size: 18px;
+      margin-bottom: 12px;
+
+      & > p {
+        flex-basis: auto;
+      }
     }
 
     &__activities {

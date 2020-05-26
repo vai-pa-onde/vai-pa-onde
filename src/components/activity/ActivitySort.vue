@@ -60,7 +60,7 @@ export default {
   position: relative;
   cursor: pointer;
   width: min-content;
-  font-size: 16px;
+  font-size: 14px;
 
   & > .selected {
     display: flex;
@@ -114,6 +114,10 @@ export default {
         border-bottom: 3px solid black;
       }
     }
+  }
+
+  @include breakpoint('small') {
+    font-size: 16px;
   }
 }
 </style>

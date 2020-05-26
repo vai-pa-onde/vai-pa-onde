@@ -63,7 +63,7 @@ export default {
           this.report.description = ''
         }
 
-        await this.sendReport(this.report)
+        await this.sendReport({ id: this.$route.params.id, ...this.report })
       } catch {}
 
       this.isModalOpen = false

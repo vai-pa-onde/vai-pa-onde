@@ -38,6 +38,7 @@ export default {
     height: 40px;
     padding: 4px 0;
     margin-bottom: 2px;
+    cursor: pointer;
 
     &--small {
       height: 25px;
@@ -50,6 +51,7 @@ export default {
       height: 100%;
       outline: none;
       transition: background-color 0.2s;
+      cursor: pointer;
 
       &:not(:checked) {
         background-color: map-get($colors-util, 'light-gray');
@@ -67,6 +69,9 @@ export default {
       flex-direction: column;
       color: black;
       margin-left: 6px;
+      cursor: pointer;
+      height: 100%;
+      justify-content: center;
 
       & > p, & > span {
         transition: color 0.2s;

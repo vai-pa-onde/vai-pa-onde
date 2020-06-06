@@ -20,7 +20,7 @@ function sortByValidUntilDate(a, b) {
 }
 
 function sortByPublishedAtDate(a, b) {
-  return a.publishedAtDate - b.publishedAtDate
+  return b.publishedAtDate - a.publishedAtDate
 }
 
 function search(state, activities) {

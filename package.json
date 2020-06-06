@@ -1,10 +1,10 @@
 {
   "name": "vai-pa-onde",
-  "version": "2.1.3",
+  "version": "2.1.4",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",
-    "build": "vue-cli-service build",
+    "build": "vue-cli-service build --modern",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint"
   },

@@ -1,11 +1,14 @@
 <template>
-  <div :class="`activity-list ${activities.length === 0 ? 'activity-list--not-found' : ''}`">
-    <div class="activity-list__container" v-if="activities.length > 0">
+  <div :class="`activity-list ${activities.length === 0 && !isSkeleton ? 'activity-list--not-found' : ''} ${isSkeleton ? 'activity-list--skeleton' : ''}`">
+    <div class="activity-list__container" v-if="activities.length > 0 || isSkeleton">
       <div class="activity-list__options" v-if="showOptions">
         <activity-sort />
-        <p>{{ activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
+        <p>{{ isSkeleton ? 88 : activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
       </div>
-      <div class="activity-list__activities">
+      <div class="activity-list__activities" v-if="isSkeleton">
+        <activity-skeleton :key="i" v-for="i in Array(8).keys()"/>
+      </div>
+      <div class="activity-list__activities" v-else>
         <activity
           :key="activity.id"
           v-for="activity in activities"
@@ -28,6 +31,7 @@ export default {
   name: 'activity-list',
   props: {
     activities: Array,
+    isSkeleton: Boolean,
     showOptions: Boolean
   }
 }
@@ -44,6 +48,14 @@ export default {
 
     .not-found-card {
       margin: 0 auto;
+    }
+  }
+
+  &--skeleton {
+    .activity-list__options > p {
+      color: transparent;
+      background-color: lightgray;
+      border-radius: 5px;
     }
   }
 

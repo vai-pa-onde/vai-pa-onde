@@ -11,7 +11,7 @@
           <tag :key="term" v-for="term in searchTerms" :text="term" dismissable @dismiss="() => removeSearchTerm(term)" />
         </div>
       </div>
-      <activity-list :activities="activities" showOptions />
+      <activity-list :isSkeleton="loading" :activities="activities" showOptions />
     </div>
   </div>
 </template>
@@ -34,7 +34,10 @@ export default {
       filterByType: 'search/filterByType',
       filterBySubtype: 'search/filterBySubtype'
     }),
-    ...mapState({ searchTerms: state => state.search.terms }),
+    ...mapState({
+      searchTerms: state => state.search.terms,
+      loading: state => !state.activities.loaded
+    }),
     type() {
       return this.$route.params.type
     },

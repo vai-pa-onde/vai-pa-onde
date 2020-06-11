@@ -1,7 +1,7 @@
 <template>
-  <div class="activity-details" v-if="activity">
+  <div class="activity-details">
     <current-section-indicator />
-    <div class="activity-details__container">
+    <div class="activity-details__container" v-if="activity">
       <div class="activity-details__content">
         <div class="activity-details__content__info">
           <div>
@@ -35,9 +35,7 @@
         <activity-list inline :activities="recommendations" />
       </div>
     </div>
-  </div>
-  <div class="activity-details" v-else>
-    <not-found-card>A ação que você estava procurando não existe ou foi removida =(</not-found-card>
+    <not-found-card v-else>A ação que você estava procurando não existe ou foi removida =(</not-found-card>
   </div>
 </template>
 
@@ -51,10 +49,11 @@ export default {
     windowWidth: 0
   }),
   watch: {
-    '$route.params.id': 'setActivity'
+    '$route.params.id': 'setActivity',
+    'loading': 'setActivity'
   },
   computed: {
-    ...mapState({ activities: state => state.activities.allActivities }),
+    ...mapState({ activities: state => state.activities.allActivities, loading: state => !state.activities.loaded }),
     ...mapGetters({ getActivityById: 'activities/getById', getRecommendations: 'activities/recommendations' }),
     recommendations() {
       let maxRecommendations
@@ -83,8 +82,6 @@ export default {
     }
   },
   created() {
-    this.setActivity()
-
     this.windowWidth = window.innerWidth
     window.addEventListener('resize', () => { this.windowWidth = window.innerWidth })
   },

@@ -35,7 +35,7 @@
         <activity-list inline :activities="recommendations" />
       </div>
     </div>
-    <not-found-card v-else>A ação que você estava procurando não existe ou foi removida =(</not-found-card>
+    <not-found-card v-else-if="!loading">A ação que você estava procurando não existe ou foi removida =(</not-found-card>
   </div>
 </template>
 
@@ -82,6 +82,10 @@ export default {
     }
   },
   created() {
+    if (!this.loading) {
+      this.setActivity()
+    }
+
     this.windowWidth = window.innerWidth
     window.addEventListener('resize', () => { this.windowWidth = window.innerWidth })
   },

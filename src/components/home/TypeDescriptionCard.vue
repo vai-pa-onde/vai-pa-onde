@@ -1,12 +1,12 @@
 <template>
-  <router-link
-    :class="`type-description-card type-background type-background--${type}`"
-    :to="{ name: 'type-filter', params: { type } }"
-  >
-    <h1 :class="`type-text type-text--${type}`">{{ numberOfActivities }}<span>ações</span></h1>
+  <router-link :class="classes" :to="{ name: 'type-filter', params: { type } }">
+    <div :class="`type-description-card__title type-text type-text--${type}`">
+      <h1>{{ loading ? 88 : numberOfActivities }}</h1>
+      <span>ações</span>
+    </div>
     <div class="type-description-card__content">
       <h2>{{ content.title }}</h2>
-      {{ content.description }}
+      <span>{{ content.description }}</span>
     </div>
     <div class="type-description-card__cta">
       Conferir
@@ -15,7 +15,7 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 
 const contentByType = {
   learn: {
@@ -42,7 +42,16 @@ export default {
     type: String
   },
   computed: {
+    ...mapState({ loading: state => !state.activities.loaded }),
     ...mapGetters({ activitiesByType: 'activities/getByType' }),
+    classes() {
+      return {
+        'type-description-card': true,
+        'type-background': true,
+        [`type-background--${this.type}`]: true,
+        'type-description-card--loading': this.loading
+      }
+    },
     content() {
       return contentByType[this.type]
     },
@@ -69,14 +78,32 @@ export default {
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
   }
 
-  & > h1 {
+  &--loading {
+    background-color: grey;
+
+    h1, h2, p, span {
+      color: transparent;
+      background-color: rgba(0, 0, 0, 0.1);
+      border-radius: 4px;
+      box-decoration-break: clone;
+    }
+  }
+
+  &__title {
+    display: flex;
+    align-items: baseline;
     background-color: rgba(white, 0.75);
     padding: 8px;
-    letter-spacing: -2px;
+
     font: {
       family: 'Play';
       size: 2.3em;
       weight: bold;
+    }
+
+    & > h1 {
+      letter-spacing: -2px;
+      line-height: 1;
     }
 
     & > span {
@@ -94,6 +121,8 @@ export default {
     flex-grow: 1;
 
     & > h2 {
+      margin-bottom: 2px;
+      line-height: 1;
       text-transform: uppercase;
       font: {
         size: 1.1em;
@@ -122,7 +151,7 @@ export default {
     font-size: 16px;
     border-width: 6px;
 
-    & > h1 > span {
+    &__title > span {
       font-size: 0.6em;
       margin-left: 8px;
     }
@@ -131,7 +160,7 @@ export default {
   @include breakpoint('large') {
     font-size: 18px;
 
-    & > h1 {
+    &__title {
       font-size: 60px;
 
       & > span {
@@ -139,7 +168,7 @@ export default {
       }
     }
 
-    & > h1, &__content, &__cta {
+    &__title, &__content, &__cta {
       padding: 10px 18px;
     }
   }
@@ -147,9 +176,12 @@ export default {
   @include breakpoint('extra-large') {
     font-size: 18px;
 
-    & > h1 {
+    &__title {
       font-size: 100px;
-      letter-spacing: -6px;
+
+      & > h1 {
+        letter-spacing: -6px;
+      }
 
       & > span {
         font-size: 0.3em;

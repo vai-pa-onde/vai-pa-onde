@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <search-header />
-    <router-view v-if="activitiesLoaded" />
+    <router-view />
     <logo-footer />
   </div>
 </template>

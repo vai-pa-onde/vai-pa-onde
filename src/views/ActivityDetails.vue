@@ -74,6 +74,10 @@ export default {
     ...mapMutations({ addSearchTerm: 'search/addTerm', resetSearch: 'search/reset' }),
     setActivity() {
       this.activity = this.getActivityById(this.$route.params.id)
+
+      if (this.activity) {
+        window.fbq('track', 'ViewContent')
+      }
     },
     searchTag(evt) {
       this.resetSearch()

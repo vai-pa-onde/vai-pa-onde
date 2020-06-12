@@ -58,6 +58,8 @@ const actions = {}
 
 const mutations = {
   addTerm(state, term) {
+    window.fbq('track', 'Search')
+
     let trimmedSearchTerm = term.trim().toLowerCase()
     if (trimmedSearchTerm === '' || state.terms.includes(trimmedSearchTerm)) {
       return

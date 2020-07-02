@@ -9,6 +9,7 @@
       <span class="separator-bar__main">{{ typeLabel }}</span>
       <span>| {{ subtypeLabel }}</span>
     </div>
+    <span class="separator-bar__main" v-else-if="$route.name === 'about'">Sobre</span>
     <span class="separator-bar__main" v-else>Todos os resultados</span>
   </div>
 </template>

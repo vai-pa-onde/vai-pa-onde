@@ -1,7 +1,7 @@
 import http from '../http'
-import parse from 'csv-parse'
 
-const spreadsheetId = '2PACX-1vRqN0edpOYftetA6gUkMDPONc5o2NHKG9yJLrzDtbhxe-SUqCHMgNaUodI8o4Q4pOX66iDHPGMLC7D2'
+const spreadsheetId = '1NkJy0tkkY0jFT5LvqGdACKOj-afefbIm1k186KBrBbA'
+const apiKey = 'AIzaSyDCymjlVcj4e1n1c_8BAjGeduzJa9miyPY'
 
 function findRecommendations(activities, activity) {
   const filteredActivities = activities.filter(it => it.id !== activity.id)
@@ -52,36 +52,40 @@ const actions = {
   async fetch({ commit }) {
     try {
       const csv = await http
-        .get(`/spreadsheets/d/e/${spreadsheetId}/pub?gid=843317981&single=true&output=csv`)
-        .then(data => data.text())
+        .get(`/v4/spreadsheets/${spreadsheetId}/values/activities?key=${apiKey}`)
+        .then(data => data.json())
 
-      parse(csv, { columns: true }, (err, output) => {
-        if (err) {
-          throw err
-        }
+      const headers = csv.values[0]
+      const output = csv.values.splice(1).map(it => {
+        const obj = {}
 
-        output.forEach(it => {
-          let newTags = []
-          if (it.tags.length > 0) {
-            newTags = it.tags.split(',').map(it => it.trim().toLowerCase())
-          }
-
-          Object.assign(it, {
-            tags: newTags,
-            publishedAtDate: convertToDate(it.publishedAt),
-            validUntilDate: convertToDate(it.validUntil)
-          })
+        it.forEach((val, i) => {
+          obj[headers[i]] = val
         })
 
-        const today = new Date()
-        const sortedActivities = output
-          .filter(it => it.deleted === 'FALSE')
-          .filter(it => it.validUntilDate === null || isAfter(it.validUntilDate, today))
-          .sort((a, b) => a.publishedAtDate < b.publishedAtDate)
+        let newTags = []
+        if (obj.tags.length > 0) {
+          newTags = obj.tags.split(',').map(it => it.trim().toLowerCase())
+        }
 
-        commit('SET_ALL_ACTIVITIES', sortedActivities)
-        commit('SET_LOADED')
+        Object.assign(obj, {
+          tags: newTags,
+          publishedAtDate: convertToDate(obj.publishedAt),
+          validUntilDate: convertToDate(obj.validUntil)
+        })
+
+        return obj
       })
+
+      console.log(output)
+      const today = new Date()
+      const sortedActivities = output
+        .filter(it => it.deleted === 'FALSE')
+        .filter(it => it.validUntilDate === null || isAfter(it.validUntilDate, today))
+        .sort((a, b) => a.publishedAtDate < b.publishedAtDate)
+
+      commit('SET_ALL_ACTIVITIES', sortedActivities)
+      commit('SET_LOADED')
     } catch {}
   }
 }

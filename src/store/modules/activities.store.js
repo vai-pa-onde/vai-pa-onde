@@ -1,7 +1,8 @@
+import config from '@/config'
 import http from '../http'
 
 const spreadsheetId = '1NkJy0tkkY0jFT5LvqGdACKOj-afefbIm1k186KBrBbA'
-const apiKey = 'AIzaSyDCymjlVcj4e1n1c_8BAjGeduzJa9miyPY'
+const apiKey = config.googleApiKey
 
 function findRecommendations(activities, activity) {
   const filteredActivities = activities.filter(it => it.id !== activity.id)

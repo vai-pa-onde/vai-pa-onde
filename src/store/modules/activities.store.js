@@ -77,7 +77,6 @@ const actions = {
         return obj
       })
 
-      console.log(output)
       const today = new Date()
       const sortedActivities = output
         .filter(it => it.deleted === 'FALSE')

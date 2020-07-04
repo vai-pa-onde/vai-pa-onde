@@ -3,7 +3,7 @@
     class="activity"
     :to="{ name: 'activity-details', params: { id } }"
   >
-    <img src="@/assets/activity-image.png" alt :class="`type-background type-background--${type}`" />
+    <img :src="require(`@/assets/activity/${type}.svg`)" alt :class="`type-background type-background--${type}`" />
     <type-badge class="activity__type" :type="type" />
     <div :class="`activity__content type-background type-background--${type}`">
       <h1>{{ title }}</h1>

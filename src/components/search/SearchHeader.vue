@@ -8,11 +8,15 @@
       <div class="search-header__logo__links">
         <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
         <suggestion-modal />
+        <favorites-button />
       </div>
     </div>
     <div class="search-header__navigation">
       <dropdown :key="type" v-for="type in types" class="badge" :type="type" :selected="selectedSubtype" />
-      <router-link :to="{ name: 'all-activities' }" class="badge">Tudo</router-link>
+      <div class="search-header__navigation__links">
+        <router-link :to="{ name: 'all-activities' }" class="badge">Tudo</router-link>
+        <favorites-button />
+      </div>
     </div>
   </header>
 </template>
@@ -71,6 +75,10 @@ export default {
       & > * {
         margin-left: 12px;
       }
+
+      & > .favorites-button {
+        display: none;
+      }
     }
 
     & > p {
@@ -87,6 +95,7 @@ export default {
 
   &__navigation {
     display: inline-flex;
+    width: 100%;
 
     & > .dropdown {
       margin: 0 8px;
@@ -96,21 +105,43 @@ export default {
       }
     }
 
-    & > a {
-      display: block;
-      background-color: rgba(black, 0.25);
-      text-decoration: none;
-      color: black;
-      margin: 0 8px;
-      font: {
-        family: 'Play';
-        size: 16px;
-        weight: 900;
-      };
+    &__links {
+      display: flex;
+      width: 100%;
+
+      & > a:not(.favorites-button) {
+        display: block;
+        background-color: rgba(black, 0.25);
+        text-decoration: none;
+        color: black;
+        margin: 0 8px 0 0;
+        font: {
+          family: 'Play';
+          size: 16px;
+          weight: 900;
+        };
+      }
     }
   }
 
-  @media screen and (max-width: 964px) {
+  @media screen and (max-width: 975px) {
+    &__logo__links {
+      .favorites-button {
+        display: flex;
+      }
+    }
+
+    &__navigation__links {
+      width: auto;
+      margin-right: auto;
+
+      & > .favorites-button {
+        display: none;
+      }
+    }
+  }
+
+  @media screen and (max-width: 975px) {
     &__logo {
       flex-wrap: wrap;
 

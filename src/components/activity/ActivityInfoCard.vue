@@ -119,6 +119,21 @@ export default {
       & > .share {
         align-items: center;
         cursor: pointer;
+        margin-bottom: 0;
+        padding: 3px 24px;
+        margin-left: -24px;
+        padding-left: 24px;
+        width: calc(100% + 48px);
+        transition: background-color 0.2s, color 0.2s;
+
+        &:hover {
+          background-color: white;
+          color: black;
+
+          &::before {
+            filter: brightness(0);
+          }
+        }
 
         &::before {
           content: '';
@@ -126,6 +141,7 @@ export default {
           height: 14px;
           margin-right: 10px;
           margin-top: 1px;
+          transition: filter 0.2s;
           background: {
             repeat: no-repeat;
             size: 100% 100%;

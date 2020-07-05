@@ -1,9 +1,10 @@
 <template>
   <div class="activity-info-card">
     <div class="activity-info-card__content">
-      <div>
+      <div class="activity-info-card__content__header">
         <vpo-link outlined :href="link" text="acessar" />
         <report-modal :style="type" />
+        <toggle-favorite-button :id="id" />
       </div>
 
       <div class="activity-info-card__content__valid-until">
@@ -37,7 +38,7 @@ export default {
   },
   computed: {
     pageLink() {
-      return `https://www.vaipaonde.com.br/acao/${this.id}`
+      return `https://vaipaonde.com.br/acao/${this.id}`
     },
     whatsappLink() {
       if (isMobile()) {
@@ -81,6 +82,13 @@ export default {
     padding: 16px 24px;
     background-color: black;
     flex-grow: 1;
+
+    &__header {
+      & > .heart-icon {
+        width: 28px;
+        margin-left: auto;
+      }
+    }
 
     & > div:first-child {
       display: flex;

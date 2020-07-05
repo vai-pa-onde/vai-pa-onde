@@ -1,5 +1,5 @@
 <template>
-  <div :class="`current-section-indicator separator-bar ${type ? `type-background type-background--${type}` : 'current-section-indicator--all'}`">
+  <div :class="`current-section-indicator separator-bar ${type ? `type-background type-background--${type}` : ($route.name === 'favorites' ? 'type-background type-background--favorites' : 'current-section-indicator--all')}`">
     <div v-if="activity">
       <router-link :to="{ name: 'all-activities' }">Navegar</router-link> >
       <router-link :to="{ name: 'type-filter', params: { type } }">{{ typeLabel }}</router-link> >
@@ -10,6 +10,10 @@
       <span>| {{ subtypeLabel }}</span>
     </div>
     <span class="separator-bar__main" v-else-if="$route.name === 'about'">Sobre</span>
+    <div v-else-if="$route.name === 'favorites'">
+      <heart-icon />
+      <span class="separator-bar__main">Minhas favoritas</span>
+    </div>
     <span class="separator-bar__main" v-else>Todos os resultados</span>
   </div>
 </template>
@@ -65,6 +69,19 @@ export default {
       &:first-child {
         margin-left: 0;
       }
+    }
+
+    & > .heart-icon {
+      margin-bottom: -2px;
+      margin-right: 6px;
+      height: 12px;
+    }
+  }
+
+  @include breakpoint('large') {
+    & > div > .heart-icon {
+      margin-bottom: -1px;
+      height: 16px;
     }
   }
 }

@@ -114,7 +114,7 @@ export default {
         background-color: rgba(black, 0.25);
         text-decoration: none;
         color: black;
-        margin: 0 8px 0 0;
+        margin: 0 8px;
         font: {
           family: 'Play';
           size: 16px;

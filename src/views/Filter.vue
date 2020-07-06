@@ -2,7 +2,7 @@
   <div class="filter">
     <current-section-indicator />
     <div>
-      <search-bar :placeholder="`Buscar em ${typeLabel.toLowerCase()}`" type="favorite" />
+      <search-bar :placeholder="`Buscar em ${typeLabel.toLowerCase()}`" :type="type" />
       <activity-list :isSkeleton="loading" :activities="activities" showOptions />
     </div>
   </div>

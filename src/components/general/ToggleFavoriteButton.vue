@@ -1,5 +1,8 @@
 <template>
-  <heart-icon :class="`toggle-favorite-button ${isFavorite ? 'toggle-favorite-button--active' : ''}`" @click.native="toggleFavorite" />
+  <heart-icon
+    :class="`toggle-favorite-button ${isFavorite ? `toggle-favorite-button--active ${type ? `toggle-favorite-button--active--${type}` : ''}` : ''}`"
+    @click.native="toggleFavorite"
+  />
 </template>
 
 <script>
@@ -7,7 +10,8 @@ import { mapMutations } from 'vuex'
 export default {
   name: 'toggle-favorite-button',
   props: {
-    id: String
+    id: String,
+    type: String
   },
   computed: {
     isFavorite() {
@@ -19,7 +23,9 @@ export default {
       addFavorite: 'favorites/addFavorite',
       removeFavorite: 'favorites/removeFavorite'
     }),
-    toggleFavorite() {
+    toggleFavorite(evt) {
+      evt.preventDefault()
+
       if (this.isFavorite) {
         this.removeFavorite(this.id)
       } else {
@@ -45,7 +51,23 @@ export default {
   transition: stroke 0.2s, fill 0.2s;
 
   &--active {
-    @include favorite-active('white')
+    @include favorite-active('white');
+
+    &--learn {
+      @include favorite-active('yellow');
+    }
+
+    &--participate {
+      @include favorite-active('pink');
+    }
+
+    &--do {
+      @include favorite-active('teal');
+    }
+
+    &--share {
+      @include favorite-active('red');
+    }
   }
 }
 </style>

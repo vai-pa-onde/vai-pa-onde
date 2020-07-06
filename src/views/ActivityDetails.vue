@@ -5,7 +5,10 @@
       <div class="activity-details__content">
         <div class="activity-details__content__info">
           <div>
-            <h1>{{ activity.title }}</h1>
+            <div>
+              <h1>{{ activity.title }}</h1>
+              <toggle-favorite-button :type="activity.type" :id="activity.id" />
+            </div>
             <h2>{{ activity.brand }}</h2>
             <subtype-badge :type="activity.type" :subtype="activity.subtype" />
             <p>{{ activity.description }}</p>
@@ -174,12 +177,29 @@ export default {
         padding: 24px;
         background-color: white;
 
-        & > h1 {
-          text-transform: uppercase;
-          margin-bottom: 6px;
-          font: {
-            size: 46px;
-            weight: 900;
+        > div {
+          display: flex;
+          align-items: flex-start;
+
+          > h1 {
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            margin-right: 16px;
+            font: {
+              size: 46px;
+              weight: 900;
+            }
+          }
+
+          > .toggle-favorite-button {
+            width: 28px;
+            height: 46px;
+            margin-left: auto;
+            stroke-width: 25px;
+
+            &:not(.toggle-favorite-button--active) {
+              stroke: black;
+            }
           }
         }
 
@@ -259,6 +279,18 @@ export default {
     }
   }
 
+  @media screen and (min-width: 1076px) {
+    &__content__info > div:first-child > div {
+      > h1 {
+        margin-right: 0;
+      }
+
+      > .toggle-favorite-button {
+        display: none;
+      }
+    }
+  }
+
   @media screen and (max-width: 964px) {
     &__content {
       &__info {
@@ -266,8 +298,14 @@ export default {
           width: 480px;
           min-width: 480px;
 
-          & > h1 {
-            font-size: 36px;
+          > div {
+            > h1 {
+              font-size: 36px;
+            }
+
+            > .toggle-favorite-button {
+              height: 36px;
+            }
           }
 
           & > h2 {

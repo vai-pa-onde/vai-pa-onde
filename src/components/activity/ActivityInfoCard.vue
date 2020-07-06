@@ -4,7 +4,7 @@
       <div class="activity-info-card__content__header">
         <vpo-link outlined :href="link" text="acessar" />
         <report-modal :style="type" />
-        <toggle-favorite-button :id="id" />
+        <toggle-favorite-button :type="type" :id="id" />
       </div>
 
       <div class="activity-info-card__content__valid-until">
@@ -184,11 +184,15 @@ export default {
     min-width: 22px;
   }
 
-  @media screen and (max-width: 1025px) {
+  @media screen and (max-width: 1075px) {
     height: 275px;
 
     &__content {
       font-size: 12px;
+
+      &__header > .toggle-favorite-button {
+        display: none;
+      }
 
       & > div:first-child {
         display: block;
@@ -196,7 +200,7 @@ export default {
         & > div, & > a {
           width: 100%;
 
-          &:not(:last-child) {
+          &:first-child {
             margin-bottom: 8px;
           }
         }

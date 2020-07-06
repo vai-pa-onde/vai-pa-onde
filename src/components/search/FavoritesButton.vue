@@ -1,5 +1,5 @@
 <template>
-  <router-link :to="{ name: 'favorites' }" class="badge favorites-button">
+  <router-link :to="{ name: 'favorites' }" class="badge button favorites-button">
     <heart-icon />
     Favoritas
   </router-link>

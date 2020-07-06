@@ -8,7 +8,8 @@
     <div class="drawer-content__pagination">
       <transition :name="transitionName">
         <div key="main"  class="drawer-content__pagination__page drawer-content__pagination__page--main" v-if="!currentType">
-          <vpo-button @click="viewAbout" dark outlined text="sobre" />
+          <vpo-button @click="view('about')" dark outlined text="sobre" />
+          <favorites-button @click.native="$emit('closeDrawer')"/>
           <div class="drawer-content__pagination__page__navigators">
             <navigation-button v-for="{ id, name } in types" :key="id" :type="id" :text="name" @click="changeTypeNavigation(id)" />
             <navigation-button text="Tudo" @click="viewAll" />
@@ -64,8 +65,8 @@ export default {
       this.$router.push({ name: 'all-activities' })
       this.$emit('closeDrawer')
     },
-    viewAbout() {
-      this.$router.push({ name: 'about' })
+    view(name) {
+      this.$router.push({ name })
       this.$emit('closeDrawer')
     },
     changeTypeNavigation(type) {
@@ -155,6 +156,10 @@ export default {
 
         & > .button, & > .suggestion-modal {
           margin: 16px 28px;
+
+          &:first-child:not(:last-child) {
+            margin-bottom: 0;
+          }
         }
 
         .navigation-button {

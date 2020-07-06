@@ -31,6 +31,7 @@ export default {
   font: {
     size: 16px;
     weight: bold;
+    family: 'Play', sans-serif;
   }
 
   @media screen and (max-width: 576px) {

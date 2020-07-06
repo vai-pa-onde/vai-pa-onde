@@ -2,22 +2,14 @@
   <div class="filter">
     <current-section-indicator />
     <div>
-      <div class="filter__search-bar">
-        <div class="filter__search-bar__search">
-          <span :class="type ? `type-background type-background--${type}` : ''"/>
-          <input v-model="currentTerm" :placeholder="`Buscar em ${typeLabel.toLowerCase()}`" @keyup.enter="doSearch">
-        </div>
-        <div class="filter__search-bar__tags">
-          <tag :key="term" v-for="term in searchTerms" :text="term" dismissable @dismiss="() => removeSearchTerm(term)" />
-        </div>
-      </div>
+      <search-bar :placeholder="`Buscar em ${typeLabel.toLowerCase()}`" :type="type" />
       <activity-list :isSkeleton="loading" :activities="activities" showOptions />
     </div>
   </div>
 </template>
 
 <script>
-import { mapGetters, mapState, mapMutations } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 import typeName from '@/js/typeName'
 import subtypesByType from '@/js/subtypesByType'
 import subtypeName from '@/js/subtypeName'
@@ -25,19 +17,13 @@ import config from '@/config'
 
 export default {
   name: 'filter-list',
-  data: () => ({
-    currentTerm: ''
-  }),
   computed: {
     ...mapGetters({
       allActivities: 'search/activities',
       filterByType: 'search/filterByType',
       filterBySubtype: 'search/filterBySubtype'
     }),
-    ...mapState({
-      searchTerms: state => state.search.terms,
-      loading: state => !state.activities.loaded
-    }),
+    ...mapState({ loading: state => !state.activities.loaded }),
     type() {
       return this.$route.params.type
     },
@@ -64,21 +50,6 @@ export default {
     },
     subtypeLabel() {
       return subtypeName[this.subtype]
-    }
-  },
-  methods: {
-    ...mapMutations({ addSearchTerm: 'search/addTerm', removeSearchTerm: 'search/removeTerm' }),
-    doSearch() {
-      this.addSearchTerm(this.currentTerm)
-      this.currentTerm = ''
-    }
-  },
-  created() {
-    if (this.$route.query.search) {
-      this.$route.query.search.split(' ')
-        .map(it => it.trim())
-        .filter(it => !!it)
-        .forEach(it => this.addSearchTerm(it))
     }
   },
   beforeRouteEnter(to, from, next) {
@@ -133,54 +104,6 @@ export default {
 
   & > .separator-bar {
     margin-top: 0;
-  }
-
-  &__search-bar {
-    @extend %side-padding;
-    margin-top: 14px;
-    width: 100%;
-
-    &__search {
-      display: flex;
-      border-radius: 8px;
-      overflow: hidden;
-
-      & > span {
-        width: 5px;
-
-        &:not(.type-background) {
-          background-color: black;
-        }
-      }
-
-      & > input {
-        appearance: none;
-        outline: none;
-        border: none;
-        font-size: 16px;
-        line-height: 19px;
-        color: #777;
-        padding: 8px 8px 8px 32px;
-        flex-grow: 1;
-        background: {
-          color: white;
-          repeat: no-repeat;
-          image: url("~@/assets/search.svg");
-          size: 16px 16px;
-          position: 8px center;
-        }
-
-        &::placeholder {
-          color: #A8A8A8;
-        }
-      }
-    }
-
-    &__tags {
-      display: flex;
-      flex-wrap: wrap;
-      margin-top: 8px;
-    }
   }
 
   @include breakpoint('large') {

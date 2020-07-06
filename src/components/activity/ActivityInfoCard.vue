@@ -1,9 +1,10 @@
 <template>
   <div class="activity-info-card">
     <div class="activity-info-card__content">
-      <div>
+      <div class="activity-info-card__content__header">
         <vpo-link outlined :href="link" text="acessar" />
         <report-modal :style="type" />
+        <toggle-favorite-button :type="type" :id="id" />
       </div>
 
       <div class="activity-info-card__content__valid-until">
@@ -37,7 +38,7 @@ export default {
   },
   computed: {
     pageLink() {
-      return `https://www.vaipaonde.com.br/acao/${this.id}`
+      return `https://vaipaonde.com.br/acao/${this.id}`
     },
     whatsappLink() {
       if (isMobile()) {
@@ -82,6 +83,13 @@ export default {
     background-color: black;
     flex-grow: 1;
 
+    &__header {
+      & > .heart-icon {
+        width: 28px;
+        margin-left: auto;
+      }
+    }
+
     & > div:first-child {
       display: flex;
 
@@ -119,6 +127,21 @@ export default {
       & > .share {
         align-items: center;
         cursor: pointer;
+        margin-bottom: 0;
+        padding: 3px 24px;
+        margin-left: -24px;
+        padding-left: 24px;
+        width: calc(100% + 48px);
+        transition: background-color 0.2s, color 0.2s;
+
+        &:hover {
+          background-color: white;
+          color: black;
+
+          &::before {
+            filter: brightness(0);
+          }
+        }
 
         &::before {
           content: '';
@@ -126,6 +149,7 @@ export default {
           height: 14px;
           margin-right: 10px;
           margin-top: 1px;
+          transition: filter 0.2s;
           background: {
             repeat: no-repeat;
             size: 100% 100%;
@@ -160,11 +184,15 @@ export default {
     min-width: 22px;
   }
 
-  @media screen and (max-width: 1025px) {
+  @media screen and (max-width: 1075px) {
     height: 275px;
 
     &__content {
       font-size: 12px;
+
+      &__header > .toggle-favorite-button {
+        display: none;
+      }
 
       & > div:first-child {
         display: block;
@@ -172,7 +200,7 @@ export default {
         & > div, & > a {
           width: 100%;
 
-          &:not(:last-child) {
+          &:first-child {
             margin-bottom: 8px;
           }
         }

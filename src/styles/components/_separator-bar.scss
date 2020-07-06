@@ -1,5 +1,7 @@
 .separator-bar {
   @extend %side-padding;
+  display: flex;
+  align-items: center;
   padding-top: 12px;
   padding-bottom: 12px;
   width: 100%;

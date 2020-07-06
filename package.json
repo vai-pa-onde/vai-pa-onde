@@ -1,6 +1,6 @@
 {
   "name": "vai-pa-onde",
-  "version": "2.1.4",
+  "version": "2.2.0",
   "private": true,
   "scripts": {
     "start": "vue-cli-service serve",

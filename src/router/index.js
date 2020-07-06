@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 
 import Home from '../views/Home.vue'
 import Filter from '../views/Filter.vue'
+import Favorites from '../views/Favorites.vue'
 import ActivityDetails from '../views/ActivityDetails.vue'
 import About from '../views/About.vue'
 import NotFound from '../views/NotFound.vue'
@@ -34,6 +35,10 @@ const routes = [
     path: '/sobre',
     name: 'about',
     component: About
+  }, {
+    path: '/favoritas',
+    name: 'favorites',
+    component: Favorites
   }, {
     path: '*',
     name: '404',

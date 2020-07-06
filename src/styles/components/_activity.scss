@@ -35,14 +35,23 @@
     flex-grow: 1;
     padding: 8px 12px 14px 12px;
 
-    & > h1 {
-      word-wrap: break-word;
-      text-transform: uppercase;
-      line-height: 1.2;
-      flex-grow: 1;
-      font: {
-        size: 1em;
-        weight: bold;
+    &__header {
+      display: flex;
+      > h1 {
+        word-wrap: break-word;
+        text-transform: uppercase;
+        line-height: 1.2;
+        flex-grow: 1;
+        font: {
+          size: 1em;
+          weight: bold;
+        }
+      }
+
+      > div {
+        width: 20px;
+        min-width: 20px;
+        margin-left: 12px;
       }
     }
 

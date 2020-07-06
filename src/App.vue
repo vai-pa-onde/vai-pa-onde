@@ -11,9 +11,13 @@ import { mapActions, mapState } from 'vuex'
 export default {
   name: 'app',
   computed: mapState({ activitiesLoaded: state => state.activities.loaded }),
-  methods: mapActions({ fetchAcitivies: 'activities/fetch' }),
-  created() {
-    this.fetchAcitivies()
+  methods: mapActions({
+    fetchAcitivies: 'activities/fetch',
+    loadFavorites: 'favorites/load'
+  }),
+  async created() {
+    await this.fetchAcitivies()
+    this.loadFavorites()
   }
 }
 </script>

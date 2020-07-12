@@ -1,30 +1,27 @@
 <template>
-  <list-layout :items="activities" :isSkeleton="isSkeleton" :showOptions="showOptions">
-    <template v-slot:options>
-      <activity-sort />
-      <p>{{ isSkeleton ? 88 : activities.length }} entrada{{ activities.length > 1 ? 's' : '' }}</p>
-    </template>
-    <template v-slot:skeleton="{ index }">
-      <activity-skeleton :key="index"/>
-    </template>
-    <template v-slot:item="{ item }">
-      <activity
-        :key="item.id"
-        :id="item.id"
-        :title="item.title"
-        :brand="item.brand"
-        :type="item.type"
-        :validUntilDate="item.validUntilDate"
-      />
-    </template>
-  </list-layout>
+  <div :class="`list-layout ${items.length === 0 && !isSkeleton ? 'list-layout--not-found' : ''} ${isSkeleton ? 'list-layout--skeleton' : ''}`">
+    <div class="list-layout__container" v-if="items.length > 0 || isSkeleton">
+      <div class="list-layout__options" v-if="showOptions">
+        <slot name="options" />
+      </div>
+      <div class="list-layout__items" v-if="isSkeleton">
+        <slot name="skeleton" :index="i" v-for="i in Array(8).keys()" />
+      </div>
+      <div class="list-layout__items" v-else>
+        <slot name="item" :item="item" v-for="item in items"/>
+      </div>
+    </div>
+    <div class="list-layout__container" v-else>
+      <not-found-card>Nenhum resultado correspondente com sua pesquisa</not-found-card>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  name: 'activity-list',
+  name: 'list-layout',
   props: {
-    activities: Array,
+    items: Array,
     isSkeleton: Boolean,
     showOptions: Boolean
   }
@@ -32,7 +29,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.activity-list {
+.list-layout {
   @extend %side-padding;
   margin: 12px 0 44px 0;
 
@@ -46,7 +43,7 @@ export default {
   }
 
   &--skeleton {
-    .activity-list__options > p {
+    .list-layout__options > p {
       color: transparent;
       background-color: lightgray;
       border-radius: 5px;
@@ -76,7 +73,7 @@ export default {
     }
   }
 
-  &__activities {
+  &__items {
     display: grid;
     grid-template-columns: repeat(1, 220px);
     gap: 16px 8px;
@@ -87,7 +84,7 @@ export default {
       width: 336px;
     }
 
-    &__activities {
+    &__items {
       grid-template-columns: repeat(2, 165px);
     }
   }
@@ -106,7 +103,7 @@ export default {
       }
     }
 
-    &__activities {
+    &__items {
       gap: 40px;
       grid-template-columns: repeat(2, 235px);
     }
@@ -117,7 +114,7 @@ export default {
       width: 860px;
     }
 
-    &__activities {
+    &__items {
       grid-template-columns: repeat(3, 260px);
     }
   }
@@ -127,7 +124,7 @@ export default {
       width: 1200px;
     }
 
-    &__activities {
+    &__items {
       grid-template-columns: repeat(4, 270px);
     }
   }

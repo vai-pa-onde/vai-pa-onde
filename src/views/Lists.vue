@@ -2,10 +2,14 @@
   <div class="lists">
     <current-section-indicator />
     <div>
-      <list-layout :isSkeleton="loading" :activities="favorites" showOptions>
+      <list-layout :isSkeleton="false" :items="allLists" showOptions>
+        <template v-slot:options>
+          <h1 class="lists__header">CONFIRA AS LISTAS CRIADAS NESSE NAVEGADOR</h1>
+        </template>
         <template v-slot:skeleton="{ }">
         </template>
-        <template v-slot:item="{ }">
+        <template v-slot:item="{ item }">
+          <list-card :id="item" />
         </template>
       </list-layout>
     </div>
@@ -13,14 +17,13 @@
 </template>
 
 <script>
-import { mapGetters, mapState } from 'vuex'
+import { mapGetters } from 'vuex'
 import config from '@/config'
 
 export default {
   name: 'lists',
   computed: {
-    ...mapGetters({ favorites: 'search/favorites' }),
-    ...mapState({ loading: state => !state.activities.loaded })
+    ...mapGetters({ allLists: 'lists/getAll' })
   },
   metaInfo() {
     return {
@@ -37,7 +40,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .lists {
   display: flex;
   flex-direction: column;
@@ -45,6 +48,14 @@ export default {
   align-items: center;
   background-color: map-get($colors-util, 'light-gray');
   margin-top: 16px;
+
+  &__header {
+    text-transform: uppercase;
+    margin-top: 28px;
+    font-family: "Play";
+    // font-size: 14px;
+    font-weight: bold;
+  }
 
   & > .separator-bar {
     margin-top: 0;

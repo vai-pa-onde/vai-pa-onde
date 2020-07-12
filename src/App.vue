@@ -13,11 +13,13 @@ export default {
   computed: mapState({ activitiesLoaded: state => state.activities.loaded }),
   methods: mapActions({
     fetchAcitivies: 'activities/fetch',
-    loadFavorites: 'favorites/load'
+    loadFavorites: 'favorites/load',
+    loadLists: 'lists/load'
   }),
   async created() {
     await this.fetchAcitivies()
     this.loadFavorites()
+    this.loadLists()
   }
 }
 </script>

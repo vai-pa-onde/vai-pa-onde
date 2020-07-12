@@ -2,7 +2,7 @@
   <router-link :class="classes" :to="to">
     <div :class="`cta-card__title ${type ? `type-text type-text--${type}` : ''}`">
       <h1>{{ numberOfActivities }}</h1>
-      <span>ações</span>
+      <span>{{ numberOfActivities > 1 ? 'ações' : 'ação' }}</span>
     </div>
     <div class="cta-card__content">
       <slot name="content" />
@@ -62,6 +62,18 @@ export default {
       background-color: rgba(0, 0, 0, 0.1);
       border-radius: 4px;
       box-decoration-break: clone;
+    }
+  }
+
+  &:not(.type-background) {
+    background-color: #5F5F5F;
+
+    .cta-card__title {
+      color: black;
+    }
+
+    .cta-card__cta {
+      background-color: black;
     }
   }
 

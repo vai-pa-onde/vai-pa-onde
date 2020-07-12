@@ -1,62 +1,45 @@
 <template>
-  <cta-card :to="{ name: 'type-filter', params: { type } }" :type="type" :numberOfActivities="loading ? 88 : numberOfActivities">
-    <template slot="content">
-      <h2>{{ content.title }}</h2>
-      <span>{{ content.description }}</span>
-    </template>
-  </cta-card>
+  <router-link :class="classes" :to="to">
+    <div :class="`cta-card__title ${type ? `type-text type-text--${type}` : ''}`">
+      <h1>{{ numberOfActivities }}</h1>
+      <span>ações</span>
+    </div>
+    <div class="cta-card__content">
+      <slot name="content" />
+    </div>
+    <div class="cta-card__cta">
+      Conferir
+    </div>
+  </router-link>
 </template>
 
 <script>
 import { mapGetters, mapState } from 'vuex'
 
-const contentByType = {
-  learn: {
-    title: 'Aprender',
-    description: 'Cursos online, palestra, mentorias. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
-  },
-  participate: {
-    title: 'Participar',
-    description: 'Aqui você vai encontrar shows, lives, festivais e congressos. Tudo online, hein?'
-  },
-  do: {
-    title: 'Fazer',
-    description: 'Atividades para fazer com seus filhos, streaming e aplicativos liberados de graça. O que tá esperando?'
-  },
-  share: {
-    title: 'Compartilhar',
-    description: 'Informações sobre a pandemia, podcasts, listas, perfis do Instagram e canais do YouTube interessantes'
-  }
-}
-
 export default {
-  name: 'type-description-card',
+  name: 'cta-card',
   props: {
-    type: String
+    to: Object,
+    type: String,
+    numberOfActivities: Number
   },
   computed: {
     ...mapState({ loading: state => !state.activities.loaded }),
     ...mapGetters({ activitiesByType: 'activities/getByType' }),
     classes() {
       return {
-        'type-description-card': true,
-        'type-background': true,
-        [`type-background--${this.type}`]: true,
-        'type-description-card--loading': this.loading
+        'cta-card': true,
+        'type-background': !!this.type,
+        [`type-background--${this.type}`]: !!this.type,
+        'cta-card--loading': this.loading
       }
-    },
-    content() {
-      return contentByType[this.type]
-    },
-    numberOfActivities() {
-      return this.activitiesByType(this.type).length
     }
   }
 }
 </script>
 
 <style lang="scss">
-.type-description-card {
+.cta-card {
   display: flex;
   flex-direction: column;
   font-size: 12px;

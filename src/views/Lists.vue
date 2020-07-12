@@ -2,7 +2,12 @@
   <div class="lists">
     <current-section-indicator />
     <div>
-      <activity-list :isSkeleton="loading" :activities="favorites" showOptions />
+      <list-layout :isSkeleton="loading" :activities="favorites" showOptions>
+        <template v-slot:skeleton="{ }">
+        </template>
+        <template v-slot:item="{ }">
+        </template>
+      </list-layout>
     </div>
   </div>
 </template>
@@ -12,20 +17,20 @@ import { mapGetters, mapState } from 'vuex'
 import config from '@/config'
 
 export default {
-  name: 'favorites-list',
+  name: 'lists',
   computed: {
     ...mapGetters({ favorites: 'search/favorites' }),
     ...mapState({ loading: state => !state.activities.loaded })
   },
   metaInfo() {
     return {
-      title: 'Vai pa onde?',
+      title: 'Vai pa onde? | Minhas listas',
       meta: [
         { vmid: 'description', name: 'description', content: config.defaultDescription },
         { vmid: 'og:description', name: 'og:description', content: config.defaultDescription }
       ],
       link: [
-        { rel: 'canonical', href: 'https://vaipaonde.com.br/favoritos' }
+        { rel: 'canonical', href: 'https://vaipaonde.com.br/listas' }
       ]
     }
   }
@@ -33,7 +38,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.favorites {
+.lists {
   display: flex;
   flex-direction: column;
   flex-grow: 1;

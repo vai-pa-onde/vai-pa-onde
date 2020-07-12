@@ -14,6 +14,10 @@
       <heart-icon />
       <span class="separator-bar__main">Minhas favoritas</span>
     </div>
+    <div v-else-if="$route.name === 'lists'">
+      <list-icon />
+      <span class="separator-bar__main">Minhas listas</span>
+    </div>
     <span class="separator-bar__main" v-else>Todos os resultados</span>
   </div>
 </template>
@@ -71,17 +75,21 @@ export default {
       }
     }
 
-    & > .heart-icon {
+    > .heart-icon, > .list-icon {
+      fill: white;
       margin-bottom: -2px;
       margin-right: 6px;
       height: 12px;
+      width: 16px;
     }
   }
 
   @include breakpoint('large') {
-    & > div > .heart-icon {
-      margin-bottom: -1px;
-      height: 16px;
+    & > div {
+      > .heart-icon, > .list-icon {
+        margin-bottom: -1px;
+        height: 16px;
+      }
     }
   }
 }

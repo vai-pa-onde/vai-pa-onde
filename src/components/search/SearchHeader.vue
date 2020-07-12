@@ -110,7 +110,8 @@ export default {
       width: 100%;
 
       & > a:not(.favorites-button) {
-        display: block;
+        display: flex;
+        align-items: center;
         background-color: rgba(black, 0.25);
         text-decoration: none;
         color: black;

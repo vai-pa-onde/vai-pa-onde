@@ -1,5 +1,5 @@
 <template>
-  <cta-card class="list-card" :to="{ name: 'list-details', params: { id } }" :numberOfActivities="numberOfActivities">
+  <cta-card class="list-card" :to="{ name: 'list-details', params: { listId: id } }" :numberOfActivities="numberOfActivities">
     <template v-slot:content>
       <h2>{{ id }}</h2>
     </template>

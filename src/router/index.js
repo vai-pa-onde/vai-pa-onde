@@ -5,6 +5,7 @@ import Home from '../views/Home.vue'
 import Filter from '../views/Filter.vue'
 import Favorites from '../views/Favorites.vue'
 import Lists from '../views/Lists.vue'
+import ListDetails from '../views/ListDetails.vue'
 import ActivityDetails from '../views/ActivityDetails.vue'
 import About from '../views/About.vue'
 import NotFound from '../views/NotFound.vue'
@@ -44,6 +45,10 @@ const routes = [
     path: '/listas',
     name: 'lists',
     component: Lists
+  }, {
+    path: '/listas/:listId',
+    name: 'list-details',
+    component: ListDetails
   }, {
     path: '*',
     name: '404',

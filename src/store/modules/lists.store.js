@@ -12,7 +12,7 @@ const state = {
 const getters = {
   getAll: state => state.listIds,
   getById: state => listId => state.listById[listId],
-  getActivities: (state, _, __, rootGetters) => listId => state.listById[listId].map(id => rootGetters['activities/getById'](id))
+  getActivities: (state, _, __, rootGetters) => listId => rootGetters['search/activities'].filter(it => state.listById[listId].includes(it.id))
 }
 
 const actions = {

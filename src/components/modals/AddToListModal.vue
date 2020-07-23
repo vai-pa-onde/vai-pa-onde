@@ -1,15 +1,13 @@
 <template>
   <div class="add-to-list-modal">
-    <list-add-button @click.prevent="isModalOpen = true" :id="activityId" />
     <modal
       v-model="isModalOpen"
       title="adicionar à lista"
       action="adicionar"
       :isActionLoading="$store.state.feedback.sending"
       @confirm="send"
-      @click.prevent
     >
-      <div class="modal-content">
+      <div class="modal-content" @click.stop>
         <p>
           <b>Adicione essa ação a uma lista para mais tarde?</b> As listas ficam
           salvas e podem ser compartilhadas com outras pessoas!
@@ -18,7 +16,7 @@
         <div>
           <chooser v-model="selectedList" v-if="chooserOptions.length > 0" :options="chooserOptions" />
           <p v-else>Você não tem nenhuma lista! Deseja criar uma?</p>
-          <vpo-input v-model="newListTitle" placeholder="Nome da nova lista" />
+          <vpo-input v-model="newListTitle" placeholder="Nome da nova lista" action="criar" @actionClick="confirmListCreation" />
         </div>
       </div>
     </modal>
@@ -26,14 +24,14 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapMutations } from 'vuex'
+import eventBus from '@/js/eventBus'
+
 export default {
   name: 'add-to-list-modal',
-  props: {
-    activityId: String
-  },
   data: () => ({
     isModalOpen: false,
+    activityId: null,
     selectedList: '',
     newListTitle: ''
   }),
@@ -44,9 +42,19 @@ export default {
     }
   },
   methods: {
+    ...mapMutations({ createList: 'lists/createList' }),
+    confirmListCreation() {
+      this.createList(this.newListTitle)
+    },
     async send() {
       this.isModalOpen = false
     }
+  },
+  mounted() {
+    eventBus.$on('open-list-modal', id => {
+      this.isModalOpen = true
+      this.activityId = id
+    })
   }
 }
 </script>
@@ -65,7 +73,7 @@ export default {
     > label {
       display: block;
       font-weight: 500;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     > div {

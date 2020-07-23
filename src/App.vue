@@ -3,6 +3,8 @@
     <search-header />
     <router-view />
     <logo-footer />
+
+    <add-to-list-modal />
   </div>
 </template>
 

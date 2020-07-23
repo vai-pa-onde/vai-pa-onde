@@ -27,6 +27,15 @@ const mutations = {
     state.listIds = Object.keys(lists)
     state.listById = lists
   },
+  createList(state, listId) {
+    if (state.listById[listId]) {
+      return
+    }
+
+    state.listIds.push(listId)
+    state.listById[listId] = []
+    updateLists(state.listById)
+  },
   addToList(state, { listId, activityId }) {
     if (state.listById[listId].includes(activityId)) {
       return

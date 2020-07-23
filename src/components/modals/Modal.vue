@@ -1,6 +1,6 @@
 <template>
   <div :class="`modal ${value ? 'modal--open' : ''}`" @click.prevent="onClick">
-    <div class="modal__box" @click="modalBoxClick">
+    <div class="modal__box" @click.stop="evt => $emit('click', evt)">
       <h1 :class="`modal__box__title ${error ? 'modal__box__title--error' : ''}`">{{ title }}</h1>
       <div class="modal__box__content">
         <slot />
@@ -33,10 +33,6 @@ export default {
     }
   },
   methods: {
-    modalBoxClick(evt) {
-      evt.preventDefault()
-      evt.stopPropagation()
-    },
     onClick(evt) {
       this.$emit('click', evt)
       this.$emit('input', false)

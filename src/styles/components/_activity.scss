@@ -5,14 +5,15 @@
   cursor: pointer;
   font-size: 16px;
   color: white;
-  transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out, border-color 0.2s ease-in-out;
+  transition: box-shadow 0.2s ease-in-out, margin 0.2s ease-in-out, border-color 0.2s ease-in-out;
   border: 6px solid transparent;
   text-decoration: none;
 
   &:hover {
     border-color: white;
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.2);
-    transform: translateY(-8px);
+    margin-top: -8px;
+    margin-bottom: 8px;
   }
 
   img {
@@ -40,7 +41,7 @@
       flex-grow: 1;
       
       > h1 {
-        word-wrap: break-word;
+        word-break: break-word;
         text-transform: uppercase;
         line-height: 1.2;
         flex-grow: 1;
@@ -51,9 +52,18 @@
       }
 
       > div {
-        width: 20px;
-        min-width: 20px;
+        width: 24px;
+        min-width: 24px;
         margin-left: 12px;
+
+        & > .toggle-favorite-button {
+          width: 20px;
+          min-width: 20px;
+        }
+
+        & > *:not(:last-child) {
+          margin-bottom: 8px;
+        }
       }
     }
 

@@ -7,11 +7,11 @@
         :value="option.value"
         :id="`${_uid}__${option.value}`"
         :name="`vpo-chooser__${_uid}`"
-        :class="`type-background type-background--${option.type}`"
+        :class="option.type ? `type-background type-background--${option.type}` : ''"
         type="radio"
       />
       <label :for="`${_uid}__${option.value}`">
-        <p :class="`type-text type-text--${option.type}`">{{ option.text }}</p>
+        <p :class="option.type ? `type-text type-text--${option.type}` : ''">{{ option.text }}</p>
         <span v-if="option.label">{{ option.label }}</span>
       </label>
     </div>
@@ -52,6 +52,10 @@ export default {
       outline: none;
       transition: background-color 0.2s;
       cursor: pointer;
+
+      &:not(.type-background) {
+        background-color: black;
+      }
 
       &:not(:checked) {
         background-color: map-get($colors-util, 'light-gray');

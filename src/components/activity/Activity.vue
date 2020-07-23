@@ -10,6 +10,7 @@
         <h1>{{ title }}</h1>
         <div>
           <toggle-favorite-button :id="id" />
+          <add-to-list-modal :activityId="id" />
         </div>
       </div>
       <p>{{ brand }}</p>

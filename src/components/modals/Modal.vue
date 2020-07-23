@@ -1,6 +1,6 @@
 <template>
-  <div :class="`modal ${value ? 'modal--open' : ''}`" @click="$emit('input', false)">
-    <div class="modal__box" @click.stop>
+  <div :class="`modal ${value ? 'modal--open' : ''}`" @click.prevent="onClick">
+    <div class="modal__box" @click="modalBoxClick">
       <h1 :class="`modal__box__title ${error ? 'modal__box__title--error' : ''}`">{{ title }}</h1>
       <div class="modal__box__content">
         <slot />
@@ -31,6 +31,16 @@ export default {
         document.body.style.overflow = 'auto'
       }
     }
+  },
+  methods: {
+    modalBoxClick(evt) {
+      evt.preventDefault()
+      evt.stopPropagation()
+    },
+    onClick(evt) {
+      this.$emit('click', evt)
+      this.$emit('input', false)
+    }
   }
 }
 </script>
@@ -55,6 +65,7 @@ export default {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.2s;
+  cursor: auto;
 
   &--open {
     opacity: 1;
@@ -69,6 +80,7 @@ export default {
     border-top-left-radius: 12px;
     border-top-right-radius: 12px;
     overflow: hidden;
+    cursor: auto;
 
     &__title {
       padding: 14px 0;

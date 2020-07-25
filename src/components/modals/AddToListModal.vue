@@ -19,7 +19,7 @@
           <vpo-input
             v-model="newListTitle"
             placeholder="Nome da nova lista"
-            action="criar"
+            :action="newListTitle.length !== 0 ? 'criar' : null"
             :label="`${newListTitle.length}/30`"
             :maxLength="30"
             @actionClick="confirmListCreation"
@@ -43,9 +43,13 @@ export default {
     newListTitle: ''
   }),
   computed: {
-    ...mapGetters({ lists: 'lists/getAll' }),
+    ...mapGetters({ lists: 'lists/getAll', getActivities: 'lists/getById' }),
     chooserOptions() {
-      return this.lists.map(it => ({ value: it, text: it }))
+      return this.lists.map(it => ({
+        value: it,
+        text: it,
+        disabled: this.getActivities(it).includes(this.activityId)
+      }))
     }
   },
   methods: {

@@ -28,12 +28,13 @@ const mutations = {
     state.listById = lists
   },
   createList(state, listId) {
-    if (state.listById[listId]) {
+    const id = listId.trim().toLowerCase()
+    if (state.listById[id]) {
       return
     }
 
-    state.listIds.push(listId)
-    state.listById[listId] = []
+    state.listIds.push(id)
+    state.listById[id] = []
     updateLists(state.listById)
   },
   addToList(state, { listId, activityId }) {

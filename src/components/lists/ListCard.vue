@@ -26,6 +26,7 @@ export default {
 .list-card {
   h2 {
     margin-bottom: 6rem;
+    line-height: 1.25;
   }
 }
 </style>

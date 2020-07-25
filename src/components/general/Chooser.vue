@@ -3,8 +3,9 @@
     <div :class="{ 'chooser__option': true, 'chooser__option--small': !option.label }" :key="i" v-for="(option, i) in options">
       <input
         @input="$emit('input', option.value)"
-        :checked="i === 0 ? 'checked' : null"
+        :checked="option.value === value ? 'checked' : null"
         :value="option.value"
+        :disabled="option.disabled"
         :id="`${_uid}__${option.value}`"
         :name="`vpo-chooser__${_uid}`"
         :class="option.type ? `type-background type-background--${option.type}` : ''"
@@ -22,10 +23,21 @@
 export default {
   name: 'chooser',
   props: {
-    options: Array
+    options: Array,
+    value: String
+  },
+  watch: {
+    options: 'filterNotDisabled'
+  },
+  methods: {
+    filterNotDisabled() {
+      const firstNotDisabled = this.options.find(it => !it.disabled)
+      console.log(firstNotDisabled)
+      this.$emit('input', firstNotDisabled ? firstNotDisabled.value : null)
+    }
   },
   mounted() {
-    this.$emit('input', this.options[0].value)
+    this.filterNotDisabled()
   }
 }
 </script>
@@ -55,6 +67,10 @@ export default {
 
       &:not(.type-background) {
         background-color: black;
+      }
+
+      &:disabled + label {
+        text-decoration: line-through;
       }
 
       &:not(:checked) {

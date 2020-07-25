@@ -42,11 +42,15 @@ export default {
     }
   },
   methods: {
-    ...mapMutations({ createList: 'lists/createList' }),
+    ...mapMutations({
+      createList: 'lists/createList',
+      addToList: 'lists/addToList'
+    }),
     confirmListCreation() {
       this.createList(this.newListTitle)
     },
     async send() {
+      this.addToList({ listId: this.selectedList, activityId: this.activityId })
       this.isModalOpen = false
     }
   },

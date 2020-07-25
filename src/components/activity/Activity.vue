@@ -10,7 +10,7 @@
         <h1>{{ title }}</h1>
         <div>
           <toggle-favorite-button :id="id" />
-          <list-add-button @click.prevent="openListModal" />
+          <list-add-button />
         </div>
       </div>
       <p>{{ brand }}</p>
@@ -22,8 +22,6 @@
 </template>
 
 <script>
-import eventBus from '@/js/eventBus'
-
 export default {
   name: 'activity',
   props: {
@@ -39,11 +37,6 @@ export default {
       const month = (this.validUntilDate.getMonth() + 1).toString().padStart(2, '0')
 
       return `${day}.${month}`
-    }
-  },
-  methods: {
-    openListModal() {
-      eventBus.$emit('open-list-modal', this.id)
     }
   }
 }

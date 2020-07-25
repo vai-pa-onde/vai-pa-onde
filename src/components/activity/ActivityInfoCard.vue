@@ -5,6 +5,7 @@
         <vpo-link outlined :href="link" text="acessar" />
         <report-modal :style="type" />
         <toggle-favorite-button :type="type" :id="id" />
+        <list-add-button :id="id" />
       </div>
 
       <div class="activity-info-card__content__valid-until">
@@ -84,9 +85,14 @@ export default {
     flex-grow: 1;
 
     &__header {
-      & > .heart-icon {
+      > .heart-icon {
         width: 28px;
         margin-left: auto;
+      }
+
+      > .list-add-button {
+        width: 36px;
+        margin-left: 16px;
       }
     }
 
@@ -184,13 +190,13 @@ export default {
     min-width: 22px;
   }
 
-  @media screen and (max-width: 1075px) {
+  @media screen and (max-width: 1150px) {
     height: 275px;
 
     &__content {
       font-size: 12px;
 
-      &__header > .toggle-favorite-button {
+      &__header > .toggle-favorite-button, &__header > .list-add-button {
         display: none;
       }
 

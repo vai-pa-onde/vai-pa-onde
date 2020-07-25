@@ -2,7 +2,7 @@
   <router-link :class="classes" :to="to">
     <div :class="`cta-card__title ${type ? `type-text type-text--${type}` : ''}`">
       <h1>{{ numberOfActivities }}</h1>
-      <span>{{ numberOfActivities > 1 ? 'ações' : 'ação' }}</span>
+      <span>{{ numberOfActivities === 1 ? 'ação' : 'ações' }}</span>
     </div>
     <div class="cta-card__content">
       <slot name="content" />

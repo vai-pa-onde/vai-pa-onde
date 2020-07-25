@@ -2,7 +2,7 @@
   <div class="list-details">
     <current-section-indicator />
     <div>
-      <search-bar :placeholder="`Buscar em ${listId}`" type="all" />
+      <search-bar :placeholder="`Buscar em ${listId}`" />
       <activity-list :isSkeleton="loading" :activities="activities" showOptions />
     </div>
   </div>

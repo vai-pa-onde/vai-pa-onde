@@ -7,7 +7,10 @@
           <div>
             <div>
               <h1>{{ activity.title }}</h1>
-              <toggle-favorite-button :type="activity.type" :id="activity.id" />
+              <div class="options">
+                <toggle-favorite-button :type="activity.type" :id="activity.id" />
+                <list-add-button :id="activity.id" />
+              </div>
             </div>
             <h2>{{ activity.brand }}</h2>
             <subtype-badge :type="activity.type" :subtype="activity.subtype" />
@@ -191,16 +194,33 @@ export default {
             }
           }
 
-          > .toggle-favorite-button {
+          > .options {
+            display: flex;
+            flex-direction: column;
             width: 28px;
-            height: 46px;
+            min-width: 28px;
             margin-left: auto;
-            stroke-width: 25px;
 
-            &:not(.toggle-favorite-button--active) {
-              stroke: black;
+            > .toggle-favorite-button {
+              stroke-width: 25px;
+
+              &:not(.toggle-favorite-button--active) {
+                stroke: black;
+              }
+            }
+
+            > .list-add-button {
+              fill: black;
+              cursor: pointer;
+            }
+
+            > .toggle-favorite-button, > .list-add-button {
+              width: 100%;
+              height: 46px;
+              margin-left: auto;
             }
           }
+
         }
 
         & > h2 {
@@ -279,13 +299,13 @@ export default {
     }
   }
 
-  @media screen and (min-width: 1076px) {
+  @media screen and (min-width: 1151px) {
     &__content__info > div:first-child > div {
       > h1 {
         margin-right: 0;
       }
 
-      > .toggle-favorite-button {
+      > .options {
         display: none;
       }
     }
@@ -303,7 +323,7 @@ export default {
               font-size: 36px;
             }
 
-            > .toggle-favorite-button {
+            > .options > .toggle-favorite-button, > .options > .list-add-button {
               height: 36px;
             }
           }

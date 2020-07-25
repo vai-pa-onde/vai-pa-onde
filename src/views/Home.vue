@@ -15,6 +15,10 @@
         <type-description-card :key="type" v-for="type in types" :type="type" />
       </div>
       <vpo-button @click="$router.push({ name: 'all-activities' })" dark text="ver todos" />
+      <router-link :to="{ name: 'lists' }" dark class="badge button button--dark button--outlined">
+        <list-icon />
+        minhas listas
+      </router-link>
     </div>
   </div>
 </template>
@@ -57,6 +61,7 @@ export default {
   &__content {
     @extend %side-padding;
     padding-top: 18px;
+    padding-bottom: 48px;
     background-color: map-get($colors-util, 'light-gray');
     flex-grow: 1;
 
@@ -77,9 +82,20 @@ export default {
       gap: 8px;
     }
 
-    & > .vpo-button {
+    & > .button {
       margin: 24px 16px;
-      width: calc(100% - 32px)
+      width: calc(100% - 32px);
+
+      > .list-icon {
+        height: .9rem;
+        margin-right: 12px;
+        margin-left: -12px;
+        transition: 0.3s fill;
+      }
+
+      &:hover > .list-icon {
+        fill: white;
+      }
     }
   }
 
@@ -113,7 +129,7 @@ export default {
         gap: 16px;
       }
 
-      & > .vpo-button {
+      & > .button {
         margin: 24px auto;
         max-width: 300px;
       }

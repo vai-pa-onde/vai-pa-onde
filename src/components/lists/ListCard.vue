@@ -24,6 +24,8 @@ export default {
 
 <style lang="scss">
 .list-card {
-  min-height: 275px;
+  h2 {
+    margin-bottom: 6rem;
+  }
 }
 </style>

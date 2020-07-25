@@ -16,7 +16,14 @@
         <div>
           <chooser v-model="selectedList" v-if="chooserOptions.length > 0" :options="chooserOptions" />
           <p v-else>Você não tem nenhuma lista! Deseja criar uma?</p>
-          <vpo-input v-model="newListTitle" placeholder="Nome da nova lista" action="criar" @actionClick="confirmListCreation" />
+          <vpo-input
+            v-model="newListTitle"
+            placeholder="Nome da nova lista"
+            action="criar"
+            :label="`${newListTitle.length}/30`"
+            :maxLength="30"
+            @actionClick="confirmListCreation"
+          />
         </div>
       </div>
     </modal>
@@ -83,6 +90,10 @@ export default {
     > div {
       margin: 0 auto;
       max-width: 400px;
+    }
+
+    .vpo-input input {
+      font-size: 0.9rem;
     }
   }
 }

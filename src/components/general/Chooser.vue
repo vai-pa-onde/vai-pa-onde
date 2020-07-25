@@ -75,6 +75,7 @@ export default {
       margin-left: 6px;
       cursor: pointer;
       height: 100%;
+      width: 100%;
       justify-content: center;
 
       & > p, & > span {

@@ -11,8 +11,9 @@ export default {
     id: String
   },
   methods: {
-    openModal() {
+    openModal(evt) {
       eventBus.$emit('open-list-modal', this.id)
+      this.$emit('click', evt)
     }
   }
 }

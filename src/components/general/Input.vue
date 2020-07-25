@@ -1,7 +1,7 @@
 <template>
   <div class="vpo-input">
     <div class="vpo-input__field">
-      <input v-model="inputValue" :placeholder="placeholder + (optional ? ' (opcional)' : '')" :required="!optional" />
+      <input v-model="inputValue" :maxlength="maxLength" :placeholder="placeholder + (optional ? ' (opcional)' : '')" :required="!optional" />
       <div class="vpo-input__field__action" v-if="action" @click="$emit('actionClick')">{{ action }}</div>
     </div>
     <p class="vpo-input__label" v-if="label">{{ label }}</p>
@@ -15,6 +15,7 @@ export default {
     placeholder: String,
     label: String,
     action: String,
+    maxLength: Number,
     optional: Boolean,
     value: String
   },
@@ -73,6 +74,7 @@ export default {
 
       font: {
         size: 10px;
+        weight: 900;
         family: 'Play', sans-serif
       }
     }

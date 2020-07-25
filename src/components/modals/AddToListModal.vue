@@ -14,7 +14,7 @@
         </p>
         <label>Selecionar lista</label>
         <div>
-          <chooser v-model="selectedList" v-if="chooserOptions.length > 0" :options="chooserOptions" />
+          <chooser ref="chooser" v-model="selectedList" v-if="chooserOptions.length > 0" :options="chooserOptions" />
           <p v-else>Você não tem nenhuma lista! Deseja criar uma?</p>
           <vpo-input
             v-model="newListTitle"
@@ -59,6 +59,10 @@ export default {
     }),
     confirmListCreation() {
       this.createList(this.newListTitle)
+      this.$nextTick(() => {
+        this.selectedList = this.newListTitle
+        this.newListTitle = ''
+      })
     },
     async send() {
       this.addToList({ listId: this.selectedList, activityId: this.activityId })

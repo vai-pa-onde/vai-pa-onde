@@ -31,9 +31,13 @@ export default {
   },
   methods: {
     filterNotDisabled() {
-      const firstNotDisabled = this.options.find(it => !it.disabled)
-      console.log(firstNotDisabled)
-      this.$emit('input', firstNotDisabled ? firstNotDisabled.value : null)
+      const notDisabled = this.options.filter(it => !it.disabled)
+
+      if (notDisabled.includes(this.value)) {
+        return
+      }
+
+      this.$emit('input', notDisabled.length > 0 ? notDisabled[0].value : '')
     }
   },
   mounted() {

@@ -25,6 +25,9 @@ export default {
   watch: {
     inputValue(val) {
       this.$emit('input', val)
+    },
+    value(val) {
+      this.inputValue = val
     }
   },
   created() {

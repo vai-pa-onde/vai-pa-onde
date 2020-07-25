@@ -33,8 +33,12 @@ const mutations = {
       return
     }
 
-    state.listIds.push(id)
+    const listIds = state.listIds
+    listIds.push(id)
+
     state.listById[id] = []
+    state.listIds = Object.assign([], listIds)
+
     updateLists(state.listById)
   },
   addToList(state, { listId, activityId }) {
@@ -42,7 +46,11 @@ const mutations = {
       return
     }
 
-    state.listById[listId].push(activityId)
+    const activities = state.listById[listId]
+    activities.push(activityId)
+    state.listById[listId] = Object.assign([], activities)
+    state.listById = Object.assign({}, state.listById)
+
     updateLists(state.listById)
   },
   removeFromList(state, { listId, activityId }) {

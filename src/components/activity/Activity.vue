@@ -10,7 +10,7 @@
         <h1>{{ title }}</h1>
         <div>
           <toggle-favorite-button :id="id" />
-          <list-add-button @click.prevent />
+          <list-add-button @click.prevent :id="id" />
         </div>
       </div>
       <p>{{ brand }}</p>

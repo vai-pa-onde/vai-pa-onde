@@ -6,6 +6,7 @@ import Filter from '../views/Filter.vue'
 import Favorites from '../views/Favorites.vue'
 import Lists from '../views/Lists.vue'
 import ListDetails from '../views/ListDetails.vue'
+import SharedListDetails from '../views/SharedListDetails.vue'
 import ActivityDetails from '../views/ActivityDetails.vue'
 import About from '../views/About.vue'
 import NotFound from '../views/NotFound.vue'
@@ -49,6 +50,10 @@ const routes = [
     path: '/listas/:listId',
     name: 'list-details',
     component: ListDetails
+  }, {
+    path: '/lista',
+    name: 'shared-list-details',
+    component: SharedListDetails
   }, {
     path: '*',
     name: '404',

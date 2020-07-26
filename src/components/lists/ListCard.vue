@@ -1,7 +1,11 @@
 <template>
-  <cta-card class="list-card" :to="{ name: 'list-details', params: { listId: id } }" :numberOfActivities="numberOfActivities">
+  <cta-card class="list-card" :to="{ name: 'list-details', params: { listId: id } }" :numberOfActivities="listActivities.length">
     <template v-slot:content>
       <h2>{{ id }}</h2>
+      <div class="list-card__share" @click.prevent="copyToClipboard">
+        <img src="@/assets/link.svg" alt />
+        compartilhar lista
+      </div>
     </template>
   </cta-card>
 </template>
@@ -15,8 +19,27 @@ export default {
   },
   computed: {
     ...mapGetters({ listById: 'lists/getById' }),
-    numberOfActivities() {
-      return this.listById(this.id).length
+    listActivities() {
+      return this.listById(this.id)
+    }
+  },
+  methods: {
+    copyToClipboard() {
+      const list = JSON.stringify({ name: this.id, activities: this.listActivities })
+      const listToken = btoa(list)
+
+      const el = document.createElement('textarea')
+      el.value = `https://vaipaonde.com.br/lista?list=${listToken}`
+      el.setAttribute('readonly', '')
+      el.style.position = 'absolute'
+      el.style.left = '-9999px'
+
+      document.body.appendChild(el)
+      el.select()
+      document.execCommand('copy')
+
+      document.body.removeChild(el)
+      this.$toasted.show('Link da lista copiado!')
     }
   }
 }
@@ -25,8 +48,26 @@ export default {
 <style lang="scss">
 .list-card {
   h2 {
-    margin-bottom: 6rem;
+    margin-bottom: 3rem;
     line-height: 1.25;
+  }
+
+  &__share {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    text-transform: uppercase;
+    font: {
+      size: 0.9rem;
+      weight: 900;
+      family: 'Play', sans-serif
+    }
+
+    > img {
+      height: .8rem;
+      margin-right: 6px;
+    }
   }
 }
 </style>

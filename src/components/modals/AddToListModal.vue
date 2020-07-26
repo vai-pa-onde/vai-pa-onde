@@ -80,6 +80,8 @@ export default {
 
 <style lang="scss">
 .add-to-list-modal {
+  display: contents;
+
   b {
     font-weight: bold;
   }

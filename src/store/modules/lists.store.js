@@ -4,6 +4,10 @@ function updateLists(listById) {
   localStorage.setItem(LISTS_KEY, JSON.stringify(listById))
 }
 
+function filterActivities(rootGetters, activities) {
+  return rootGetters['search/activities'].filter(it => activities.includes(it.id))
+}
+
 const state = {
   listIds: [],
   listById: {}
@@ -12,7 +16,8 @@ const state = {
 const getters = {
   getAll: state => state.listIds,
   getById: state => listId => state.listById[listId],
-  getActivities: (state, _, __, rootGetters) => listId => rootGetters['search/activities'].filter(it => state.listById[listId].includes(it.id))
+  getActivities: (state, _, __, rootGetters) => listId => filterActivities(rootGetters, state.listById[listId]),
+  getSharedListActivities: (_, __, ___, rootGetters) => activities => filterActivities(rootGetters, activities)
 }
 
 const actions = {

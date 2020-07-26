@@ -18,6 +18,10 @@
       <list-icon />
       <span class="separator-bar__main">{{ this.$route.params.listId }}</span>
     </div>
+    <div v-else-if="$route.name === 'shared-list-details'">
+      <list-icon />
+      <span class="separator-bar__main">Lista compartilhada</span>
+    </div>
     <div v-else-if="$route.name === 'lists'">
       <list-icon />
       <span class="separator-bar__main">Minhas listas</span>

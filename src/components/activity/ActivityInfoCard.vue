@@ -65,6 +65,7 @@ export default {
       document.execCommand('copy')
 
       document.body.removeChild(el)
+      this.$toasted.show('Link copiado!')
     }
   }
 }

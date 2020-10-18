@@ -70,7 +70,7 @@ const actions = {
       await http.get(`api.php?key=e44fb42bc48e8bbba0d6f432a248974c72e66&short=${vpoUrl}&name=${name}`)
     } catch {}
 
-    commit('assignUrl', { listId, url: `https://cutt.ly/${name}` })
+    commit('assignUrl', { listId, url: `https://vaipaonde.com.br/lista-compartilhada/${name}` })
   }
 }
 

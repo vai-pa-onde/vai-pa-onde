@@ -68,6 +68,11 @@
     <script src="https://www.gstatic.com/firebasejs/7.6.0/firebase-analytics.js"></script>
 
     <script>
+      const matches = window.location.href.match(/.*\/lista-compartilhada\/([\w\d]*)\\?\??.*/)
+      if (matches) {
+        window.location.replace('https://cutt.ly/' + matches[1])
+      }
+
       const firebaseConfig = {
         apiKey: "AIzaSyB3B8U6KmujmH5SmaEALrkwY1qve93g0A8",
         authDomain: "vai-pa-onde.firebaseapp.com",

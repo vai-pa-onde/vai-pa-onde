@@ -3,7 +3,7 @@
     <div class="search-header__logo">
       <drawer v-model="isDrawerOpen"/>
       <logo />
-      <p>O portal com <b>tudo para você ficar em casa.</b></p>
+      <p>O portal com <b>tudo para você aprender em casa.</b></p>
 
       <div class="search-header__logo__links">
         <vpo-button @click="$router.push({ name: 'about' })" dark outlined text="sobre" />
@@ -12,7 +12,7 @@
       </div>
     </div>
     <div class="search-header__navigation">
-      <dropdown :key="type" v-for="type in types" class="badge" :type="type" :selected="selectedSubtype" />
+      <dropdown :key="type" v-for="type in types" class="badge" :type="type" :selected="selected" />
       <div class="search-header__navigation__links">
         <router-link :to="{ name: 'all-activities' }" class="badge">Tudo</router-link>
         <favorites-button />
@@ -36,8 +36,11 @@ export default {
     types() {
       return Object.keys(typeName)
     },
-    selectedSubtype() {
-      return this.$route.params.subtype
+    selected() {
+      return {
+        type: this.$route.params.type,
+        subtype: this.$route.params.subtype || 'all'
+      }
     }
   },
   methods: {
@@ -125,7 +128,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 975px) {
+  @media screen and (max-width: 990px) {
     &__logo__links {
       .favorites-button {
         display: flex;
@@ -142,7 +145,7 @@ export default {
     }
   }
 
-  @media screen and (max-width: 975px) {
+  @media screen and (max-width: 990px) {
     &__logo {
       flex-wrap: wrap;
 

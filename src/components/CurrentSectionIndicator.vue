@@ -34,7 +34,7 @@
 import { mapGetters } from 'vuex'
 import typeName from '@/js/typeName'
 import subtypeName from '@/js/subtypeName'
-import subtypesByType from '@/js/subtypesByType'
+import subtypes from '@/js/subtypes'
 
 export default {
   name: 'current-section-indicator',
@@ -51,7 +51,7 @@ export default {
         return null
       }
 
-      return this.$route.params.subtype || (this.activity ? this.activity.subtype : null) || subtypesByType[this.type].slice(-1)[0]
+      return this.$route.params.subtype || (this.activity ? this.activity.subtype : null) || subtypes[subtypes.length - 1]
     },
     typeLabel() {
       return typeName[this.type].toLowerCase()

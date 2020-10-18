@@ -1,9 +1,9 @@
 <template>
   <div class="colors-stripe">
-    <div class="type-background type-background--learn" />
-    <div class="type-background type-background--participate" />
-    <div class="type-background type-background--do" />
-    <div class="type-background type-background--share" />
+    <div class="type-background type-background--free" />
+    <div class="type-background type-background--certificated" />
+    <div class="type-background type-background--events" />
+    <div class="type-background type-background--contents" />
   </div>
 </template>
 

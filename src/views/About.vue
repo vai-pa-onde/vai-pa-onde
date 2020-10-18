@@ -8,18 +8,19 @@
         <div class="about__main__content__text">
           <p>
             Como você tem lidado com <b>tantas informações e conteúdos online?</b><br/>
-            Surtando ou virando um mestre yogi?
+            Tá afim de aproveitar um tempinho em casa para aprender uma coisa ou para se especializar em algo? E quer fazer isso sem gastar um centavo?
           </p>
+
+          <h2>Estamos aqui pra isso!</h2>
           <p>
-            O portal <b>Vai pa Onde</b> está organizando tudo (ou quase) do que está rolando durante a pandemia de COVID-19.
-            Um luxo né, amores? Tem <b>cursos</b> pra vó hiperativa, <b>eventos</b> pro tio vida louca,
-            <b>conteúdo</b> pro crush desesperado e <b>produtos</b> pra amiga aposentada!
+            O portal <b>Vai pa Onde</b> está organizando todos (ou quase todos) os cursos onlines e gratuitos que encontramos na internet!
+            Um luxo né, amores? Tem <b>cursos</b> profissionais de marketing, pra quem quer aprender a desenvolver e até pra quem sempre quis aprender a desenhar!
           </p>
 
           <h2>Quer nos ajudar?</h2>
           <p>
-            Somos uma iniciativa coletiva. Se você conhece ou promove alguma ação, conteúdo, evento ou produto que
-            colabore para a quarentena da pandemia de COVID-19, <suggestion-modal text />.
+            Somos uma iniciativa coletiva. Você conhece ou oferece algum curso online, canal do youtube ou podcast
+            que colabore para o aprendizado e compartilhamento de conhecimento? <suggestion-modal text />.
           </p>
           <p>
             Não é pra alienar, nem surtar! Vai pa onde? #Ficaemcasa e vem com a gente!

@@ -1,5 +1,5 @@
 import config from '@/config'
-import http from '../http'
+import { googleClient as http } from '../http'
 
 const spreadsheetId = '1NkJy0tkkY0jFT5LvqGdACKOj-afefbIm1k186KBrBbA'
 const apiKey = config.googleApiKey
@@ -45,7 +45,7 @@ const state = {
 const getters = {
   getById: state => id => state.allActivities.find(it => it.id === id),
   getByType: state => type => state.allActivities.filter(it => it.type === type),
-  getBySubtype: state => subtype => state.allActivities.filter(it => it.subtype === subtype),
+  getBySubtype: state => (type, subtype) => state.allActivities.filter(it => it.type === type && it.subtype === subtype),
   recommendations: state => activity => findRecommendations(state.allActivities, activity)
 }
 
@@ -53,7 +53,7 @@ const actions = {
   async fetch({ commit }) {
     try {
       const csv = await http
-        .get(`/v4/spreadsheets/${spreadsheetId}/values/activities?key=${apiKey}`)
+        .get(`/v4/spreadsheets/${spreadsheetId}/values/activities_v2?key=${apiKey}`)
         .then(data => data.json())
 
       const headers = csv.values[0]

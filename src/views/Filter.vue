@@ -11,7 +11,7 @@
 <script>
 import { mapGetters, mapState } from 'vuex'
 import typeName from '@/js/typeName'
-import subtypesByType from '@/js/subtypesByType'
+import subtypes from '@/js/subtypes'
 import subtypeName from '@/js/subtypeName'
 import config from '@/config'
 
@@ -28,11 +28,11 @@ export default {
       return this.$route.params.type
     },
     subtype() {
-      return this.$route.params.subtype || subtypesByType[this.type].slice(-1)[0]
+      return this.$route.params.subtype || subtypes[subtypes.length - 1]
     },
     activities() {
       if (this.$route.params.subtype) {
-        return this.filterBySubtype(this.subtype)
+        return this.filterBySubtype(this.type, this.subtype)
       }
 
       if (this.$route.params.type) {

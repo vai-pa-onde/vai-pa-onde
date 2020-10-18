@@ -1,6 +1,7 @@
 <template>
   <router-link :class="classes" :to="to">
     <div :class="`cta-card__title ${type ? `type-text type-text--${type}` : ''}`">
+      <h2 v-html="title" v-if="title" />
       <h1>{{ numberOfActivities }}</h1>
       <span>{{ numberOfActivities === 1 ? 'ação' : 'ações' }}</span>
     </div>
@@ -21,7 +22,8 @@ export default {
   props: {
     to: Object,
     type: String,
-    numberOfActivities: Number
+    numberOfActivities: Number,
+    title: String
   },
   computed: {
     ...mapState({ loading: state => !state.activities.loaded }),
@@ -78,8 +80,6 @@ export default {
   }
 
   &__title {
-    display: flex;
-    align-items: baseline;
     background-color: rgba(white, 0.75);
     padding: 8px;
 
@@ -89,9 +89,23 @@ export default {
       weight: bold;
     }
 
-    & > h1 {
-      letter-spacing: -2px;
+    & > h2 {
+      font-size: 0.5em;
       line-height: 1;
+      height: 2em;
+      text-transform: uppercase;
+      font-weight: 500;
+      margin-bottom: 2px;
+
+      & > b {
+        font-weight: bold;
+      }
+    }
+
+    & > h1 {
+      display: inline-block;
+      letter-spacing: -2px;
+      line-height: 0.7;
     }
 
     & > span {
@@ -102,6 +116,8 @@ export default {
   }
 
   &__content {
+    display: flex;
+    flex-direction: column;
     color: white;
     font-size: 1em;
     line-height: 1.35;
@@ -139,9 +155,16 @@ export default {
     font-size: 16px;
     border-width: 6px;
 
-    &__title > span {
-      font-size: 0.6em;
-      margin-left: 8px;
+    &__title {
+      & > h2 {
+        font-size: 0.4em;
+        margin-bottom: 0px;
+      }
+
+      span {
+        font-size: 0.6em;
+        margin-left: 8px;
+      }
     }
   }
 
@@ -150,6 +173,10 @@ export default {
 
     &__title {
       font-size: 60px;
+
+      & > h2 {
+        font-size: 0.3em;
+      }
 
       & > span {
         font-size: 0.4em;
@@ -166,6 +193,10 @@ export default {
 
     &__title {
       font-size: 100px;
+
+      & > h2 {
+        margin-bottom: -4px;
+      }
 
       & > h1 {
         letter-spacing: -6px;

@@ -2,7 +2,7 @@
   <cta-card class="list-card" :to="{ name: 'list-details', params: { listId: id } }" :numberOfActivities="listActivities.length">
     <template v-slot:content>
       <h2>{{ id }}</h2>
-      <div class="list-card__share" @click.prevent="copyToClipboard">
+      <div class="list-card__share" @click.prevent="shareList">
         <img src="@/assets/link.svg" alt />
         compartilhar lista
       </div>
@@ -11,25 +11,30 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'list-card',
   props: {
     id: String
   },
   computed: {
-    ...mapGetters({ listById: 'lists/getById' }),
+    ...mapGetters({ listById: 'lists/getById', sharingDataById: 'lists/getSharingData' }),
     listActivities() {
       return this.listById(this.id)
+    },
+    sharingData() {
+      return this.sharingDataById(this.id)
     }
   },
   methods: {
-    copyToClipboard() {
-      const list = JSON.stringify({ name: this.id, activities: this.listActivities })
-      const listToken = btoa(list)
+    ...mapActions({ createUrl: 'lists/createUrl' }),
+    async shareList() {
+      if (!this.sharingData.url) {
+        await this.createUrl(this.id)
+      }
 
       const el = document.createElement('textarea')
-      el.value = `https://vaipaonde.com.br/lista?list=${listToken}`
+      el.value = this.sharingData.url
       el.setAttribute('readonly', '')
       el.style.position = 'absolute'
       el.style.left = '-9999px'
@@ -50,6 +55,7 @@ export default {
   h2 {
     margin-bottom: 3rem;
     line-height: 1.25;
+    flex-grow: 1;
   }
 
   &__share {

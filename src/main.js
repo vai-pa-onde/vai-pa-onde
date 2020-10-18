@@ -11,7 +11,7 @@ Vue.use(components)
 Vue.use(VueMeta)
 Vue.use(Toasted, {
   duration: 5000,
-  position: 'bottom-left'
+  position: 'bottom-right'
 })
 
 Vue.config.productionTip = false

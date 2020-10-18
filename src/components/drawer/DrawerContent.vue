@@ -33,7 +33,7 @@
 </template>
 
 <script>
-import subtypesByType from '@/js/subtypesByType'
+import subtypes from '@/js/subtypes'
 import subtypeName from '@/js/subtypeName'
 import typeName from '@/js/typeName'
 
@@ -54,7 +54,7 @@ export default {
       return Object.entries(typeName).map(it => ({ id: it[0], name: it[1] }))
     },
     subtypes() {
-      return subtypesByType[this.currentType].map(subtype => ({ id: subtype, name: subtypeName[subtype] }))
+      return subtypes.map(subtype => ({ id: subtype, name: subtypeName[subtype] }))
     },
     typeName() {
       return typeName[this.currentType]
@@ -74,7 +74,7 @@ export default {
       this.currentType = type
     },
     changeSubtypeNavigation(subtype) {
-      if (subtype.includes('all')) {
+      if (subtype === 'all') {
         this.$router.push({ name: 'type-filter', params: { type: this.currentType } })
       } else {
         this.$router.push({ name: 'subtype-filter', params: { type: this.currentType, subtype } })

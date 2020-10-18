@@ -22,7 +22,7 @@ export default class HttpClient {
 
   _createHeaders() {
     let headers = new Headers({
-      'Content-Type': 'application/json'
+      // 'Content-Type': 'application/json'
     })
 
     return headers

@@ -1,6 +1,6 @@
 export default {
-  learn: 'Aprender',
-  participate: 'Participar',
-  do: 'Fazer',
-  share: 'Compartilhar'
+  free: 'Cursos Livres',
+  certificated: 'C/ certificado',
+  events: 'Eventos',
+  contents: 'Conteúdos'
 }

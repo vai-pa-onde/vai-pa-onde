@@ -9,7 +9,7 @@
       <div
         :key="option.id"
         v-for="option in options"
-        :class="{ 'option': true, 'option--selected': selected === option.id }"
+        :class="{ 'option': true, 'option--selected': selected.type === type && selected.subtype === option.id }"
         @click="() => set(option.id)"
       >
         {{ option.name }}
@@ -21,13 +21,13 @@
 <script>
 import typeName from '@/js/typeName'
 import subtypeName from '@/js/subtypeName'
-import subtypesByType from '@/js/subtypesByType'
+import subtypes from '@/js/subtypes'
 
 export default {
   name: 'dropdown',
   props: {
     type: String,
-    selected: String
+    selected: Object
   },
   data: () => ({
     isOpen: false
@@ -37,7 +37,7 @@ export default {
       return typeName[this.type]
     },
     options() {
-      return subtypesByType[this.type].map(it => ({ id: it, name: subtypeName[it] }))
+      return subtypes.map(it => ({ id: it, name: subtypeName[it] }))
     }
   },
   methods: {
@@ -92,21 +92,22 @@ export default {
   position: relative;
   cursor: pointer;
   width: min-content;
-  font-size: 16px;
+  white-space: nowrap;
+  font-size: 12px;
 
-  &--learn {
+  &--free {
     @include dropdown-style('yellow');
   }
 
-  &--participate {
+  &--certificated {
     @include dropdown-style('pink');
   }
 
-  &--do {
+  &--events {
     @include dropdown-style('teal');
   }
 
-  &--share {
+  &--contents {
     @include dropdown-style('red');
   }
 
@@ -154,6 +155,10 @@ export default {
         font-weight: bold;
       }
     }
+  }
+
+  @include breakpoint('large') {
+    font-size: 16px;
   }
 }
 </style>

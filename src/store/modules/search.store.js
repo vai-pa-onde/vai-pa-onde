@@ -52,7 +52,7 @@ const getters = {
   activities: (state, _, rootState, __) => search(state, rootState.activities.allActivities),
   favorites: (state, _, rootState, __) => search(state, rootState.activities.allActivities).filter(it => rootState.favorites.activities.includes(it.id)),
   filterByType: (state, _, __, rootGetters) => type => search(state, rootGetters['activities/getByType'](type)),
-  filterBySubtype: (state, _, __, rootGetters) => subtype => search(state, rootGetters['activities/getBySubtype'](subtype))
+  filterBySubtype: (state, _, __, rootGetters) => (type, subtype) => search(state, rootGetters['activities/getBySubtype'](type, subtype))
 }
 
 const actions = {}

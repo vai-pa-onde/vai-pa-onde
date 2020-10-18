@@ -1,15 +1,15 @@
 <template>
   <div class="suggestion-modal">
     <vpo-button v-if="drawer" text="sugerir" @click="isModalOpen = true" />
-    <a v-else-if="text" @click="isModalOpen = true">vai de formulário</a>
+    <a v-else-if="text" @click="isModalOpen = true">Vai de formulário</a>
     <vpo-button v-else :dark="!outlined" :outlined="outlined" text="mandar uma ação" @click="isModalOpen = true" />
 
     <modal v-model="isModalOpen" title="mandar uma ação" action="enviar" :isActionLoading="$store.state.feedback.sending" @confirm="send">
       <div class="modal-content">
         <p>
           <b>Sentiu falta de alguma coisa?</b> Se sabe de algo que vai acontecer, ou se promove alguma ação,
-          conteúdo, evento ou produto que pode facilitar a quarentena de outras pessoas, é só mandar aqui que
-          colocamos no site! (Todos os campos são obrigatórios)
+          curso, conteúdo, evento ou produto que pode promover o aprendizado de outras pessoas,
+          manda aqui que colocamos no site! (Todos os campos são obrigatórios)
         </p>
         <p>
           Tipo de ação
@@ -20,7 +20,7 @@
         <vpo-input v-model="suggestion.brand" placeholder="Responsável pela ação" label="Nome da pessoa, grupo, coletivo ou marca promovendo a ação" />
         <vpo-input v-model="suggestion.link" placeholder="Link de acesso" label="Como fazemos para acessar a ação?" />
         <vpo-input v-model="suggestion.description" placeholder="Descrição" />
-        <vpo-input v-model="suggestion.validUntil" placeholder="Ação válida até" label="Em caso de festival, colocar o último dia" optional />
+        <vpo-input v-model="suggestion.validUntil" placeholder="Ação válida até" optional />
       </div>
     </modal>
   </div>
@@ -38,7 +38,7 @@ export default {
   data: () => ({
     isModalOpen: false,
     suggestion: {
-      type: 'learn',
+      type: 'free',
       title: '',
       brand: '',
       link: '',
@@ -50,25 +50,25 @@ export default {
     chooserOptions() {
       return [
         {
-          value: 'learn',
-          text: 'Aprender',
-          label: 'Sugestões de cursos, palestras ou mentorias disponíveis gratuitamente',
-          type: 'learn'
+          value: 'free',
+          text: 'Cursos Livres',
+          label: 'Sugestões de cursos grátis e sem certificado',
+          type: 'free'
         }, {
-          value: 'participate',
-          text: 'Participar',
-          label: 'Lives, congressos, festivais, shows… mas tem que ser online, hein?',
-          type: 'participate'
+          value: 'certificated',
+          text: 'Cursos Com Certificado',
+          label: 'Sugestões de cursos grátis e que tenham certificado',
+          type: 'certificated'
         }, {
-          value: 'do',
-          text: 'Fazer',
-          label: 'Sugestões de atividades e brincadeiras, apps liberados de graça',
-          type: 'do'
+          value: 'events',
+          text: 'Eventos',
+          label: 'Promoções, congressos, lives - que tenham data para acabar',
+          type: 'events'
         }, {
-          value: 'share',
-          text: 'Compartilhar',
+          value: 'contents',
+          text: 'Conteúdos',
           label: 'Sites informativos, canais do YouTube, perfil do instagram, blogs...',
-          type: 'share'
+          type: 'contents'
         }
       ]
     }

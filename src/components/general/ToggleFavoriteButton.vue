@@ -53,19 +53,19 @@ export default {
   &--active {
     @include favorite-active('white');
 
-    &--learn {
+    &--free {
       @include favorite-active('yellow');
     }
 
-    &--participate {
+    &--certificated {
       @include favorite-active('pink');
     }
 
-    &--do {
+    &--events {
       @include favorite-active('teal');
     }
 
-    &--share {
+    &--contents {
       @include favorite-active('red');
     }
   }

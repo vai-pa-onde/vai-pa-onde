@@ -1,17 +1,17 @@
 .type-background {
-  &--learn {
+  &--free {
     background-color: map-get($colors-util, 'yellow');
   }
 
-  &--participate {
+  &--certificated {
     background-color: map-get($colors-util, 'pink');
   }
 
-  &--do {
+  &--events {
     background-color: map-get($colors-util, 'teal');
   }
 
-  &--share {
+  &--contents {
     background-color: map-get($colors-util, 'red');
   }
 

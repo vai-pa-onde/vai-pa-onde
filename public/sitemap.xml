@@ -11,22 +11,22 @@
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://vaipaonde.com.br/categoria/learn</loc>
+    <loc>https://vaipaonde.com.br/categoria/free</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://vaipaonde.com.br/categoria/participate</loc>
+    <loc>https://vaipaonde.com.br/categoria/certificated</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://vaipaonde.com.br/categoria/do</loc>
+    <loc>https://vaipaonde.com.br/categoria/events</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://vaipaonde.com.br/categoria/share</loc>
+    <loc>https://vaipaonde.com.br/categoria/contents</loc>
     <changefreq>daily</changefreq>
     <priority>0.6</priority>
   </url>

@@ -1,7 +1,6 @@
 <template>
-  <cta-card :to="{ name: 'type-filter', params: { type } }" :type="type" :numberOfActivities="loading ? 88 : numberOfActivities">
+  <cta-card :to="{ name: 'type-filter', params: { type } }" :type="type" :numberOfActivities="loading ? 88 : numberOfActivities" :title="content.title">
     <template slot="content">
-      <h2>{{ content.title }}</h2>
       <span>{{ content.description }}</span>
     </template>
   </cta-card>
@@ -11,21 +10,21 @@
 import { mapGetters, mapState } from 'vuex'
 
 const contentByType = {
-  learn: {
-    title: 'Aprender',
-    description: 'Cursos online, palestra, mentorias. Para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
+  'free': {
+    title: 'Cursos <b>sem certificado</b>',
+    description: 'Cursos livres online para todos os interesses, idades e níveis de especialidade, e o que é melhor: grátis!'
   },
-  participate: {
-    title: 'Participar',
-    description: 'Aqui você vai encontrar shows, lives, festivais e congressos. Tudo online, hein?'
+  'certificated': {
+    title: 'Cursos <b>com certificado</b>',
+    description: 'Cursos online, grátis e com certificado! É só procurar o que te interessa e rechear seu currículo.'
   },
-  do: {
-    title: 'Fazer',
-    description: 'Atividades para fazer com seus filhos, streaming e aplicativos liberados de graça. O que tá esperando?'
+  events: {
+    title: 'Eventos',
+    description: 'Congressos, lives, palestras, promoções… Tudo que pode aparecer de surpresa e acabar a qualquer momento.'
   },
-  share: {
-    title: 'Compartilhar',
-    description: 'Informações sobre a pandemia, podcasts, listas, perfis do Instagram e canais do YouTube interessantes'
+  contents: {
+    title: 'Conteúdos',
+    description: 'Aprender não precisa ser só em cursos! Canais do YouTube, Podcasts, blogposts: mais formas de aprender de graça!'
   }
 }
 

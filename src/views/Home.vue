@@ -10,7 +10,7 @@
         <activities-counter type="published" />
         <activities-counter type="valid" :routeTo="{ name: 'all-activities' }" />
       </div>
-      <h1>Vontade de aprender alguma coisa, né minha filha?</h1>
+      <h1>Vontade de aprender alguma coisa?</h1>
       <div class="home__content__types">
         <type-description-card :key="type" v-for="type in types" :type="type" />
       </div>

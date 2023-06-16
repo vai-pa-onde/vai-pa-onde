@@ -42,7 +42,7 @@ export default {
       { vmid: 'og:description', name: 'og:description', content: config.defaultDescription }
     ],
     link: [
-      { rel: 'canonical', href: `https://vaipaonde.com.br/sobre` }
+      { rel: 'canonical', href: `https://vaipaonde.netlify.app/sobre` }
     ]
   }
 }

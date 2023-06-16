@@ -65,7 +65,7 @@ export default {
   },
   metaInfo() {
     let title = 'Vai pa onde?'
-    let href = 'https://vaipaonde.com.br'
+    let href = 'https://vaipaonde.netlify.app'
     if (this.type) {
       title += ` | ${this.typeLabel}`
       href += `/categoria/${this.type}`

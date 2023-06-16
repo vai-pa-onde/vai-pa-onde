@@ -29,7 +29,7 @@ export default {
       const listToken = btoa(list)
 
       const el = document.createElement('textarea')
-      el.value = `https://vaipaonde.com.br/lista?list=${listToken}`
+      el.value = `https://vaipaonde.netlify.app/lista?list=${listToken}`
       el.setAttribute('readonly', '')
       el.style.position = 'absolute'
       el.style.left = '-9999px'

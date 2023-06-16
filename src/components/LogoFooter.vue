@@ -4,7 +4,7 @@
       <div class="logo-footer__content__logo">
         <logo />
         <div class="logo-footer__content__logo__social-medias">
-          <a rel="noopener" href="https://www.instagram.com/vaipaonde.com.br/" target="_blank"><p>@vaipaonde.com.br</p></a>
+          <a rel="noopener" href="https://www.instagram.com/vaipaonde.netlify.app/" target="_blank"><p>@vaipaonde.netlify.app</p></a>
           <a href="mailto:contato.vaipaonde@gmail.com" target="_top"><p>contato.vaipaonde@gmail.com</p></a>
         </div>
       </div>

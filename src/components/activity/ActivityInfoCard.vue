@@ -39,7 +39,7 @@ export default {
   },
   computed: {
     pageLink() {
-      return `https://vaipaonde.com.br/acao/${this.id}`
+      return `https://vaipaonde.netlify.app/acao/${this.id}`
     },
     whatsappLink() {
       if (isMobile()) {

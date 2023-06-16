@@ -106,7 +106,7 @@ export default {
 
     const publishedAt = this.activity.publishedAtDate.toISOString()
     const description = this.activity.description.length <= 160 ? this.activity.description : this.activity.description.substring(0, 157) + '...'
-    const url = `https://vaipaonde.com.br/acao/${this.activity.id}`
+    const url = `https://vaipaonde.netlify.app/acao/${this.activity.id}`
 
     return {
       title: `Vai pa onde? | ${this.activity.title}`,
@@ -130,7 +130,7 @@ export default {
             "headline": "${this.activity.title}",
             "description": "${description}",
             "image": [
-              "https://vaipaonde.com.br/images/logo-large.png"
+              "https://vaipaonde.netlify.app/images/logo-large.png"
             ],
             "author": {
               "@type": "Organization",
@@ -141,7 +141,7 @@ export default {
               "name": "Vai pa onde",
               "logo": {
                 "@type": "ImageObject",
-                "url": "https://vaipaonde.com.br/images/android-chrome-192x192",
+                "url": "https://vaipaonde.netlify.app/images/android-chrome-192x192",
                 "width": 60,
                 "height": 60
               }
